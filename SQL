@@ -1,1 +1,10 @@
 create database Hospital;
+
+create table users (
+    id SERIAL PRIMARY KEY,
+    type Integer NOT NULL,
+    name varchar(20) NOT NULL,
+    password varchar(20) NOT NULL
+);
+
+insert into users (name, password, type) values ('diretor', 'root', 1);

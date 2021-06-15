@@ -11,9 +11,9 @@ public class Main extends Application {
         Parent login = FXMLLoader.load(getClass().getResource("view/Login.fxml"));
         Scene scene = new Scene(login);
         stage.setTitle("Login");
+        stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
-
     }
     public static void main(String[] args) {
         launch(args);
