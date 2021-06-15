@@ -1,7 +1,7 @@
 package model.database;
 
 public class Factory {
-    public static Database getDatabase(String name) {
+    public static Idatabase getDatabase(String name) {
         if(name.equals("postgres")) {
             return new Postgres();
         }

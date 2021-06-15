@@ -3,7 +3,6 @@ package model.database;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Postgres implements Idatabase{
@@ -13,13 +12,15 @@ public class Postgres implements Idatabase{
     public Connection connect() {
         try {
             Class.forName("org.postgresql.Driver");
-            this.connection = DriverManager.getConnection("url", "user", "password");
+            this.connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/hospital", "postgres", "root");
+           
+            System.out.println("connected");
             return this.connection;
         } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(Postgres.class.getName()).log(Level.SEVERE,null,e);
+            //Logger.getLogger(Postgres.class.getName()).log(Level.SEVERE,null,e);
             return null;
         }
-        return null;
+       // return null;
     }
 
     @Override
@@ -27,7 +28,7 @@ public class Postgres implements Idatabase{
         try {
             connection.close();
         } catch (SQLException e) {
-            Logger.getLogger(Postgres.class.getName()).log(Level.SEVERE,null,e);
+            //Logger.getLogger(Postgres.class.getName()).log(Level.SEVERE,null,e);
         }
         
     }
