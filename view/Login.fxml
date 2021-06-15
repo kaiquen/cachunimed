@@ -1,15 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="login" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginController">
+<AnchorPane fx:id="login" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="542.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginController">
    <children>
-      <TextField fx:id="textField" layoutX="229.0" layoutY="148.0" prefHeight="31.0" prefWidth="235.0" />
-      <PasswordField fx:id="passwordField" layoutX="229.0" layoutY="222.0" prefHeight="31.0" prefWidth="235.0" />
-      <Button layoutX="272.0" layoutY="313.0" mnemonicParsing="false" onAction="#Enter" prefHeight="31.0" prefWidth="91.0" text="Entrar" />
-      <Label layoutX="121.0" layoutY="153.0" text="Usuário" />
-      <Label layoutX="126.0" layoutY="227.0" text="Senha" />
+      <ImageView fitHeight="124.0" fitWidth="399.0" layoutX="72.0" layoutY="14.0" pickOnBounds="true">
+         <image>
+            <Image url="@image/Logo.jpg" />
+         </image>
+      </ImageView>
+      <TextField fx:id="textField" layoutX="208.0" layoutY="166.0" prefHeight="31.0" prefWidth="235.0" />
+      <PasswordField fx:id="passwordField" layoutX="208.0" layoutY="240.0" prefHeight="31.0" prefWidth="235.0" />
+      <Button layoutX="251.0" layoutY="331.0" mnemonicParsing="false" onAction="#Enter" prefHeight="31.0" prefWidth="91.0" text="Entrar" />
+      <Label layoutX="100.0" layoutY="171.0" text="Usuário" />
+      <Label layoutX="105.0" layoutY="245.0" text="Senha" />
    </children>
 </AnchorPane>
