@@ -40,17 +40,24 @@ public class LoginController implements Initializable {
                 login.getScene().getWindow().hide();
                 
                 Parent mainDiretor = FXMLLoader.load(getClass().getResource("/view/diretor/MainDiretor.fxml"));
-                Scene scene = new Scene(mainDiretor);
+                Scene sceneDiretor = new Scene(mainDiretor);
 
-                Stage stage = new Stage();
-                stage.setTitle("Diretor");
-                stage.setScene(scene);
-                stage.show();
-
+                Stage stageDiretor = new Stage();
+                stageDiretor.setTitle("Diretor");
+                stageDiretor.setScene(sceneDiretor);
+                stageDiretor.show();
                 break;
 
             case 2:
-                System.out.println("2");
+                login.getScene().getWindow().hide();
+                    
+                Parent mainMedico = FXMLLoader.load(getClass().getResource("/view/medico/MainMedico.fxml"));
+                Scene sceneMedico = new Scene(mainMedico);
+
+                Stage stageMedico = new Stage();
+                stageMedico.setTitle("Médico");
+                stageMedico.setScene(sceneMedico);
+                stageMedico.show();
                 break;
               
             case 3:

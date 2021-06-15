@@ -1,6 +1,8 @@
 package controller.diretor;
 
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -12,7 +14,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import model.Types;
+import model.UsersDAO;
+import model.database.Factory;
+import model.database.Idatabase;
+
 
 public class CreateFuncionarioController implements Initializable{
 
@@ -22,8 +29,17 @@ public class CreateFuncionarioController implements Initializable{
     @FXML TextField textFieldName;
     @FXML PasswordField passwordField;
 
-    @FXML private void create(){
-        System.out.println(verifyField());
+    @FXML AnchorPane anchorPane;
+
+    @FXML private void create() throws SQLException{
+        if(verifyField()){
+            Idatabase database = Factory.getDatabase("postgres");
+            Connection connection = database.connect();
+            UsersDAO users = new UsersDAO(connection);
+           
+            users.create(comboBox.getValue().toString(), textFieldCpf.getText(), textFieldName.getText(), passwordField.getText());
+            anchorPane.getScene().getWindow().hide();
+        }
     } 
 
     @Override

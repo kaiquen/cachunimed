@@ -15,7 +15,7 @@
       <TextField fx:id="textField" layoutX="208.0" layoutY="166.0" prefHeight="31.0" prefWidth="235.0" />
       <PasswordField fx:id="passwordField" layoutX="208.0" layoutY="240.0" prefHeight="31.0" prefWidth="235.0" />
       <Button layoutX="251.0" layoutY="331.0" mnemonicParsing="false" onAction="#Enter" prefHeight="31.0" prefWidth="91.0" text="Entrar" />
-      <Label layoutX="100.0" layoutY="171.0" text="Usuário" />
+      <Label layoutX="100.0" layoutY="171.0" text="CPF" />
       <Label layoutX="105.0" layoutY="245.0" text="Senha" />
    </children>
 </AnchorPane>

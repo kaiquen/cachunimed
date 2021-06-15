@@ -1,15 +1,17 @@
 package model;
 
 public class Users {
-    private Integer id;
-    private String name;
-    private String password;
-    private Integer type; 
+    private  Integer id;
+    private  String cpf;
+    private  String name;
+    private  String password;
+    private  Integer type; 
 
     public Users(){};
    
-    public Users(String name, String password, Integer type){
-        this.name = name;
+
+    public Users(String cpf, String password, Integer type){
+        this.cpf = cpf;
         this.password = password;
         this.type = type;
     }
@@ -29,6 +31,10 @@ public class Users {
     public void setType(Integer type) {
         this.type = type;
     }
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+    
 
     public Integer getId() {
         return id;
@@ -45,4 +51,11 @@ public class Users {
     public Integer getType(){
         return type;
     }
+    
+    public String getCpf() {
+        return cpf;
+    }
+    
 }
+
+
