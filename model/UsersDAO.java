@@ -22,8 +22,8 @@ public class UsersDAO {
       
         if(rs.next()){
             return rs.getInt("type");
-         
         }
+
         return 4;
     }
 }

@@ -1,15 +1,21 @@
 package controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import model.UsersDAO;
 import model.database.Factory;
 import model.database.Idatabase;
@@ -18,20 +24,29 @@ public class LoginController implements Initializable {
 
     @FXML private TextField textField;
     @FXML private PasswordField passwordField;
+    @FXML private AnchorPane login;
 
-    @FXML private void Enter() throws SQLException{
+    @FXML private void Enter() throws SQLException, IOException{
         final Idatabase database = Factory.getDatabase("postgres");
         final Connection connection = database.connect();
         final UsersDAO users = new UsersDAO(connection);
-       
-        Integer type = users.select(textField.getText(), passwordField.getText());
+        final Integer type = users.select(textField.getText(), passwordField.getText());
         //type 1 = Diretor
         //type 2 = Medico
         //type 3 = Recepcionista
 
         switch(type) {
             case 1:
-                System.out.println("1");
+                login.getScene().getWindow().hide();
+                
+                Parent mainDiretor = FXMLLoader.load(getClass().getResource("/view/diretor/MainDiretor.fxml"));
+                Scene scene = new Scene(mainDiretor);
+
+                Stage stage = new Stage();
+                stage.setTitle("Diretor");
+                stage.setScene(scene);
+                stage.show();
+
                 break;
 
             case 2:
@@ -41,7 +56,7 @@ public class LoginController implements Initializable {
             case 3:
                 System.out.println("3");
                 break;
-                
+
             default: 
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setTitle("Conection Fail");
