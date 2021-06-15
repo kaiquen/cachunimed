@@ -15,7 +15,4 @@ public class Types {
     public String toString() {
         return getTypes();
     }
-
-    
-
 }

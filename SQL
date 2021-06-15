@@ -2,9 +2,10 @@ create database Hospital;
 
 create table users (
     id SERIAL PRIMARY KEY,
+    cpf varchar(11) UNIQUE NOT NULL,
     type Integer NOT NULL,
     name varchar(20) NOT NULL,
     password varchar(20) NOT NULL
 );
 
-insert into users (name, password, type) values ('diretor', 'root', 1);
+insert into users (cpf,name, password, type) values ('00000000000','diretor', 'root', 1);
