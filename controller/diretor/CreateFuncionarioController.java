@@ -15,8 +15,8 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import model.FuncionarioDAO;
 import model.Types;
+import model.dao.FuncionarioDAO;
 import model.database.Factory;
 import model.database.Idatabase;
 
@@ -37,7 +37,7 @@ public class CreateFuncionarioController implements Initializable{
             FuncionarioDAO funcionario = new FuncionarioDAO(connection);
            
             funcionario.create(comboBox.getValue().toString(), textFieldCpf.getText(), textFieldName.getText(), passwordField.getText());
-            anchorPane.getScene().getWindow().hide();
+            //anchorPane.getScene().getWindow().hide();
         }
     } 
 
@@ -68,11 +68,11 @@ public class CreateFuncionarioController implements Initializable{
         List<Types> type = new ArrayList<>();
         ObservableList<Types> types;
     
-        Types type1 = new Types("Diretor");
+        //Types type1 = new Types("Diretor");
         Types type2 = new Types("Médico");
         Types type3 = new Types("Recepcionista");
 
-        type.add(type1);
+        //type.add(type1);
         type.add(type2);
         type.add(type3);
 

@@ -4,9 +4,9 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.diretor.CreateFuncionarioController">
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="374.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.diretor.CreateFuncionarioController">
    <children>
-      <GridPane layoutX="177.0" layoutY="89.0" prefHeight="222.0" prefWidth="247.0">
+      <GridPane layoutX="177.0" layoutY="53.0" prefHeight="222.0" prefWidth="247.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="10.0" prefWidth="78.0" />
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="150.0" minWidth="10.0" prefWidth="122.0" />
@@ -28,6 +28,6 @@
             <PasswordField fx:id="passwordField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
          </children>
       </GridPane>
-      <Button layoutX="252.0" layoutY="342.0" mnemonicParsing="false" onAction="#create" prefHeight="31.0" prefWidth="97.0" text="Cadastrar" />
+      <Button layoutX="252.0" layoutY="307.0" mnemonicParsing="false" onAction="#create" prefHeight="31.0" prefWidth="97.0" text="Cadastrar" />
    </children>
 </AnchorPane>

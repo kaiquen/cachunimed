@@ -14,9 +14,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import model.FuncionarioDAO;
+import model.dao.FuncionarioDAO;
 import model.database.Factory;
 import model.database.Idatabase;
 
@@ -34,7 +35,7 @@ public class LoginController implements Initializable {
         //type 1 = Diretor
         //type 2 = Medico
         //type 3 = Recepcionista
-
+        Image image = new Image("view/image/64x64.png");
         switch(type) {
             case 1:
                 login.getScene().getWindow().hide();
@@ -45,6 +46,8 @@ public class LoginController implements Initializable {
                 Stage stageDiretor = new Stage();
                 stageDiretor.setTitle("Diretor");
                 stageDiretor.setScene(sceneDiretor);
+                stageDiretor.getIcons().add(image);
+
                 stageDiretor.show();
                 break;
 
@@ -53,10 +56,13 @@ public class LoginController implements Initializable {
                     
                 Parent mainMedico = FXMLLoader.load(getClass().getResource("/view/medico/MainMedico.fxml"));
                 Scene sceneMedico = new Scene(mainMedico);
-
+                
                 Stage stageMedico = new Stage();
                 stageMedico.setTitle("Médico");
                 stageMedico.setScene(sceneMedico);
+
+                stageMedico.getIcons().add(image);
+
                 stageMedico.show();
                 break;
               
