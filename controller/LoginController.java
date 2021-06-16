@@ -16,7 +16,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import model.UsersDAO;
+import model.FuncionarioDAO;
 import model.database.Factory;
 import model.database.Idatabase;
 
@@ -29,8 +29,8 @@ public class LoginController implements Initializable {
     @FXML private void Enter() throws SQLException, IOException{
         final Idatabase database = Factory.getDatabase("postgres");
         final Connection connection = database.connect();
-        final UsersDAO users = new UsersDAO(connection);
-        final Integer type = users.select(textField.getText(), passwordField.getText());
+        final FuncionarioDAO funcionario = new FuncionarioDAO(connection);
+        final Integer type = funcionario.select(textField.getText(), passwordField.getText());
         //type 1 = Diretor
         //type 2 = Medico
         //type 3 = Recepcionista

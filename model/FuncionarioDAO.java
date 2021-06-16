@@ -6,13 +6,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 
-public class UsersDAO {
+public class FuncionarioDAO {
     Connection connection;
-    public UsersDAO(Connection connection){
+    public FuncionarioDAO(Connection connection){
         this.connection = connection;
     }
     public Integer select(String cpf, String password) throws SQLException {
-        String sql = "select * from users where cpf=? and password=?";
+        String sql = "select * from funcionario where cpf=? and password=?";
         PreparedStatement ps = connection.prepareStatement(sql);
         
         ps.setString(1, cpf);
@@ -28,7 +28,7 @@ public class UsersDAO {
     }
 
     public void create(String type, String cpf, String name,String password) throws SQLException{
-        String sql = "insert into users (cpf, type, name, password) values (?,?,?,?)";
+        String sql = "insert into funcionario (cpf, type, name, password) values (?,?,?,?)";
         PreparedStatement ps = connection.prepareStatement(sql);
 
         ps.setString(1, cpf);

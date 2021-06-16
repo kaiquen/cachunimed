@@ -15,8 +15,8 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import model.FuncionarioDAO;
 import model.Types;
-import model.UsersDAO;
 import model.database.Factory;
 import model.database.Idatabase;
 
@@ -28,16 +28,15 @@ public class CreateFuncionarioController implements Initializable{
     @FXML TextField textFieldCpf;
     @FXML TextField textFieldName;
     @FXML PasswordField passwordField;
-
     @FXML AnchorPane anchorPane;
 
     @FXML private void create() throws SQLException{
         if(verifyField()){
             Idatabase database = Factory.getDatabase("postgres");
             Connection connection = database.connect();
-            UsersDAO users = new UsersDAO(connection);
+            FuncionarioDAO funcionario = new FuncionarioDAO(connection);
            
-            users.create(comboBox.getValue().toString(), textFieldCpf.getText(), textFieldName.getText(), passwordField.getText());
+            funcionario.create(comboBox.getValue().toString(), textFieldCpf.getText(), textFieldName.getText(), passwordField.getText());
             anchorPane.getScene().getWindow().hide();
         }
     } 

@@ -16,7 +16,7 @@ public class Main extends Application {
         stage.setScene(scene);
         
         //**********
-        Image image = new Image("view/image/logo.jpg");
+        Image image = new Image("view/image/64x64.png");
         stage.getIcons().add(image);
         
         stage.show();

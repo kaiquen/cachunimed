@@ -1,16 +1,16 @@
 package model;
 
-public class Users {
+public class Funcionario {
     private  Integer id;
     private  String cpf;
     private  String name;
     private  String password;
     private  Integer type; 
 
-    public Users(){};
+    public Funcionario(){};
    
 
-    public Users(String cpf, String password, Integer type){
+    public Funcionario(String cpf, String password, Integer type){
         this.cpf = cpf;
         this.password = password;
         this.type = type;
