@@ -15,8 +15,13 @@ public class MainDiretorController implements Initializable{
     @FXML private AnchorPane anchorPane;
 
     @FXML private void listFuncionarios() throws IOException{
-        AnchorPane pane = (AnchorPane) FXMLLoader.load(getClass().getResource("/view/diretor/ListFuncionarios.fxml"));   
-        anchorPane.getChildren().setAll(pane);
+        AnchorPane paneFuncionario = (AnchorPane) FXMLLoader.load(getClass().getResource("/view/diretor/ListFuncionarios.fxml"));   
+        anchorPane.getChildren().setAll(paneFuncionario);
+    }
+
+    @FXML private void listPaciente() throws IOException {
+        AnchorPane panePaciente = (AnchorPane) FXMLLoader.load(getClass().getResource("/view/diretor/ListPaciente.fxml"));   
+        anchorPane.getChildren().setAll(panePaciente);
     }
 
     

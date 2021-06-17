@@ -78,6 +78,23 @@ public class FuncionarioDAO {
         ps.execute();
     }
 
+    public void delete(Integer id) throws SQLException{
+        String sql = "delete from funcionario where id=?";
+        PreparedStatement ps = connection.prepareStatement(sql);
+        ps.setInt(1, id);
+        ps.execute();
+    }
+
+    public void update(Integer id, String name, String password) throws SQLException{
+        String sql = "update funcionario set name=?, password=? where id=?";
+        PreparedStatement ps = connection.prepareStatement(sql);
+        ps.setString(1, name);
+        ps.setString(2, password);
+        ps.setInt(3, id);
+        ps.execute();
+        
+    }
+
     public Integer selectIdCargo(String cargo) throws SQLException{
         String sql = "select id from cargo where cargo=?";
         PreparedStatement ps = connection.prepareStatement(sql);
