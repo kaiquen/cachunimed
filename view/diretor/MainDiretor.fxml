@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
@@ -9,15 +10,10 @@
    <children>
       <MenuBar>
         <menus>
-          <Menu mnemonicParsing="false" text="Funcionários">
-            <items>
-                  <MenuItem mnemonicParsing="false" onAction="#listMedico" text="Médicos" />
-                  <MenuItem mnemonicParsing="false" onAction="#listRecepcionista" text="Recepcionistas" />
-            </items>
-          </Menu>
           <Menu mnemonicParsing="false" text="Cadastro">
             <items>
-              <MenuItem mnemonicParsing="false" onAction="#createFuncionario" text="Cadastrar Funcionario" />
+                  <MenuItem mnemonicParsing="false" onAction="#listFuncionarios" text="Funcionários" />
+                  <MenuItem mnemonicParsing="false" text="Pacientes" />
             </items>
           </Menu>
             <Menu mnemonicParsing="false" text="Gráficos">
@@ -32,6 +28,13 @@
             </Menu>
         </menus>
       </MenuBar>
-      <AnchorPane fx:id="anchorPane" prefHeight="374.0" prefWidth="600.0" />
+      <AnchorPane fx:id="anchorPane" prefHeight="374.0" prefWidth="600.0">
+         <children>
+            <ImageView fitHeight="174.0" fitWidth="420.0" layoutX="90.0" layoutY="90.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/logo.png" />
+               </image>
+            </ImageView>
+         </children></AnchorPane>
    </children>
 </VBox>

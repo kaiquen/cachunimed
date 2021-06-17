@@ -6,6 +6,7 @@ public class Funcionario {
     private  String name;
     private  String password;
     private  Integer type; 
+    private  String cargo;
 
     public Funcionario(){};
    
@@ -31,10 +32,14 @@ public class Funcionario {
     public void setType(Integer type) {
         this.type = type;
     }
+
     public void setCpf(String cpf) {
         this.cpf = cpf;
     }
-    
+
+    public void setCargo(String cargo){
+        this.cargo = cargo;
+    }
 
     public Integer getId() {
         return id;
@@ -54,6 +59,10 @@ public class Funcionario {
     
     public String getCpf() {
         return cpf;
+    }
+
+    public String getCargo(){
+        return cargo;
     }
     
 }

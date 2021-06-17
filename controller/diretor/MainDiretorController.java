@@ -14,18 +14,11 @@ public class MainDiretorController implements Initializable{
 
     @FXML private AnchorPane anchorPane;
 
-    @FXML private void listMedico() throws IOException{
-        AnchorPane paneMedico = (AnchorPane) FXMLLoader.load(getClass().getResource("/view/diretor/ListMedico.fxml"));   
-        anchorPane.getChildren().setAll(paneMedico);
+    @FXML private void listFuncionarios() throws IOException{
+        AnchorPane pane = (AnchorPane) FXMLLoader.load(getClass().getResource("/view/diretor/ListFuncionarios.fxml"));   
+        anchorPane.getChildren().setAll(pane);
     }
-    @FXML private void listRecepcionista() throws IOException{
-        AnchorPane paneRecepcionista = (AnchorPane) FXMLLoader.load(getClass().getResource("/view/diretor/ListRecepcionista.fxml"));   
-        anchorPane.getChildren().setAll(paneRecepcionista);
-    }
-    @FXML private void createFuncionario() throws IOException{
-        AnchorPane paneCadastro = (AnchorPane) FXMLLoader.load(getClass().getResource("/view/diretor/CreateFuncionario.fxml"));   
-        anchorPane.getChildren().setAll(paneCadastro);
-    }
+
     
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {

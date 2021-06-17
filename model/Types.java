@@ -1,14 +1,13 @@
 package model;
 
 public class Types {
-    private String types;
+    private String type;
 
-    public Types(String types) {
-        this.types = types;
+    public void setTypes(String type){
+        this.type = type;
     }
-
     public String getTypes() {
-        return types;
+        return type;
     }
 
     @Override

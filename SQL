@@ -1,11 +1,18 @@
-create database Hospital;
+create database clinica;
 
+create table cargo(
+    id integer PRIMARY KEY,
+    cargo varchar(20) NOT NULL
+)
 create table funcionario (
     id SERIAL PRIMARY KEY,
     cpf varchar(11) UNIQUE NOT NULL,
-    type Integer NOT NULL,
     name varchar(20) NOT NULL,
-    password varchar(20) NOT NULL
+    password varchar(20) NOT NULL,
+    type Integer,
+    CONSTRAINT fk)cargo
+        FOREIGN KEY(type)
+            REFERENCES cargo(id)
 );
 
-insert into users (cpf,name, password, type) values ('1234','diretor', 'root', 1);
+insert into users (cpf, name, password, type) values ('1234','diretor', 'root', 1);
