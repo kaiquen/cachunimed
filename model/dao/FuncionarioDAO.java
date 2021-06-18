@@ -17,12 +17,12 @@ public class FuncionarioDAO {
         this.connection = connection;
     }
 
-    public Integer select(String cpf, String password) throws SQLException {
+    public Integer login(Funcionario funcionario) throws SQLException {
         String sql = "select * from funcionario where cpf=? and password=?";
         PreparedStatement ps = connection.prepareStatement(sql);
         
-        ps.setString(1, cpf);
-        ps.setString(2, password);
+        ps.setString(1, funcionario.getCpf());
+        ps.setString(2, funcionario.getPassword());
 
         ResultSet rs = ps.executeQuery();
       
@@ -51,6 +51,7 @@ public class FuncionarioDAO {
 
         return funcionarios;
     } 
+    
     public List<Types> selectCargos() throws SQLException{
         String sql = "select cargo from cargo where cargo!='Diretor'";
         PreparedStatement ps = connection.prepareStatement(sql);
@@ -66,35 +67,38 @@ public class FuncionarioDAO {
         }
         return  types;
     }
-
+    //******************************************** Alterar SQL e SelecIdCargo
     public void create(Funcionario funcionario) throws SQLException{
-        String sql = "insert into funcionario (cpf, type, name, password) values (?,?,?,?)";
+        String sql = "insert into funcionario (cpf, type, name, password) values (?,?,?,?)"; //Tem q alterar
         PreparedStatement ps = connection.prepareStatement(sql);
 
         ps.setString(1, funcionario.getCpf());
-        ps.setInt(2, selectIdCargo(funcionario));
+        ps.setInt(2, selectIdCargo(funcionario)); //Tem que alterar 
         ps.setString(3, funcionario.getName());
         ps.setString(4, funcionario.getPassword());
         ps.execute();
     }
-
-    public void delete(Integer id) throws SQLException{
+    //*******************************************
+    public void delete(Funcionario funcionario) throws SQLException{
         String sql = "delete from funcionario where id=?";
         PreparedStatement ps = connection.prepareStatement(sql);
-        ps.setInt(1, id);
+        ps.setInt(1, funcionario.getId());
         ps.execute();
     }
 
-    public void update(Integer id, String name, String password) throws SQLException{
+    public void update(Funcionario funcionario) throws SQLException{
         String sql = "update funcionario set name=?, password=? where id=?";
         PreparedStatement ps = connection.prepareStatement(sql);
-        ps.setString(1, name);
-        ps.setString(2, password);
-        ps.setInt(3, id);
+        ps.setString(1, funcionario.getName());
+        ps.setString(2, funcionario.getPassword());
+        ps.setInt(3, funcionario.getId());
         ps.execute();
         
     }
 
+
+
+    //Excluir 
     public Integer selectIdCargo(Funcionario funcionario) throws SQLException{
         String sql = "select id from cargo where cargo=?";
         PreparedStatement ps = connection.prepareStatement(sql);

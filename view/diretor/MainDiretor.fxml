@@ -13,7 +13,7 @@
           <Menu mnemonicParsing="false" text="Cadastro">
             <items>
                   <MenuItem mnemonicParsing="false" onAction="#listFuncionarios" text="Funcionários" />
-                  <MenuItem mnemonicParsing="false" text="Pacientes" />
+                  <MenuItem mnemonicParsing="false" onAction="#listPaciente" text="Pacientes" />
             </items>
           </Menu>
             <Menu mnemonicParsing="false" text="Gráficos">
@@ -32,7 +32,7 @@
          <children>
             <ImageView fitHeight="174.0" fitWidth="420.0" layoutX="90.0" layoutY="90.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../image/logo.png" />
+                  <Image url="@../images/logo.png" />
                </image>
             </ImageView>
          </children></AnchorPane>

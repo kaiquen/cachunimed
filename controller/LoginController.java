@@ -17,6 +17,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import model.Funcionario;
 import model.dao.FuncionarioDAO;
 import model.database.Factory;
 import model.database.Idatabase;
@@ -34,16 +35,15 @@ public class LoginController implements Initializable {
     private void Enter() throws SQLException, IOException {
         final Idatabase database = Factory.getDatabase("postgres");
         final Connection connection = database.connect();
-        final FuncionarioDAO funcionario = new FuncionarioDAO(connection);
-        final Integer type = funcionario.select(textField.getText(), passwordField.getText());
-        // type 1 = Diretor
-        // type 2 = Medico
-        // type 3 = Recepcionista
+        final FuncionarioDAO funcionarioDAO = new FuncionarioDAO(connection);
+
         Image image = new Image("view/images/64x64.png");
-        switch (type) {
+        Funcionario funcionario = new Funcionario(textField.getText(), passwordField.getText());
+      
+        switch (funcionarioDAO.login(funcionario)) {
             case 1:
                 login.getScene().getWindow().hide();
-
+ 
                 Parent mainDiretor = FXMLLoader.load(getClass().getResource("/view/diretor/MainDiretor.fxml"));
                 Scene sceneDiretor = new Scene(mainDiretor);
 
