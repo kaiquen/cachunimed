@@ -9,22 +9,25 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
 
+public class MainDiretorController implements Initializable {
 
-public class MainDiretorController implements Initializable{
+    @FXML
+    private AnchorPane anchorPane;
 
-    @FXML private AnchorPane anchorPane;
-
-    @FXML private void listFuncionarios() throws IOException{
-        AnchorPane paneFuncionario = (AnchorPane) FXMLLoader.load(getClass().getResource("/view/diretor/ListFuncionarios.fxml"));   
+    @FXML
+    private void listFuncionarios() throws IOException {
+        AnchorPane paneFuncionario = (AnchorPane) FXMLLoader
+                .load(getClass().getResource("/view/diretor/ListFuncionarios.fxml"));
         anchorPane.getChildren().setAll(paneFuncionario);
     }
 
-    @FXML private void listPaciente() throws IOException {
-        AnchorPane panePaciente = (AnchorPane) FXMLLoader.load(getClass().getResource("/view/diretor/ListPaciente.fxml"));   
+    @FXML
+    private void listPaciente() throws IOException {
+        AnchorPane panePaciente = (AnchorPane) FXMLLoader
+                .load(getClass().getResource("/view/diretor/ListPaciente.fxml"));
         anchorPane.getChildren().setAll(panePaciente);
     }
 
-    
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
     }

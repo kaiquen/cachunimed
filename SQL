@@ -4,6 +4,7 @@ create table cargo(
     id integer PRIMARY KEY,
     cargo varchar(20) NOT NULL
 );
+
 create table funcionario (
     id SERIAL PRIMARY KEY,
     cpf varchar(11) UNIQUE NOT NULL,

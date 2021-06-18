@@ -76,8 +76,8 @@ public class LoginController implements Initializable {
 
             default:
                 Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setTitle("Conection Fail");
-                alert.setHeaderText("Credencias inválidas");
+                alert.setTitle("Connection Failed");
+                alert.setHeaderText("Credenciais inválidas");
                 alert.setContentText("Tente novamente!");
                 alert.show();
         }
