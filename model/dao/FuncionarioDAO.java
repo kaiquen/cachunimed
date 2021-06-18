@@ -32,7 +32,7 @@ public class FuncionarioDAO {
     }
 
     public List<Funcionario> selectFuncionarios() throws SQLException{
-        String sql = "select * from funcionario inner join cargo on funcionario.type=cargo.id";
+        String sql = "select f.*, c.cargo from funcionario as f inner join cargo as c on f.type=c.id;";
         PreparedStatement ps = connection.prepareStatement(sql);
         ResultSet rs = ps.executeQuery();
 
@@ -67,14 +67,14 @@ public class FuncionarioDAO {
         return  types;
     }
 
-    public void create(String type, String cpf, String name,String password) throws SQLException{
+    public void create(Funcionario funcionario) throws SQLException{
         String sql = "insert into funcionario (cpf, type, name, password) values (?,?,?,?)";
         PreparedStatement ps = connection.prepareStatement(sql);
 
-        ps.setString(1, cpf);
-        ps.setInt(2, selectIdCargo(type));
-        ps.setString(3, name);
-        ps.setString(4, password);
+        ps.setString(1, funcionario.getCpf());
+        ps.setInt(2, selectIdCargo(funcionario));
+        ps.setString(3, funcionario.getName());
+        ps.setString(4, funcionario.getPassword());
         ps.execute();
     }
 
@@ -95,10 +95,10 @@ public class FuncionarioDAO {
         
     }
 
-    public Integer selectIdCargo(String cargo) throws SQLException{
+    public Integer selectIdCargo(Funcionario funcionario) throws SQLException{
         String sql = "select id from cargo where cargo=?";
         PreparedStatement ps = connection.prepareStatement(sql);
-        ps.setString(1, cargo);
+        ps.setString(1, funcionario.getCargo());
 
         ResultSet rs = ps.executeQuery();
         rs.next();

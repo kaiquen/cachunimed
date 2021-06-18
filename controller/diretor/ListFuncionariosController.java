@@ -64,28 +64,28 @@ public class ListFuncionariosController implements Initializable {
     //*********************************************************
 
     @FXML private void create() throws SQLException{
-
-            if(!validation()){
-                String err = "";    
-                if(!verifyCpf())err += "CPF inválido!\n";
-                if(!verifyComboBox())err += "Selecione o tipo!\n";
-                if(verifyCpf() && verifyComboBox() && !verifyName_Password(true))err = "Tente novamente!";
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Insert Fail");
-                alert.setHeaderText("Preencha todos os campos");
-                alert.setContentText(err);
-                alert.show();
-            }else{
-            Idatabase database = Factory.getDatabase("postgres");
-            Connection connection = database.connect();
-            FuncionarioDAO funcionario = new FuncionarioDAO(connection);
-           
-            funcionario.create(comboBox.getValue().toString(), textFieldCpfCreate.getText(), textFieldNameCreate.getText(), passwordFieldCreate.getText());
-            
-            anchorPaneCreate.setVisible(false);
-            atulizarTableViews();
-            anchorPaneList.setVisible(true);   
-            }
+        if(!validation()){
+            String err = "";    
+            if(!verifyCpf())err += "CPF inválido!\n";
+            if(!verifyComboBox())err += "Selecione o tipo!\n";
+            if(verifyCpf() && verifyComboBox() && !verifyName_Password(true))err = "Tente novamente!";
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Insert Fail");
+            alert.setHeaderText("Preencha todos os campos");
+            alert.setContentText(err);
+            alert.show();
+        }else{
+        Idatabase database = Factory.getDatabase("postgres");
+        Connection connection = database.connect();
+        FuncionarioDAO funcionarioDAO = new FuncionarioDAO(connection);
+        //comboBox.getValue().toString(), textFieldCpfCreate.getText(), textFieldNameCreate.getText(), passwordFieldCreate.getText()
+        Funcionario funcionario = new Funcionario();
+        funcionarioDAO.create(funcionario);
+        
+        anchorPaneCreate.setVisible(false);
+        atulizarTableViews();
+        anchorPaneList.setVisible(true);   
+        }      
     } 
     @FXML private void clearCreate(){
         anchorPaneCreate.setVisible(false);

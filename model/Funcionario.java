@@ -11,10 +11,11 @@ public class Funcionario {
     public Funcionario(){};
    
 
-    public Funcionario(String cpf, String password, Integer type){
+    public Funcionario(String cpf, String name, String password, String cargo){
         this.cpf = cpf;
+        this.name = name;
         this.password = password;
-        this.type = type;
+        this.cargo = cargo;
     }
   
     public void setId(int id) {

@@ -10,7 +10,7 @@ create table funcionario (
     name varchar(20) NOT NULL,
     password varchar(20) NOT NULL,
     type Integer,
-    CONSTRAINT fk)cargo
+    CONSTRAINT fk_cargo
         FOREIGN KEY(type)
             REFERENCES cargo(id)
 );
