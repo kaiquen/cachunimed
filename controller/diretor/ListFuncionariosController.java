@@ -26,35 +26,55 @@ import model.database.Factory;
 import model.database.Idatabase;
 
 public class ListFuncionariosController implements Initializable {
-    @FXML private TableView<Funcionario> tableView;
-    @FXML private TableColumn<Funcionario, Integer> tableColumnId;
-    @FXML private TableColumn<Funcionario, String> tableColumnName;
+    @FXML
+    private TableView<Funcionario> tableView;
+    @FXML
+    private TableColumn<Funcionario, Integer> tableColumnId;
+    @FXML
+    private TableColumn<Funcionario, String> tableColumnName;
 
-    @FXML private AnchorPane anchorPaneList;
-    @FXML private Label labelIdList;
-    @FXML private Label labelNameList;
-    @FXML private Label labelCpfList;
-    @FXML private Label labelPasswordList;
-    @FXML private Label labelTypeList;
+    @FXML
+    private AnchorPane anchorPaneList;
+    @FXML
+    private Label labelIdList;
+    @FXML
+    private Label labelNameList;
+    @FXML
+    private Label labelCpfList;
+    @FXML
+    private Label labelPasswordList;
+    @FXML
+    private Label labelTypeList;
 
-    @FXML private AnchorPane anchorPaneCreate;
-    @FXML private TextField textFieldCpfCreate;
-    @FXML private TextField textFieldNameCreate;
-    @FXML private PasswordField passwordFieldCreate;
-    @FXML private ComboBox<Types> comboBox;
+    @FXML
+    private AnchorPane anchorPaneCreate;
+    @FXML
+    private TextField textFieldCpfCreate;
+    @FXML
+    private TextField textFieldNameCreate;
+    @FXML
+    private PasswordField passwordFieldCreate;
+    @FXML
+    private ComboBox<Types> comboBox;
 
-    @FXML private AnchorPane anchorPaneUpdate;
-    @FXML private TextField textFieldNameUpdate;
-    @FXML private PasswordField passwordFieldUpdate;
-    
-    //*******************************************************
-    @FXML private void updateList(){ 
+    @FXML
+    private AnchorPane anchorPaneUpdate;
+    @FXML
+    private TextField textFieldNameUpdate;
+    @FXML
+    private PasswordField passwordFieldUpdate;
+
+    // *******************************************************
+    @FXML
+    private void updateList() {
         textFieldNameUpdate.setText(labelNameList.getText());
         passwordFieldUpdate.setText("");
         anchorPaneList.setVisible(false);
-        anchorPaneUpdate.setVisible(true); 
+        anchorPaneUpdate.setVisible(true);
     }
-    @FXML private void createList() throws IOException, SQLException{
+
+    @FXML
+    private void createList() throws IOException, SQLException {
         textFieldNameCreate.setText("");
         textFieldCpfCreate.setText("");
         passwordFieldCreate.setText("");
@@ -88,10 +108,11 @@ public class ListFuncionariosController implements Initializable {
         anchorPaneList.setVisible(true);
     }
 
-    @FXML private void delete() throws NumberFormatException, SQLException {
-        if(tableView.getSelectionModel().isEmpty()){
+    @FXML
+    private void delete() throws NumberFormatException, SQLException {
+        if (tableView.getSelectionModel().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Delete Fail");
+            alert.setTitle("Delete Failed");
             alert.setHeaderText("Selecione o campo");
             alert.setContentText("Tente novamente!");
             alert.show();
@@ -105,10 +126,11 @@ public class ListFuncionariosController implements Initializable {
         }
     }
 
-    @FXML private void update() throws SQLException{
-        if(tableView.getSelectionModel().isEmpty()){
+    @FXML
+    private void update() throws SQLException {
+        if (tableView.getSelectionModel().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Update Fail");
+            alert.setTitle("Update Failed");
             alert.setHeaderText("Selecione o funcionário");
             alert.setContentText("Tente novamente!");
             alert.show();
@@ -133,13 +155,14 @@ public class ListFuncionariosController implements Initializable {
         }
     }
 
-    @FXML private void clearUpdate(){
+    @FXML
+    private void clearUpdate() {
         anchorPaneUpdate.setVisible(false);
         anchorPaneList.setVisible(true);
     }
 
     @Override
-    public void initialize(URL arg0, ResourceBundle arg1) {  
+    public void initialize(URL arg0, ResourceBundle arg1) {
         try {
             atulizarTableViews();
             printTypes();
@@ -147,12 +170,11 @@ public class ListFuncionariosController implements Initializable {
             e.printStackTrace();
         }
 
-        tableView.getSelectionModel().selectedItemProperty().addListener(
-            (obeservable, oldValue, newValue) -> selectItem(newValue)
-        );
-    }  
+        tableView.getSelectionModel().selectedItemProperty()
+                .addListener((obeservable, oldValue, newValue) -> selectItem(newValue));
+    }
 
-    private void atulizarTableViews() throws SQLException{
+    private void atulizarTableViews() throws SQLException {
         tableColumnId.setCellValueFactory(new PropertyValueFactory<>("id"));
         tableColumnName.setCellValueFactory(new PropertyValueFactory<>("name"));
 
@@ -168,6 +190,7 @@ public class ListFuncionariosController implements Initializable {
             funcionarioDAO.selectFuncionarios()
         );
     }
+
     private ObservableList<Types> type() throws SQLException {
         Idatabase database = Factory.getDatabase("postgres");
         Connection connection = database.connect();
@@ -178,19 +201,19 @@ public class ListFuncionariosController implements Initializable {
         );
     }
 
-    private void selectItem(Funcionario funcionario){
-        if(funcionario != null){
+    private void selectItem(Funcionario funcionario) {
+        if (funcionario != null) {
             labelIdList.setText(String.valueOf(funcionario.getId()));
             labelNameList.setText(funcionario.getName());
             labelCpfList.setText(funcionario.getCpf());
             labelPasswordList.setText(funcionario.getPassword());
             labelTypeList.setText(funcionario.getCargo());
-        }else{
+        } else {
             labelIdList.setText("");
             labelNameList.setText("");
             labelCpfList.setText("");
             labelPasswordList.setText("");
-            labelTypeList.setText("");   
+            labelTypeList.setText("");
         }
     }
 

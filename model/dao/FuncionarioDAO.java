@@ -10,10 +10,10 @@ import java.util.List;
 import model.Funcionario;
 import model.Types;
 
-
 public class FuncionarioDAO {
     Connection connection;
-    public FuncionarioDAO(Connection connection){
+
+    public FuncionarioDAO(Connection connection) {
         this.connection = connection;
     }
 
@@ -25,8 +25,9 @@ public class FuncionarioDAO {
         ps.setString(2, funcionario.getPassword());
 
         ResultSet rs = ps.executeQuery();
-      
-        if(rs.next())return rs.getInt("type");
+
+        if (rs.next())
+            return rs.getInt("type");
 
         return 4;
     }
@@ -38,7 +39,7 @@ public class FuncionarioDAO {
 
         List<Funcionario> funcionarios = new ArrayList<>();
 
-        while(rs.next()){
+        while (rs.next()) {
             Funcionario funcionario = new Funcionario();
             funcionario.setId(rs.getInt("id"));
             funcionario.setName(rs.getString("name"));
@@ -59,13 +60,13 @@ public class FuncionarioDAO {
 
         List<Types> types = new ArrayList<>();
 
-        while(rs.next()){
+        while (rs.next()) {
             Types type = new Types();
             type.setTypes(rs.getString("cargo"));
-           
+
             types.add(type);
         }
-        return  types;
+        return types;
     }
     //******************************************** Alterar SQL e SelecIdCargo
     public void create(Funcionario funcionario) throws SQLException{
@@ -84,6 +85,14 @@ public class FuncionarioDAO {
         PreparedStatement ps = connection.prepareStatement(sql);
         ps.setInt(1, funcionario.getId());
         ps.execute();
+
+        /*
+         * Alert alert = new Alert(Alert.AlertType.WARNING);
+         * alert.setTitle("Confirmação de Remoção");
+         * alert.setHeaderText("Tem certeza que deseja excluir?");
+         * alert.setContentText(""); alert.show();
+         * 
+         */
     }
 
     public void update(Funcionario funcionario) throws SQLException{
@@ -93,7 +102,7 @@ public class FuncionarioDAO {
         ps.setString(2, funcionario.getPassword());
         ps.setInt(3, funcionario.getId());
         ps.execute();
-        
+
     }
 
 
