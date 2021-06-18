@@ -3,16 +3,20 @@ create database clinica;
 create table cargo(
     id integer PRIMARY KEY,
     cargo varchar(20) NOT NULL
-)
+);
 create table funcionario (
     id SERIAL PRIMARY KEY,
     cpf varchar(11) UNIQUE NOT NULL,
     name varchar(20) NOT NULL,
     password varchar(20) NOT NULL,
     type Integer,
-    CONSTRAINT fk)cargo
+    CONSTRAINT fk_cargo
         FOREIGN KEY(type)
             REFERENCES cargo(id)
 );
 
-insert into users (cpf, name, password, type) values ('1234','diretor', 'root', 1);
+insert into cargo (id, cargo) values (1, 'Diretor');
+insert into cargo (id, cargo) values (2, 'Médico');
+insert into cargo (id, cargo) values (3, 'Recepcionista');
+
+insert into funcionario (cpf, name, password, type) values ('1234','diretor', 'root', 1);

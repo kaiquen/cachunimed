@@ -23,23 +23,27 @@ import model.database.Idatabase;
 
 public class LoginController implements Initializable {
 
-    @FXML private TextField textField;
-    @FXML private PasswordField passwordField;
-    @FXML private AnchorPane login;
+    @FXML
+    private TextField textField;
+    @FXML
+    private PasswordField passwordField;
+    @FXML
+    private AnchorPane login;
 
-    @FXML private void Enter() throws SQLException, IOException{
+    @FXML
+    private void Enter() throws SQLException, IOException {
         final Idatabase database = Factory.getDatabase("postgres");
         final Connection connection = database.connect();
         final FuncionarioDAO funcionario = new FuncionarioDAO(connection);
         final Integer type = funcionario.select(textField.getText(), passwordField.getText());
-        //type 1 = Diretor
-        //type 2 = Medico
-        //type 3 = Recepcionista
-        Image image = new Image("view/image/64x64.png");
-        switch(type) {
+        // type 1 = Diretor
+        // type 2 = Medico
+        // type 3 = Recepcionista
+        Image image = new Image("view/images/64x64.png");
+        switch (type) {
             case 1:
                 login.getScene().getWindow().hide();
-                
+
                 Parent mainDiretor = FXMLLoader.load(getClass().getResource("/view/diretor/MainDiretor.fxml"));
                 Scene sceneDiretor = new Scene(mainDiretor);
 
@@ -53,10 +57,10 @@ public class LoginController implements Initializable {
 
             case 2:
                 login.getScene().getWindow().hide();
-                    
+
                 Parent mainMedico = FXMLLoader.load(getClass().getResource("/view/medico/MainMedico.fxml"));
                 Scene sceneMedico = new Scene(mainMedico);
-                
+
                 Stage stageMedico = new Stage();
                 stageMedico.setTitle("Médico");
                 stageMedico.setScene(sceneMedico);
@@ -65,12 +69,12 @@ public class LoginController implements Initializable {
 
                 stageMedico.show();
                 break;
-              
+
             case 3:
                 System.out.println("3");
                 break;
 
-            default: 
+            default:
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setTitle("Conection Fail");
                 alert.setHeaderText("Credencias inválidas");
@@ -80,6 +84,6 @@ public class LoginController implements Initializable {
     }
 
     @Override
-    public void initialize(URL arg0, ResourceBundle arg1) {  
+    public void initialize(URL arg0, ResourceBundle arg1) {
     }
 }
