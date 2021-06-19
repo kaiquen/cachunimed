@@ -9,9 +9,10 @@ public class Funcionario {
     private  String password;
     private  Integer type; 
     private  String cargo; // Tem que alterar ... cargo == combobox
-    private ComboBox comboBox;
+    private ComboBox<Types> comboBox;
 
     public Funcionario(){};
+   
     public Funcionario(Integer id){
         setId(id);
     }
@@ -33,7 +34,7 @@ public class Funcionario {
         if (!verifyName || !verifyPasword)throw new RuntimeException(err);
     };
     
-    public Funcionario(ComboBox comboBox, String cpf, String name, String password){
+    public Funcionario(ComboBox<Types> comboBox, String cpf, String name, String password){
         boolean verifyCPF = (!cpf.isEmpty() && cpf.length() == 11 && cpf.matches("[0-9]+"));
         boolean verifyComboBox = !(comboBox.getSelectionModel().isEmpty());
         boolean verifyName= !name.isEmpty();
@@ -82,7 +83,13 @@ public class Funcionario {
     public void setCargo(String cargo){
         this.cargo = cargo;
     }
-
+    public void setComboBox(ComboBox<Types> comboBox) {
+        this.comboBox = comboBox;
+    }
+    public ComboBox<Types> getComboBox() {
+        return comboBox;
+    }
+    
     public Integer getId() {
         return id;
     }

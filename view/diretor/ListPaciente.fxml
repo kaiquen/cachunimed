@@ -24,7 +24,7 @@
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
-                  <AnchorPane fx:id="anchorPaneCreate" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="398.0" prefWidth="362.0">
+                  <AnchorPane fx:id="anchorPaneCreate" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="398.0" prefWidth="362.0" visible="false">
                      <children>
                         <GridPane layoutX="35.0" layoutY="136.0" prefHeight="144.0" prefWidth="293.0">
                            <children>
@@ -57,7 +57,7 @@
                         <Button layoutX="195.0" layoutY="328.0" mnemonicParsing="false" onAction="#clearCreate" prefHeight="31.0" prefWidth="85.0" text="Cancelar" />
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="anchorPaneList" prefHeight="398.0" prefWidth="362.0" visible="false">
+                  <AnchorPane fx:id="anchorPaneList" prefHeight="398.0" prefWidth="362.0">
                      <children>
                         <GridPane layoutX="73.0" layoutY="115.0" prefHeight="136.0" prefWidth="213.0">
                           <columnConstraints>
@@ -116,7 +116,7 @@
                            </rowConstraints>
                         </GridPane>
                         <Button layoutX="101.0" layoutY="321.0" mnemonicParsing="false" onAction="#update" prefHeight="31.0" prefWidth="85.0" text="Alterar" />
-                        <Label layoutX="115.0" layoutY="58.0" text="Alterar Pacinete">
+                        <Label layoutX="115.0" layoutY="58.0" text="Alterar Paciente">
                            <font>
                               <Font name="System Bold" size="19.0" />
                            </font>

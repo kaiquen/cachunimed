@@ -1,23 +1,17 @@
 {
-  // Use o IntelliSense para saber mais sobre os atributos possíveis.
-  // Focalizar para exibir as descrições dos atributos existentes.
-  // Para obter mais informações, acesse: https://go.microsoft.com/fwlink/?linkid=830387
-  "version": "0.2.0",
-  "configurations": [
-    {
-      "type": "java",
-      "name": "Launch Main",
-      "request": "launch",
-      "mainClass": "Main",
-      "projectName": "Project_Java_439fd3de"
-    },
-    {
-      "type": "java",
-      "name": "Launch Main",
-      "request": "launch",
-      "mainClass": "Main",
-      "projectName": "Project_Java_bb7a7b8f",
-      "vmArgs": "--module-path \"C:\\Program Files\\Java\\javafx-sdk-16\\lib\" --add-modules javafx.controls,javafx.fxml"
-    }
-  ]
+    // Use o IntelliSense para saber mais sobre os atributos possíveis.
+    // Focalizar para exibir as descrições dos atributos existentes.
+    // Para obter mais informações, acesse: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        
+        {
+            "type": "java",
+            "name": "Launch Main",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "Project_Java_439fd3de",
+            "vmArgs": "--module-path \"C:\\Program Files\\Java\\javafx-sdk-16\\lib\" --add-modules javafx.controls,javafx.fxml"
+        }
+    ]
 }

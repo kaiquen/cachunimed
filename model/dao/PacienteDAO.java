@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.Funcionario;
 import model.Paciente;
 
 public class PacienteDAO {
@@ -34,6 +35,24 @@ public class PacienteDAO {
 
         return pacientes;
     }
+
+    public List<Paciente> searchPaciente(Paciente paciente) throws SQLException{
+        String sql = "select name, id from paciente where name like '%" + paciente.getName() + "%'";
+        PreparedStatement ps = connection.prepareStatement(sql);
+        
+        //ps.setString(1, paciente.getName());
+        ResultSet rs = ps.executeQuery();
+        List<Paciente> pacientes = new ArrayList<>();
+        while(rs.next()){
+            Paciente pacienteAux = new Paciente();
+            pacienteAux.setName(rs.getString("name"));
+            pacienteAux.setId(rs.getInt("id"));
+            pacientes.add(pacienteAux);
+        }
+       
+        return pacientes;
+    }
+
     public void create(Paciente paciente) throws SQLException{
         String sql = "insert into Paciente (cpf, name, fone, address) values (?,?,?,?)"; 
         PreparedStatement ps = connection.prepareStatement(sql);

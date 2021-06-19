@@ -71,7 +71,19 @@ public class LoginController implements Initializable {
                 break;
 
             case 3:
-                System.out.println("3");
+                login.getScene().getWindow().hide();
+
+                Parent mainRecepcionista = FXMLLoader.load(getClass().getResource("/view/Recepcionista/MainRecepcionista.fxml"));
+                Scene sceneRecepcionista = new Scene(mainRecepcionista);
+
+                Stage stageRecepcionista = new Stage();
+                stageRecepcionista.setTitle("Recepcionista");
+                stageRecepcionista.setScene(sceneRecepcionista);
+
+                stageRecepcionista.getIcons().add(image);
+
+                stageRecepcionista.show();
+                
                 break;
 
             default:

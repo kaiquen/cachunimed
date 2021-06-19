@@ -11,12 +11,16 @@ public class Paciente {
     public Paciente(Integer id){
         this.id = id;
     }
+    public Paciente(String name){
+        this.name = name;
+    }
     public Paciente(Integer id,String name, String fone, String address){
         this.id = id;
         this.name = name;
         this.fone = fone;
         this.address = address;
     }
+  
     public Paciente(String cpf, String name, String fone, String address){
         boolean verifyCPF = (!cpf.isEmpty() && cpf.length() == 11 && cpf.matches("[0-9]+"));
         boolean verifyName= !name.isEmpty();
@@ -31,10 +35,25 @@ public class Paciente {
             else err += "Name obidatório!\n";
         if(verifyFone)setFone(fone);
             else err += "Telefone obrigatorio!\n";
-            
+
         setAddress(address);
         if(!verifyCPF || !verifyFone || !verifyName)throw new RuntimeException(err);
 
+    }
+    public Paciente(String name, String fone, String address) {
+        boolean verifyName= !name.isEmpty();
+        boolean verifyFone =  !fone.isEmpty() && fone.matches("[0-9]+");
+        //boolean verifyaddress = !address.isEmpty();
+        String err = "";
+
+        if(verifyName)setName(name);
+            else err += "Name obidatório!\n";
+        if(verifyFone)setFone(fone);
+            else err += "Telefone obrigatorio!\n";
+
+        setAddress(address);
+
+        if(!verifyFone || !verifyName)throw new RuntimeException(err);
     }
     public Integer getId() {
         return id;
@@ -66,6 +85,10 @@ public class Paciente {
     public void setAddress(String address) {
         this.address = address;
     }
+    @Override
 
-    
+    public String toString() {
+        return  name;
+    }
+
 }
