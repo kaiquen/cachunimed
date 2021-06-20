@@ -16,6 +16,14 @@ create table funcionario (
             REFERENCES cargo(id)
 );
 
+create table paciente (
+    id SERIAL PRIMARY KEY,
+    cpf varchar(11) UNIQUE NOT NULL,
+    name varchar(20) UNIQUE NOT NULL,
+    fone varchar(11) UNIQUE NOT NULL,
+    address varchar(20) NOT NULL
+);
+
 insert into cargo (id, cargo) values (1, 'Diretor');
 insert into cargo (id, cargo) values (2, 'Médico');
 insert into cargo (id, cargo) values (3, 'Recepcionista');
