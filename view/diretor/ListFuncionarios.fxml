@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../fxmlcss.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.diretor.ListFuncionariosController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.diretor.ListFuncionariosController">
    <children>
       <SplitPane dividerPositions="0.3779264214046823" layoutX="48.0" layoutY="86.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
@@ -69,6 +69,17 @@
                   </AnchorPane>
                   <AnchorPane fx:id="anchorPaneList" prefHeight="398.0" prefWidth="362.0" styleClass="AnchorPane">
                      <children>
+                        <Pane layoutX="41.0" layoutY="310.0">
+                           <children>
+                              <Pane>
+                                 <children>
+                                    <Button mnemonicParsing="false" onAction="#delete" styleClass="ButtonRemove" text="Remover " />
+                                    <Button layoutX="106.0" mnemonicParsing="false" onAction="#createList" styleClass="ButtonRegister" text="Cadastrar" />
+                                    <Button layoutX="213.0" mnemonicParsing="false" onAction="#updateList" prefHeight="25.0" prefWidth="67.0" styleClass="ButtonAlter" text="Alterar" />
+                                 </children>
+                              </Pane>
+                           </children>
+                        </Pane>
                         <GridPane layoutX="39.0" layoutY="116.0" prefHeight="166.0" prefWidth="294.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="146.0" minWidth="10.0" prefWidth="62.0" />
@@ -100,18 +111,11 @@
                               <Label fx:id="labelTypeList" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                            </children>
                         </GridPane>
-                        <Label layoutX="55.0" layoutY="56.0" styleClass="LabelTitle" text="Detalhes do Funcionário">
+                        <Label layoutX="53.0" layoutY="47.0" styleClass="LabelTitle" text="Detalhes do Funcionário">
                            <font>
-                              <Font name="Tahoma" size="22.0" />
+                              <Font size="22.0" />
                            </font>
                         </Label>
-                        <Pane layoutX="40.0" layoutY="326.0">
-                           <children>
-                              <Button mnemonicParsing="false" onAction="#delete" prefHeight="25.0" prefWidth="74.0" styleClass="ButtonRemove" text="Remover " />
-                              <Button layoutX="108.0" mnemonicParsing="false" onAction="#createList" styleClass="ButtonRegister" text="Cadastrar" />
-                              <Button layoutX="213.0" mnemonicParsing="false" onAction="#updateList" prefHeight="25.0" prefWidth="67.0" styleClass="ButtonAlter" text="Alterar" />
-                           </children>
-                        </Pane>
                      </children>
                   </AnchorPane>
                   <AnchorPane fx:id="anchorPaneUpdate" layoutX="-2.0" layoutY="-4.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="412.0" prefWidth="374.0" visible="false">

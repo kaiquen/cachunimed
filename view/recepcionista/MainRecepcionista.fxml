@@ -13,35 +13,24 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="285.0" prefWidth="610.0" styleClass="AnchorPane" stylesheets="@../fxmlcss.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.recepcionista.MainRecepcionistaController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="AnchorPane" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.recepcionista.MainRecepcionistaController">
    <children>
       <Group fx:id="group" layoutX="-106.0" layoutY="-95.0">
          <children>
-            <Button layoutX="641.0" layoutY="113.0" mnemonicParsing="false" onAction="#searchPaciente" prefHeight="31.0" prefWidth="105.0" styleClass="ButtonSearch" />
             <Pane layoutX="108.0" layoutY="420.0">
                <children>
                   <Pane layoutY="-14.0" />
                </children>
             </Pane>
-            <ListView fx:id="listView" layoutX="131.0" layoutY="157.0" prefHeight="178.0" prefWidth="560.0" />
-            <Label layoutX="142.0" layoutY="121.0" styleClass="LabelSearch" text="Nome do Paciente" />
+            <ListView fx:id="listView" layoutX="131.0" layoutY="157.0" prefHeight="284.0" prefWidth="560.0" />
+            <Label layoutX="131.0" layoutY="124.0" styleClass="LabelSearch" text="Nome do Paciente" />
             <Pane layoutX="108.0" layoutY="355.0" prefHeight="48.0" prefWidth="606.0">
                <children>
-                  <Pane layoutX="48.0" layoutY="-13.0">
-                     <children>
-                        <Button layoutX="359.0" mnemonicParsing="false" onAction="#createConsulta" prefHeight="25.0" prefWidth="151.0" styleClass="ButtonAppointment" text="Marcar Consulta" />
-                        <Button layoutX="180.0" layoutY="1.0" mnemonicParsing="false" onAction="#createPaciente" prefHeight="15.0" prefWidth="151.0" text="Cadastrar Paciente">
-                           <styleClass>
-                              <String fx:value="ButtonRegister2" />
-                              <String fx:value="ButtonRegister" />
-                           </styleClass>
-                        </Button>
-                        <Button mnemonicParsing="false" onAction="#updatePaciente" prefHeight="25.0" prefWidth="151.0" styleClass="ButtonAlter" text="Alterar Paciente" />
-                     </children>
-                  </Pane>
+                  <Pane layoutX="48.0" layoutY="-13.0" />
                </children>
             </Pane>
-            <TextField fx:id="textField" layoutX="254.0" layoutY="118.0" prefHeight="23.0" prefWidth="374.0" />
+            <TextField fx:id="textField" layoutX="248.0" layoutY="120.0" prefHeight="23.0" prefWidth="400.0" />
+            <Button layoutX="657.0" layoutY="120.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="30.0" styleClass="LabelSearch" />
          </children>
       </Group>
       <AnchorPane fx:id="anchorPaneCreate" layoutX="-1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="484.0" prefWidth="776.0" visible="false">
@@ -107,5 +96,17 @@
             <Button layoutX="463.0" layoutY="378.0" mnemonicParsing="false" onAction="#clearUpdate" prefHeight="31.0" prefWidth="93.0" text="Cancelar" />
          </children>
       </AnchorPane>
+      <Pane layoutX="81.0" layoutY="357.0">
+         <children>
+            <Button layoutX="314.0" mnemonicParsing="false" onAction="#createConsulta" prefHeight="25.0" prefWidth="151.0" styleClass="ButtonAppointment" text="Marcar Consulta" />
+            <Button layoutX="135.0" layoutY="1.0" mnemonicParsing="false" onAction="#createPaciente" prefHeight="15.0" prefWidth="151.0" text="Cadastrar Paciente">
+               <styleClass>
+                  <String fx:value="ButtonRegister2" />
+                  <String fx:value="ButtonRegister" />
+               </styleClass>
+            </Button>
+            <Button layoutX="-45.0" mnemonicParsing="false" onAction="#updatePaciente" prefHeight="25.0" prefWidth="151.0" styleClass="ButtonAlter" text="Alterar Paciente" />
+         </children>
+      </Pane>
    </children>
 </AnchorPane>
