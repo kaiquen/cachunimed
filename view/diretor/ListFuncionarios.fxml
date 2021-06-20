@@ -1,11 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.text.*?>
-<?import javafx.scene.control.*?>
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.diretor.ListFuncionariosController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../fxmlcss.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.diretor.ListFuncionariosController">
    <children>
       <SplitPane dividerPositions="0.3779264214046823" layoutX="48.0" layoutY="86.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
@@ -13,8 +23,8 @@
                <children>
                   <TableView fx:id="tableView" layoutX="-32.0" layoutY="36.0" prefHeight="398.0" prefWidth="174.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <columns>
-                      <TableColumn fx:id="tableColumnId" prefWidth="75.0" text="ID" />
-                      <TableColumn fx:id="tableColumnName" prefWidth="75.0" text="Nome" />
+                      <TableColumn fx:id="tableColumnId" prefWidth="51.0" text="ID" />
+                      <TableColumn fx:id="tableColumnName" prefWidth="170.0" text="NOME" />
                     </columns>
                      <columnResizePolicy>
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -57,12 +67,12 @@
                         <Button layoutX="195.0" layoutY="328.0" mnemonicParsing="false" onAction="#clearCreate" prefHeight="31.0" prefWidth="85.0" text="Cancelar" />
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="anchorPaneList" prefHeight="398.0" prefWidth="362.0">
+                  <AnchorPane fx:id="anchorPaneList" prefHeight="398.0" prefWidth="362.0" styleClass="AnchorPane">
                      <children>
-                        <GridPane layoutX="73.0" layoutY="115.0" prefHeight="136.0" prefWidth="213.0">
+                        <GridPane layoutX="39.0" layoutY="116.0" prefHeight="166.0" prefWidth="294.0">
                           <columnConstraints>
-                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="135.0" minWidth="10.0" prefWidth="93.0" />
-                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="107.0" minWidth="10.0" prefWidth="107.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="146.0" minWidth="10.0" prefWidth="62.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="238.0" minWidth="10.0" prefWidth="232.0" />
                           </columnConstraints>
                           <rowConstraints>
                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -72,26 +82,36 @@
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-                              <Label text="ID" />
-                              <Label text="Nome" GridPane.rowIndex="1" />
-                              <Label text="CPF" GridPane.rowIndex="2" />
-                              <Label text="Senha" GridPane.rowIndex="3" />
+                              <Label styleClass="LabelDetails" text="ID">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font></Label>
+                              <Label styleClass="LabelDetails" text="Nome" GridPane.rowIndex="1">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font></Label>
+                              <Label styleClass="LabelDetails" text="CPF" GridPane.rowIndex="2" />
+                              <Label styleClass="LabelDetails" text="Senha" GridPane.rowIndex="3" />
                               <Label fx:id="labelIdList" GridPane.columnIndex="1" />
                               <Label fx:id="labelNameList" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                               <Label fx:id="labelCpfList" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                               <Label fx:id="labelPasswordList" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                              <Label text="Cargo" GridPane.rowIndex="4" />
+                              <Label prefHeight="25.0" prefWidth="49.0" styleClass="LabelDetails" text="Cargo" GridPane.rowIndex="4" />
                               <Label fx:id="labelTypeList" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                            </children>
                         </GridPane>
-                        <Label layoutX="73.0" layoutY="51.0" text="Detalhes do Funcionário">
+                        <Label layoutX="55.0" layoutY="56.0" styleClass="LabelTitle" text="Detalhes do Funcionário">
                            <font>
-                              <Font name="System Bold" size="19.0" />
+                              <Font name="Tahoma" size="22.0" />
                            </font>
                         </Label>
-                        <Button layoutX="147.0" layoutY="323.0" mnemonicParsing="false" onAction="#delete" text="Remover " />
-                        <Button layoutX="49.0" layoutY="323.0" mnemonicParsing="false" onAction="#createList" text="Cadastrar" />
-                        <Button layoutX="245.0" layoutY="323.0" mnemonicParsing="false" onAction="#updateList" prefHeight="31.0" prefWidth="83.0" text="Alterar" />
+                        <Pane layoutX="40.0" layoutY="326.0">
+                           <children>
+                              <Button mnemonicParsing="false" onAction="#delete" prefHeight="25.0" prefWidth="74.0" styleClass="ButtonRemove" text="Remover " />
+                              <Button layoutX="108.0" mnemonicParsing="false" onAction="#createList" styleClass="ButtonRegister" text="Cadastrar" />
+                              <Button layoutX="213.0" mnemonicParsing="false" onAction="#updateList" prefHeight="25.0" prefWidth="67.0" styleClass="ButtonAlter" text="Alterar" />
+                           </children>
+                        </Pane>
                      </children>
                   </AnchorPane>
                   <AnchorPane fx:id="anchorPaneUpdate" layoutX="-2.0" layoutY="-4.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="412.0" prefWidth="374.0" visible="false">
