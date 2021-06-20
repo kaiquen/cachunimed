@@ -46,7 +46,7 @@ public class LoginController implements Initializable {
  
                 Parent mainDiretor = FXMLLoader.load(getClass().getResource("/view/diretor/MainDiretor.fxml"));
                 Scene sceneDiretor = new Scene(mainDiretor);
-
+                sceneDiretor.getStylesheets().add("/view/style.css");
                 Stage stageDiretor = new Stage();
                 stageDiretor.setTitle("Diretor");
                 stageDiretor.setScene(sceneDiretor);
@@ -75,7 +75,7 @@ public class LoginController implements Initializable {
 
                 Parent mainRecepcionista = FXMLLoader.load(getClass().getResource("/view/Recepcionista/MainRecepcionista.fxml"));
                 Scene sceneRecepcionista = new Scene(mainRecepcionista);
-
+                sceneRecepcionista.getStylesheets().add("/view/style.css");
                 Stage stageRecepcionista = new Stage();
                 stageRecepcionista.setTitle("Recepcionista");
                 stageRecepcionista.setScene(sceneRecepcionista);

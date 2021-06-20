@@ -8,6 +8,7 @@ import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.css.Stylesheet;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -26,55 +27,39 @@ import model.database.Factory;
 import model.database.Idatabase;
 
 public class ListFuncionariosController implements Initializable {
-    @FXML
-    private TableView<Funcionario> tableView;
-    @FXML
-    private TableColumn<Funcionario, Integer> tableColumnId;
-    @FXML
-    private TableColumn<Funcionario, String> tableColumnName;
+    @FXML   private TableView<Funcionario> tableView;
+    @FXML   private TableColumn<Funcionario, Integer> tableColumnId;
+    @FXML   private TableColumn<Funcionario, String> tableColumnName;
 
-    @FXML
-    private AnchorPane anchorPaneList;
-    @FXML
-    private Label labelIdList;
-    @FXML
-    private Label labelNameList;
-    @FXML
-    private Label labelCpfList;
-    @FXML
-    private Label labelPasswordList;
-    @FXML
-    private Label labelTypeList;
+    @FXML   private AnchorPane anchorPaneList;
+    @FXML   private Label labelIdList;
+    @FXML   private Label labelNameList;
+    @FXML   private Label labelCpfList;
+    @FXML   private Label labelPasswordList;
+    @FXML   private Label labelTypeList;
 
-    @FXML
-    private AnchorPane anchorPaneCreate;
-    @FXML
-    private TextField textFieldCpfCreate;
-    @FXML
-    private TextField textFieldNameCreate;
-    @FXML
-    private PasswordField passwordFieldCreate;
-    @FXML
-    private ComboBox<Types> comboBox;
+    @FXML   private AnchorPane anchorPaneCreate;
+    @FXML   private TextField textFieldCpfCreate;
+    @FXML   private TextField textFieldNameCreate;
+    @FXML   private PasswordField passwordFieldCreate;
+    @FXML   private ComboBox<Types> comboBox;
 
-    @FXML
-    private AnchorPane anchorPaneUpdate;
-    @FXML
-    private TextField textFieldNameUpdate;
-    @FXML
-    private PasswordField passwordFieldUpdate;
+    @FXML   private AnchorPane anchorPaneUpdate;
+    @FXML   private TextField textFieldNameUpdate;
+    @FXML   private PasswordField passwordFieldUpdate;
+    
+    @FXML   private Stylesheet stylesheet;
+    
 
     // *******************************************************
-    @FXML
-    private void updateList() {
+    @FXML   private void updateList() {
         textFieldNameUpdate.setText(labelNameList.getText());
         passwordFieldUpdate.setText("");
         anchorPaneList.setVisible(false);
         anchorPaneUpdate.setVisible(true);
     }
 
-    @FXML
-    private void createList() throws IOException, SQLException {
+    @FXML   private void createList() throws IOException, SQLException {
         textFieldNameCreate.setText("");
         textFieldCpfCreate.setText("");
         passwordFieldCreate.setText("");
@@ -83,7 +68,7 @@ public class ListFuncionariosController implements Initializable {
     }
     //*********************************************************
 
-    @FXML private void create() throws SQLException{
+    @FXML   private void create() throws SQLException{
         Idatabase database = Factory.getDatabase("postgres");
         Connection connection = database.connect();
         FuncionarioDAO funcionarioDAO = new FuncionarioDAO(connection);
@@ -103,13 +88,12 @@ public class ListFuncionariosController implements Initializable {
         }  
     } 
     
-    @FXML private void clearCreate(){
+    @FXML   private void clearCreate(){
         anchorPaneCreate.setVisible(false);
         anchorPaneList.setVisible(true);
     }
 
-    @FXML
-    private void delete() throws NumberFormatException, SQLException {
+    @FXML   private void delete() throws NumberFormatException, SQLException {
         if (tableView.getSelectionModel().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Delete Failed");
@@ -126,8 +110,7 @@ public class ListFuncionariosController implements Initializable {
         }
     }
 
-    @FXML
-    private void update() throws SQLException {
+    @FXML   private void update() throws SQLException {
         if (tableView.getSelectionModel().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Update Failed");
@@ -155,8 +138,7 @@ public class ListFuncionariosController implements Initializable {
         }
     }
 
-    @FXML
-    private void clearUpdate() {
+    @FXML   private void clearUpdate() {
         anchorPaneUpdate.setVisible(false);
         anchorPaneList.setVisible(true);
     }
