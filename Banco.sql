@@ -1,8 +1,8 @@
 CREATE DATABASE clinica;
 
 CREATE TABLE cargo(
-    id integer PRIMARY KEY,
-    cargo varchar(20) NOT NULL
+    id INTEGER PRIMARY KEY,
+    cargo VARCHAR(20) NOT NULL
 );
 
 CREATE TABLE funcionario (

@@ -57,7 +57,7 @@
 }
 
 .ButtonSearch {
-  -fx-background-image: url("/view/images/search.png");
+  -fx-background-image: url("./images/search.png");
   -fx-pref-height: 32px;
   -fx-pref-width: 32px;
 }
