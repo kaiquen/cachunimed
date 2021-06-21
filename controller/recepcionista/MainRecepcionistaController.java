@@ -3,20 +3,28 @@ package controller.recepcionista;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
+
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
+
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputControl;
+import javafx.scene.control.skin.DatePickerSkin;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
+
 import model.Funcionario;
 import model.Paciente;
 import model.dao.FuncionarioDAO;
@@ -41,8 +49,9 @@ public class MainRecepcionistaController implements Initializable{
     @FXML AnchorPane anchorPaneCreate;
     @FXML AnchorPane anchorPaneUpdate;
     @FXML AnchorPane anchorPaneConsulta;
+    @FXML BorderPane borderPane;
     @FXML Group group;
-
+    @FXML DatePickerSkin calendar;
 
     @FXML Label labelId;
     @FXML Label labelName;
@@ -102,7 +111,6 @@ public class MainRecepcionistaController implements Initializable{
                 alert.setContentText(e.getMessage());
                 alert.show();
             }
-        
     }
     @FXML private void clearUpdate(){
         anchorPaneUpdate.setVisible(false);
@@ -141,6 +149,15 @@ public class MainRecepcionistaController implements Initializable{
         } else {
             group.setVisible(false);
             anchorPaneConsulta.setVisible(true);
+            DatePicker datePicker = new DatePicker(LocalDate.now());
+            DatePickerSkin datePickerSkin = new DatePickerSkin(datePicker);
+            Node calendar = datePickerSkin.getPopupContent();
+            borderPane.setCenter(calendar);
+            
+            datePicker.valueProperty().addListener((observable, oldValue, newValue) -> {
+                System.out.println("New Value: " + newValue);
+            });
+
         }
     }
 
@@ -201,3 +218,4 @@ public class MainRecepcionistaController implements Initializable{
     }
     
 }
+

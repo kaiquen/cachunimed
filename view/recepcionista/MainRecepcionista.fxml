@@ -118,15 +118,10 @@
                         <Button layoutX="73.0" layoutY="342.0" mnemonicParsing="false" text="Marcar" />
                         <Button layoutX="202.0" layoutY="344.0" mnemonicParsing="false" styleClass="ButtonRemove" text="Cancelar" />
                         <TextField layoutX="197.0" layoutY="302.0" prefHeight="19.0" prefWidth="76.0" />
-                        <TableView layoutX="53.0" layoutY="64.0" prefHeight="213.0" prefWidth="202.0">
-                           <columns>
-                              <TableColumn prefWidth="97.0" text="C1" />
-                              <TableColumn prefWidth="104.0" text="C2" />
-                           </columns>
-                        </TableView>
                         <Label layoutX="152.0" layoutY="302.0" styleClass="LabelDetails" text="Hora" />
                         <ComboBox fx:id="comboBoxMedicos" layoutX="62.0" layoutY="22.0" prefHeight="31.0" prefWidth="181.0" promptText="Selecionar Médico" />
                         <Label layoutX="22.0" layoutY="302.0" prefHeight="17.0" prefWidth="38.0" styleClass="LabelDetails" text="Data" />
+                        <BorderPane fx:id="borderPane" layoutX="52.0" layoutY="75.0" prefHeight="200.0" prefWidth="200.0" />
                      </children>
                   </AnchorPane>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="383.0" prefWidth="0.0">
