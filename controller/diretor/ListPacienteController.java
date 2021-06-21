@@ -46,11 +46,19 @@ public class ListPacienteController implements Initializable {
     @FXML AnchorPane anchorPaneList;
 
     @FXML private void updateList(){ 
+        if(tableView.getSelectionModel().isEmpty()){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Update Fail");
+            alert.setHeaderText("Selecione o Paciente");
+            alert.setContentText("Tente novamente!");
+            alert.show();
+        } else {
         textFieldNameUpdate.setText(labelNameList.getText());
         textFieldFoneUpdate.setText("");
         textFieldAddressUpdate.setText("");
         anchorPaneList.setVisible(false);
         anchorPaneUpdate.setVisible(true); 
+        }
     }
     @FXML private void createList() {
       
@@ -101,13 +109,6 @@ public class ListPacienteController implements Initializable {
     }
 
     @FXML private void update() throws SQLException{
-        if(tableView.getSelectionModel().isEmpty()){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Update Fail");
-            alert.setHeaderText("Selecione o Paciente");
-            alert.setContentText("Tente novamente!");
-            alert.show();
-        } else {
             Idatabase database = Factory.getDatabase("postgres");
             Connection connection = database.connect();
             PacienteDAO pacienteDAO = new PacienteDAO(connection);
@@ -125,7 +126,7 @@ public class ListPacienteController implements Initializable {
                 alert.setContentText(e.getMessage());
                 alert.show();
             }
-        }
+        
     }
 
     @FXML private void clearUpdate(){

@@ -53,10 +53,18 @@ public class ListFuncionariosController implements Initializable {
 
     // *******************************************************
     @FXML   private void updateList() {
+        if (tableView.getSelectionModel().isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Update Failed");
+            alert.setHeaderText("Selecione o funcionário");
+            alert.setContentText("Tente novamente!");
+            alert.show();
+        } else {
         textFieldNameUpdate.setText(labelNameList.getText());
         passwordFieldUpdate.setText("");
         anchorPaneList.setVisible(false);
         anchorPaneUpdate.setVisible(true);
+        }
     }
 
     @FXML   private void createList() throws IOException, SQLException {
@@ -111,13 +119,7 @@ public class ListFuncionariosController implements Initializable {
     }
 
     @FXML   private void update() throws SQLException {
-        if (tableView.getSelectionModel().isEmpty()) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Update Failed");
-            alert.setHeaderText("Selecione o funcionário");
-            alert.setContentText("Tente novamente!");
-            alert.show();
-        } else {
+      
             Idatabase database = Factory.getDatabase("postgres");
             Connection connection = database.connect();
             FuncionarioDAO funcionarioDAO = new FuncionarioDAO(connection);
@@ -135,7 +137,7 @@ public class ListFuncionariosController implements Initializable {
                 alert.setContentText(e.getMessage());
                 alert.show();
             }
-        }
+        
     }
 
     @FXML   private void clearUpdate() {

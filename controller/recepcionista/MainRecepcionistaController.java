@@ -71,13 +71,7 @@ public class MainRecepcionistaController implements Initializable{
     }
     @FXML private void update(){
         System.out.println(listView.getSelectionModel().getSelectedItem().getId());
-        if(listView.getSelectionModel().isEmpty()){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Update Fail");
-            alert.setHeaderText("Selecione o Paciente");
-            alert.setContentText("Tente novamente!");
-            alert.show();
-        } else {
+     
             Idatabase database = Factory.getDatabase("postgres");
             Connection connection = database.connect();
             PacienteDAO pacienteDAO = new PacienteDAO(connection);
@@ -95,7 +89,7 @@ public class MainRecepcionistaController implements Initializable{
                 alert.setContentText(e.getMessage());
                 alert.show();
             }
-        }
+        
     }
     @FXML private void clearUpdate(){
         anchorPaneUpdate.setVisible(false);
@@ -112,11 +106,28 @@ public class MainRecepcionistaController implements Initializable{
     }
 
     @FXML private void updatePaciente(){
+        if(listView.getSelectionModel().isEmpty()){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Update Fail");
+            alert.setHeaderText("Selecione o Paciente");
+            alert.setContentText("Tente novamente!");
+            alert.show();
+        } else {
         group.setVisible(false);
         anchorPaneUpdate.setVisible(true);
+        }
     }
     @FXML private void createConsulta(){
         System.out.println("ok");
+        if(listView.getSelectionModel().isEmpty()){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Update Fail");
+            alert.setHeaderText("Selecione o Paciente");
+            alert.setContentText("Tente novamente!");
+            alert.show();
+        } else {
+        
+        }
     }
 
     
