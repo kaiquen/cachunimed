@@ -38,10 +38,10 @@
                      <children>
                         <GridPane layoutX="56.0" layoutY="137.0" prefHeight="144.0" prefWidth="251.0">
                            <children>
-                              <Label text="Tipo" />
-                              <Label text="CPF" GridPane.rowIndex="1" />
-                              <Label text="Nome" GridPane.rowIndex="2" />
-                              <Label text="Senha" GridPane.rowIndex="3" />
+                              <Label styleClass="LabelDetails" text="Tipo" />
+                              <Label styleClass="LabelDetails" text="CPF" GridPane.rowIndex="1" />
+                              <Label styleClass="LabelDetails" text="Nome" GridPane.rowIndex="2" />
+                              <Label styleClass="LabelDetails" text="Senha" GridPane.rowIndex="3" />
                               <TextField fx:id="textFieldCpfCreate" prefHeight="31.0" prefWidth="142.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                               <TextField fx:id="textFieldNameCreate" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                               <ComboBox fx:id="comboBox" prefHeight="31.0" prefWidth="283.0" promptText="Selecione o tipo" GridPane.columnIndex="1" />
@@ -58,13 +58,13 @@
                               <RowConstraints maxHeight="88.0" minHeight="7.0" prefHeight="44.0" vgrow="SOMETIMES" />
                            </rowConstraints>
                         </GridPane>
-                        <Button layoutX="84.0" layoutY="328.0" mnemonicParsing="false" onAction="#create" prefHeight="31.0" prefWidth="85.0" text="Cadastrar" />
-                        <Label layoutX="84.0" layoutY="52.0" text="Cadastrar Funcionário">
+                        <Button layoutX="84.0" layoutY="328.0" mnemonicParsing="false" onAction="#create" prefHeight="31.0" prefWidth="85.0" styleClass="ButtonRegister" text="Cadastrar" />
+                        <Button layoutX="195.0" layoutY="328.0" mnemonicParsing="false" onAction="#clearCreate" prefHeight="31.0" prefWidth="85.0" styleClass="ButtonRemove" text="Cancelar" />
+                        <Label layoutX="80.0" layoutY="25.0" styleClass="LabelTitle" text="Cadastrar Funcionário">
                            <font>
-                              <Font name="System Bold" size="19.0" />
+                              <Font size="22.0" />
                            </font>
                         </Label>
-                        <Button layoutX="195.0" layoutY="328.0" mnemonicParsing="false" onAction="#clearCreate" prefHeight="31.0" prefWidth="85.0" text="Cancelar" />
                      </children>
                   </AnchorPane>
                   <AnchorPane fx:id="anchorPaneList" prefHeight="398.0" prefWidth="362.0" styleClass="AnchorPane">
@@ -122,8 +122,8 @@
                      <children>
                         <GridPane layoutX="56.0" layoutY="137.0" prefHeight="144.0" prefWidth="251.0">
                            <children>
-                              <Label text="Nome" />
-                              <Label text="Senha" GridPane.rowIndex="1" />
+                              <Label styleClass="LabelDetails" text="Nome" />
+                              <Label styleClass="LabelDetails" text="Senha" GridPane.rowIndex="1" />
                               <TextField fx:id="textFieldNameUpdate" GridPane.columnIndex="1" />
                               <PasswordField fx:id="passwordFieldUpdate" prefHeight="21.0" prefWidth="186.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                            </children>
@@ -136,13 +136,13 @@
                               <RowConstraints maxHeight="88.0" minHeight="7.0" prefHeight="44.0" vgrow="SOMETIMES" />
                            </rowConstraints>
                         </GridPane>
-                        <Button layoutX="101.0" layoutY="321.0" mnemonicParsing="false" onAction="#update" prefHeight="31.0" prefWidth="85.0" text="Alterar" />
-                        <Label layoutX="101.0" layoutY="54.0" text="Alterar Funcionário">
+                        <Button layoutX="85.0" layoutY="321.0" mnemonicParsing="false" onAction="#update" prefHeight="31.0" prefWidth="85.0" styleClass="ButtonAlter" text="Alterar" />
+                        <Button layoutX="203.0" layoutY="321.0" mnemonicParsing="false" onAction="#clearUpdate" prefHeight="31.0" prefWidth="85.0" styleClass="ButtonRemove" text="Cancelar" />
+                        <Label layoutX="85.0" layoutY="45.0" styleClass="LabelTitle" text="Alterar Funcionário">
                            <font>
-                              <Font name="System Bold" size="19.0" />
+                              <Font size="22.0" />
                            </font>
                         </Label>
-                        <Button layoutX="222.0" layoutY="321.0" mnemonicParsing="false" onAction="#clearUpdate" prefHeight="31.0" prefWidth="85.0" text="Cancelar" />
                      </children>
                   </AnchorPane>
                </children>

@@ -1,5 +1,5 @@
 <p align="center">
-  <img alt="Cachunimed" src="/images/logo.png" width="100%">
+  <img alt="Cachunimed" src="/view/images/logo.png" width="100%">
 </p>
 
 <h1 align="center">
