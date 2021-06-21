@@ -11,11 +11,15 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Group;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.layout.AnchorPane;
+import model.Funcionario;
 import model.Paciente;
+import model.dao.FuncionarioDAO;
 import model.dao.PacienteDAO;
 import model.database.Factory;
 import model.database.Idatabase;
@@ -32,10 +36,19 @@ public class MainRecepcionistaController implements Initializable{
     @FXML TextInputControl textFieldFoneUpdate;
     @FXML TextInputControl textFieldNameUpdate;
     @FXML TextInputControl textFieldAddressUpdate;
-
+    @FXML ComboBox<Funcionario> comboBoxMedicos;
+    
     @FXML AnchorPane anchorPaneCreate;
     @FXML AnchorPane anchorPaneUpdate;
+    @FXML AnchorPane anchorPaneConsulta;
     @FXML Group group;
+
+
+    @FXML Label labelId;
+    @FXML Label labelName;
+    @FXML Label labelCpf;
+    @FXML Label labelFone;
+    @FXML Label labelAddress;
 
     @FXML private void searchPaciente() throws SQLException{
         
@@ -126,15 +139,26 @@ public class MainRecepcionistaController implements Initializable{
             alert.setContentText("Tente novamente!");
             alert.show();
         } else {
-        
+            group.setVisible(false);
+            anchorPaneConsulta.setVisible(true);
         }
     }
 
     
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {   
+        try {
+            printMedicos();
+        } catch (SQLException e) {
+            
+            e.printStackTrace();
+        }
+        
+        listView.getSelectionModel().selectedItemProperty()
+                .addListener((obeservable, oldValue, newValue) -> selectItem(newValue));
     }
 
+ 
     private void atualizaListView() throws SQLException{
         Idatabase database = Factory.getDatabase("postgres");
             Connection connection = database.connect();
@@ -144,6 +168,36 @@ public class MainRecepcionistaController implements Initializable{
             ObservableList<Paciente> items =FXCollections.observableArrayList (
                 pacienteDAO.searchPaciente(paciente));
             listView.setItems(items);
+    }
+    private ObservableList<Funcionario> medicos() throws SQLException {
+        Idatabase database = Factory.getDatabase("postgres");
+        Connection connection = database.connect();
+        FuncionarioDAO funcionarioDAO = new FuncionarioDAO(connection);
+        
+        return FXCollections.observableArrayList(
+            funcionarioDAO.selectMedicos()
+        );
+    }
+
+    private void printMedicos() throws SQLException{       
+        comboBoxMedicos.setItems(medicos());
+    }
+
+
+    private void selectItem(Paciente paciente) {
+        if (paciente != null) {
+            labelId.setText(String.valueOf(paciente.getId()));
+            labelName.setText(paciente.getName());
+            labelCpf.setText(paciente.getCpf());
+            labelFone.setText(paciente.getFone());
+            labelAddress.setText(paciente.getAddress());
+        } else {
+            labelIdList.setText("");
+            labelName.setText("");
+            labelCpf.setText("");
+            labelFone.setText("");
+            labelAddress.setText("");
+        }
     }
     
 }

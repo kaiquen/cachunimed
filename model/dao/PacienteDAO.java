@@ -35,7 +35,7 @@ public class PacienteDAO {
     }
 
     public List<Paciente> searchPaciente(Paciente paciente) throws SQLException{
-        String sql = "select name, id from paciente where name like '%" + paciente.getName() + "%'";
+        String sql = "select * from paciente where name like '%" + paciente.getName() + "%'";
         PreparedStatement ps = connection.prepareStatement(sql);
         
         //ps.setString(1, paciente.getName());
@@ -43,8 +43,11 @@ public class PacienteDAO {
         List<Paciente> pacientes = new ArrayList<>();
         while(rs.next()){
             Paciente pacienteAux = new Paciente();
-            pacienteAux.setName(rs.getString("name"));
             pacienteAux.setId(rs.getInt("id"));
+            pacienteAux.setName(rs.getString("name"));
+            pacienteAux.setCpf(rs.getString("cpf"));
+            pacienteAux.setFone(rs.getString("fone"));
+            pacienteAux.setAddress(rs.getString("address"));
             pacientes.add(pacienteAux);
         }
        

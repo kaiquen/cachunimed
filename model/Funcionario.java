@@ -20,6 +20,8 @@ public class Funcionario {
         this.cpf = cpf; 
         this.password = password;
     };
+    
+
     public Funcionario(Integer id, String name, String password){
         setId(id);
         boolean verifyName= !name.isEmpty();
@@ -112,6 +114,11 @@ public class Funcionario {
 
     public String getCargo(){
         return cargo;
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 }
 

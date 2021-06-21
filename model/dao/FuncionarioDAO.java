@@ -105,6 +105,20 @@ public class FuncionarioDAO {
 
     }
 
+    public List<Funcionario> selectMedicos() throws SQLException{
+        String sql = "select name from funcionario where type=2";
+        PreparedStatement ps = connection.prepareStatement(sql);
+        ResultSet rs = ps.executeQuery();
+
+        List<Funcionario> funcionarios =  new ArrayList<>() ;
+        while(rs.next()){
+            Funcionario funcionario = new Funcionario();
+            funcionario.setName(rs.getString("name")); 
+            funcionarios.add(funcionario);
+        }
+       
+        return funcionarios;
+    }
 
 
     //Excluir 
