@@ -9,21 +9,21 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="login" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="AnchorPaneLogin" stylesheets="@style.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginController">
+<AnchorPane fx:id="login" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="500.0" styleClass="AnchorPaneLogin" stylesheets="@style.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginController">
    <children>
-      <ImageView fitHeight="204.0" fitWidth="594.0" layoutX="1.0" layoutY="14.0" pickOnBounds="true">
+      <ImageView fitHeight="128.0" fitWidth="481.0" layoutX="13.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@images/logo.png" />
          </image>
       </ImageView>
-      <TextField fx:id="textField" layoutX="229.0" layoutY="203.0" prefHeight="31.0" prefWidth="174.0" text="11111111111" />
-      <PasswordField fx:id="passwordField" layoutX="229.0" layoutY="246.0" prefHeight="31.0" prefWidth="174.0" text="123" />
-      <Button layoutX="245.0" layoutY="304.0" mnemonicParsing="false" onAction="#Enter" prefHeight="31.0" prefWidth="91.0" text="Entrar" />
-      <Label layoutX="174.0" layoutY="208.0" text="CPF">
+      <TextField fx:id="textField" layoutX="197.0" layoutY="147.0" prefHeight="31.0" prefWidth="174.0" text="11111111111" />
+      <PasswordField fx:id="passwordField" layoutX="197.0" layoutY="192.0" prefHeight="31.0" prefWidth="174.0" text="123" />
+      <Button layoutX="193.0" layoutY="241.0" mnemonicParsing="false" onAction="#Enter" prefHeight="31.0" prefWidth="91.0" styleClass="ButtonLogin" text="Entrar" />
+      <Label layoutX="155.0" layoutY="152.0" text="CPF">
          <font>
             <Font size="14.0" />
          </font></Label>
-      <Label layoutX="167.0" layoutY="251.0" text="Senha">
+      <Label layoutX="148.0" layoutY="197.0" text="Senha">
          <font>
             <Font size="14.0" />
          </font></Label>

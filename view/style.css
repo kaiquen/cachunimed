@@ -6,8 +6,34 @@
   -fx-background-color: #ffff;
 }
 
+.MenuBar {
+  -fx-font-size: 16px;
+  -fx-spacing: 93;
+  -fx-font-weight: 600;
+  -fx-alignment: center;
+}
+
+/* Buttons */
+
+.ButtonLogin {
+  -fx-font-weight: 700;
+  -fx-background-color: #74c69d;
+  -fx-text-fill: #FFFFFF;
+}
+
+.ButtonLogin:hover {
+  -fx-background-color: #40916c;
+  -fx-text-fill: #FFFFFF;
+  -fx-opacity: 10.0;
+}
+
+.ButtonLogin:pressed {
+  -fx-scale-y: 0.9;
+  -fx-scale-x: 0.9;
+}
+
 .ButtonRegister {
-  -fx-background-color: #98ffbe;
+  -fx-background-color: #74c69d;
   -fx-background-radius: 12;
   -fx-border-color: #000000;
   -fx-border-radius: 12;
@@ -15,28 +41,34 @@
   -fx-font-weight: 700;
 }
 
-/* Testar Hover e Pressionado */
-
-/*
 .ButtonRegister:hover {
-  -fx-background-color: #000;
-  -fx-opacity: 10.0;
+  -fx-background-color: #40916c;
+  -fx-text-fill: #FFFFFF;
 }
 
 .ButtonRegister:pressed {
   -fx-scale-y: 0.9;
   -fx-scale-x: 0.9;
 } 
-*/
 
 .ButtonAlter {
-  -fx-background-color: #a5d9ff;
+  -fx-background-color: #74c69d;
   -fx-background-radius: 12;
   -fx-border-color: #000000;
   -fx-border-radius: 12;
   -fx-font-size: 12px;
   -fx-font-weight: 700;
 }
+
+.Button.Alter {
+  -fx-background-color: #a5d9ff;
+  -fx-opacity: 10.0;
+}
+
+.Button.Alter:pressed {
+  -fx-scale-y: 0.9;
+  -fx-scale-x: 0.9;
+} 
 
 .ButtonRemove {
   -fx-background-color: #f79595;
@@ -47,6 +79,16 @@
   -fx-font-weight: 700;
 }
 
+.ButtonRemove:hover {
+  -fx-background-color: #f79595;
+  -fx-opacity: 10.0;
+}
+
+.ButtonRemove:pressed {
+  -fx-scale-y: 0.9;
+  -fx-scale-x: 0.9;
+} 
+
 .ButtonAppointment {
   -fx-background-color: #fffda5;
   -fx-background-radius: 12;
@@ -56,11 +98,32 @@
   -fx-font-weight: 700;
 }
 
+.ButtonAppointment:hover {
+  -fx-background-color: #fffda5;
+  -fx-opacity: 10.0;
+}
+
+.ButtonAppointment:pressed {
+  -fx-scale-y: 0.9;
+  -fx-scale-x: 0.9;
+} 
+
 .ButtonSearch {
   -fx-background-image: url("./images/search.png");
   -fx-pref-height: 32px;
-  -fx-pref-width: 32px;
+  -fx-pref-width: 32px; 
 }
+
+.ButtonSearch:pressed {
+  -fx-scale-y: 0.9;
+  -fx-scale-x: 0.9;
+} 
+
+
+/* Buttons */
+
+/* Labels */
+
 
 .LabelTitle {
   -fx-font-size: Arial 22px;
@@ -81,9 +144,5 @@
   -fx-font-weight: 900;
 }
 
-.MenuBar {
-  -fx-font-size: 16px;
-  -fx-spacing: 93;
-  -fx-font-weight: 600;
-  -fx-alignment: center;
-}
+
+/* Labels */

@@ -34,20 +34,20 @@
                <children>
                   <AnchorPane fx:id="anchorPaneCreate" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="398.0" prefWidth="362.0" visible="false">
                      <children>
-                        <GridPane layoutX="35.0" layoutY="136.0" prefHeight="144.0" prefWidth="293.0">
+                        <GridPane layoutX="35.0" layoutY="136.0" prefHeight="144.0" prefWidth="315.0">
                            <children>
-                              <Label text="CPF" GridPane.rowIndex="1" />
-                              <Label text="Nome" />
-                              <Label text="Endereço" GridPane.rowIndex="3" />
+                              <Label styleClass="LabelDetails" text="CPF" GridPane.rowIndex="1" />
+                              <Label styleClass="LabelDetails" text="Nome" />
+                              <Label styleClass="LabelDetails" text="Endereço" GridPane.rowIndex="3" />
                               <TextField fx:id="textFieldNameCreate" prefHeight="31.0" prefWidth="142.0" GridPane.columnIndex="1" />
                               <TextField fx:id="textFieldCpfCreate" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <Label text="Telefone" GridPane.rowIndex="2" />
+                              <Label styleClass="LabelDetails" text="Telefone" GridPane.rowIndex="2" />
                               <TextField fx:id="textFieldFoneCreate" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                               <TextField fx:id="textFieldAddressCreate" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                            </children>
                            <columnConstraints>
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="150.0" minWidth="10.0" prefWidth="48.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="284.0" minWidth="10.0" prefWidth="203.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="150.0" minWidth="10.0" prefWidth="75.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="284.0" minWidth="10.0" prefWidth="218.0" />
                            </columnConstraints>
                            <rowConstraints>
                               <RowConstraints maxHeight="105.0" minHeight="0.0" prefHeight="46.0" vgrow="SOMETIMES" />
@@ -56,13 +56,13 @@
                               <RowConstraints maxHeight="88.0" minHeight="7.0" prefHeight="44.0" vgrow="SOMETIMES" />
                            </rowConstraints>
                         </GridPane>
-                        <Button layoutX="84.0" layoutY="328.0" mnemonicParsing="false" onAction="#create" prefHeight="31.0" prefWidth="85.0" text="Cadastrar" />
-                        <Label layoutX="98.0" layoutY="51.0" text="Cadastrar Paciente">
+                        <Button layoutX="84.0" layoutY="328.0" mnemonicParsing="false" onAction="#create" prefHeight="31.0" prefWidth="85.0" styleClass="ButtonRegister" text="Cadastrar" />
+                        <Button layoutX="195.0" layoutY="328.0" mnemonicParsing="false" onAction="#clearCreate" prefHeight="31.0" prefWidth="85.0" styleClass="ButtonRemove" text="Cancelar" />
+                        <Label layoutX="70.0" layoutY="33.0" styleClass="LabelTitle" text="Cadastrar Paciente">
                            <font>
-                              <Font name="System Bold" size="19.0" />
+                              <Font size="22.0" />
                            </font>
                         </Label>
-                        <Button layoutX="195.0" layoutY="328.0" mnemonicParsing="false" onAction="#clearCreate" prefHeight="31.0" prefWidth="85.0" text="Cancelar" />
                      </children>
                   </AnchorPane>
                   <AnchorPane fx:id="anchorPaneList" prefHeight="398.0" prefWidth="362.0" styleClass="AnchorPane">
@@ -112,18 +112,18 @@
                   </AnchorPane>
                   <AnchorPane fx:id="anchorPaneUpdate" layoutX="-2.0" layoutY="-4.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="412.0" prefWidth="374.0" visible="false">
                      <children>
-                        <GridPane layoutX="56.0" layoutY="137.0" prefHeight="144.0" prefWidth="251.0">
+                        <GridPane layoutX="34.0" layoutY="137.0" prefHeight="144.0" prefWidth="315.0">
                            <children>
-                              <Label text="Nome" />
-                              <Label text="Telefone" GridPane.rowIndex="1" />
+                              <Label styleClass="LabelDetails" text="Nome" />
+                              <Label styleClass="LabelDetails" text="Telefone" GridPane.rowIndex="1" />
                               <TextField fx:id="textFieldNameUpdate" GridPane.columnIndex="1" />
-                              <Label text="Endereço" GridPane.rowIndex="2" />
+                              <Label styleClass="LabelDetails" text="Endereço" GridPane.rowIndex="2" />
                               <TextField fx:id="textFieldFoneUpdate" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                               <TextField fx:id="textFieldAddressUpdate" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                            </children>
                            <columnConstraints>
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="150.0" minWidth="10.0" prefWidth="66.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="284.0" minWidth="10.0" prefWidth="185.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="150.0" minWidth="10.0" prefWidth="73.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="284.0" minWidth="10.0" prefWidth="178.0" />
                            </columnConstraints>
                            <rowConstraints>
                               <RowConstraints maxHeight="103.0" minHeight="0.0" prefHeight="41.0" vgrow="SOMETIMES" />
@@ -131,13 +131,13 @@
                               <RowConstraints maxHeight="88.0" minHeight="10.0" prefHeight="44.0" vgrow="SOMETIMES" />
                            </rowConstraints>
                         </GridPane>
-                        <Button layoutX="101.0" layoutY="321.0" mnemonicParsing="false" onAction="#update" prefHeight="31.0" prefWidth="85.0" text="Alterar" />
-                        <Label layoutX="115.0" layoutY="58.0" text="Alterar Paciente">
+                        <Button layoutX="101.0" layoutY="321.0" mnemonicParsing="false" onAction="#update" prefHeight="31.0" prefWidth="85.0" styleClass="ButtonAlter" text="Alterar" />
+                        <Button layoutX="222.0" layoutY="321.0" mnemonicParsing="false" onAction="#clearUpdate" prefHeight="31.0" prefWidth="85.0" styleClass="ButtonRemove" text="Cancelar" />
+                        <Label layoutX="96.0" layoutY="42.0" styleClass="LabelTitle" text="Alterar Paciente">
                            <font>
-                              <Font name="System Bold" size="19.0" />
+                              <Font size="22.0" />
                            </font>
                         </Label>
-                        <Button layoutX="222.0" layoutY="321.0" mnemonicParsing="false" onAction="#clearUpdate" prefHeight="31.0" prefWidth="85.0" text="Cancelar" />
                      </children>
                   </AnchorPane>
                </children>
