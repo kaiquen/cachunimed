@@ -1,19 +1,34 @@
 package model;
 
 import java.sql.Date;
-
-
+import java.sql.Time;
 
 public class Agenda {
+    private Integer id;
+
+    private Integer idHours;
     private Integer idMedico;
     private Integer idPaciente;
     private String nameMedico;
     private String namePaciente;
     private Date date;
+    private Time time;
     
-    public Agenda(String nameMedico, Integer idPaciente, Date dateOk){
+   
+    public Agenda(){}
+    public Agenda(Integer id){
+        setIdMedico(id);
+    }
+    public Integer getIdHours() {
+        return idHours;
+    }
+    public void setIdHours(Integer idHours) {
+        this.idHours = idHours;
+    }
+    public Agenda(String nameMedico, Integer idPaciente, Time time, Date dateOk){
         setNameMedico(nameMedico);;
         setIdPaciente(idPaciente);
+        setTime(time);
         setDate(dateOk);
     }
     
@@ -51,9 +66,23 @@ public class Agenda {
     public void setNamePaciente(String namePaciente) {
         this.namePaciente = namePaciente;
     }
+    public Time getTime() {
+        return time;
+    }
 
+    public void setTime(Time time) {
+        this.time = time;
+    }
+    public Integer getId() {
+        return id;
+    }
+    public void setId(Integer id) {
+        this.id = id;
+    }
     @Override
     public String toString() {
-        return nameMedico ;
+        return  time + " " + namePaciente;
     }
+    // tem que formatar hora
+    
 }

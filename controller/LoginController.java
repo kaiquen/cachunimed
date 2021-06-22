@@ -4,23 +4,20 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.time.LocalDate;
+
 import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
+
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.control.skin.DatePickerSkin;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import model.Funcionario;
 import model.dao.FuncionarioDAO;
@@ -61,29 +58,19 @@ public class LoginController implements Initializable {
                 break;
 
             case 2:
-                try {
-                    login.getScene().getWindow().hide();
-                    Stage stage = new Stage();
-                    BorderPane root = new BorderPane();
-                  
-                    Scene scene = new Scene(root, 500, 500);
-                    stage.setTitle("Médico");
-                    stage.getIcons().add(image);
-                   
-
-                    DatePickerSkin datePickerSkin = new DatePickerSkin(new DatePicker(LocalDate.now()));
-                 
-                    Node calendar = datePickerSkin.getPopupContent();
-                    
-                    root.setCenter(calendar);
-            
-                    stage.setScene(scene);
-                    stage.show(); 
-                } 
               
-                catch (Exception e) {
-                    System.out.println(e);
-                }
+
+                    login.getScene().getWindow().hide();
+                    Parent mainMedico = FXMLLoader.load(getClass().getResource("/view/medico/MainMedico.fxml"));
+                    Scene sceneMedico = new Scene(mainMedico);
+                    sceneMedico.getStylesheets().add("/view/style.css");
+                    Stage stageMedico = new Stage();
+                    stageMedico.setTitle("Medico");
+                    stageMedico.setScene(sceneMedico);
+                    stageMedico.getIcons().add(image);
+    
+                    stageMedico.show();
+                 
              
                 break;
 

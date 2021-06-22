@@ -11,7 +11,7 @@ public class Funcionario {
     private  Integer type; 
     private  String cargo; // Tem que alterar ... cargo == combobox
     private ComboBox<Types> comboBox;
-
+    static public Integer idLogin;
     public Funcionario(){};
    
     public Funcionario(Integer id){

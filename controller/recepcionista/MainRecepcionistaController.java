@@ -4,7 +4,9 @@ import java.net.URL;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.sql.Time;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 
@@ -60,6 +62,10 @@ public class MainRecepcionistaController implements Initializable{
     @FXML Label labelCpf;
     @FXML Label labelFone;
     @FXML Label labelAddress;
+    @FXML TextField textFieldDate;
+    @FXML ComboBox<Agenda> comboBoxhour;
+    
+    String textDate;
     DatePicker datePicker = new DatePicker(LocalDate.now());
     DatePickerSkin datePickerSkin = new DatePickerSkin(datePicker);
     LocalDate date;
@@ -143,6 +149,7 @@ public class MainRecepcionistaController implements Initializable{
         anchorPaneUpdate.setVisible(true);
         }
     }
+
     @FXML private void createConsulta(){
       
         if(listView.getSelectionModel().isEmpty()){
@@ -156,16 +163,21 @@ public class MainRecepcionistaController implements Initializable{
             anchorPaneConsulta.setVisible(true);
            
             Node calendar = datePickerSkin.getPopupContent();
-         
+            date = LocalDate.now();
+            textDate = date.format(DateTimeFormatter.ofPattern("dd/MM/yy"));
+            textFieldDate.setText( textDate);
             borderPane.setCenter(calendar);
             datePicker.valueProperty().addListener((observable, oldValue, newValue) -> {
                date =  newValue;
+               textDate = date.format(DateTimeFormatter.ofPattern("dd/MM/yy"));
+               textFieldDate.setText( textDate);
+               
             });
         }
     }
     @FXML private void agendar() throws SQLException{
        
-        if(comboBoxMedicos.getSelectionModel().isEmpty() || date == null){
+        if(comboBoxMedicos.getSelectionModel().isEmpty()){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Update Fail");
             alert.setHeaderText("Selecione o Médico");
@@ -176,19 +188,25 @@ public class MainRecepcionistaController implements Initializable{
             Connection connection = database.connect();
             AgendaDAO agendaDAO = new AgendaDAO(connection);
             Date dateSQL = Date.valueOf(date);
-            System.out.println(dateSQL);
-            Agenda agenda = new Agenda(comboBoxMedicos.getValue().toString(), Integer.parseInt(labelId.getText()), dateSQL);
+            Time timeSQL = Time.valueOf(comboBoxhour.getValue().toString());
+            Agenda agenda = new Agenda(comboBoxMedicos.getValue().toString(), Integer.parseInt(labelId.getText()), timeSQL, dateSQL);
             agenda.setIdMedico(agendaDAO.selectIdMedico(agenda));
+            System.out.println(agendaDAO.selectIdHours(agenda));
+            agenda.setIdHours(agendaDAO.selectIdHours(agenda));
             agendaDAO.createAgenda(agenda);
+            cancelar();
         }
     }
-    
-
+    @FXML private void cancelar(){
+            group.setVisible(true);
+            anchorPaneConsulta.setVisible(false);
+    }
     
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {   
         try {
             printMedicos();
+            printHours();
         } catch (SQLException e) {
             
             e.printStackTrace();
@@ -199,6 +217,7 @@ public class MainRecepcionistaController implements Initializable{
     }
 
  
+  
     private void atualizaListView() throws SQLException{
         Idatabase database = Factory.getDatabase("postgres");
             Connection connection = database.connect();
@@ -218,11 +237,22 @@ public class MainRecepcionistaController implements Initializable{
             funcionarioDAO.selectMedicos()
         );
     }
+    private ObservableList<Agenda> hours() throws SQLException {
+        Idatabase database = Factory.getDatabase("postgres");
+        Connection connection = database.connect();
+        AgendaDAO agendaDAO = new AgendaDAO(connection);
+        
+        return FXCollections.observableArrayList(
+            agendaDAO.selectHours()
+        );
+    }
 
     private void printMedicos() throws SQLException{ 
         comboBoxMedicos.setItems(medicos());
     }
-
+    private void printHours() throws SQLException {
+        comboBoxhour.setItems(hours());
+    }
 
     private void selectItem(Paciente paciente) {
         if (paciente != null) {

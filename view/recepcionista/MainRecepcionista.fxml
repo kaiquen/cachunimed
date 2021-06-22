@@ -116,16 +116,16 @@
          <children>
             <SplitPane dividerPositions="0.52046783625731" prefHeight="400.0" prefWidth="600.0">
                <items>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="384.0" prefWidth="143.0">
+                  <AnchorPane fx:id="textFieldHora" minHeight="0.0" minWidth="0.0" prefHeight="384.0" prefWidth="143.0">
                      <children>
-                        <TextField layoutX="68.0" layoutY="302.0" prefHeight="7.0" prefWidth="76.0" />
+                        <TextField fx:id="textFieldDate" layoutX="69.0" layoutY="299.0" prefHeight="7.0" prefWidth="76.0" />
                         <Button layoutX="73.0" layoutY="342.0" mnemonicParsing="false" onAction="#agendar" text="Marcar" />
-                        <Button layoutX="202.0" layoutY="344.0" mnemonicParsing="false" styleClass="ButtonRemove" text="Cancelar" />
-                        <TextField layoutX="197.0" layoutY="302.0" prefHeight="19.0" prefWidth="76.0" />
-                        <Label layoutX="152.0" layoutY="302.0" styleClass="LabelDetails" text="Hora" />
+                        <Button layoutX="202.0" layoutY="344.0" mnemonicParsing="false" onAction="#cancelar" styleClass="ButtonRemove" text="Cancelar" />
+                        <Label layoutX="161.0" layoutY="303.0" prefHeight="20.0" prefWidth="41.0" styleClass="LabelDetails" text="Hora" />
                         <ComboBox fx:id="comboBoxMedicos" layoutX="62.0" layoutY="22.0" prefHeight="31.0" prefWidth="181.0" promptText="Selecionar Médico" />
                         <Label layoutX="22.0" layoutY="302.0" prefHeight="17.0" prefWidth="38.0" styleClass="LabelDetails" text="Data" />
                         <BorderPane fx:id="borderPane" layoutX="52.0" layoutY="75.0" prefHeight="200.0" prefWidth="200.0" />
+                        <ComboBox fx:id="comboBoxhour" layoutX="209.0" layoutY="298.0" prefHeight="27.0" prefWidth="59.0" />
                      </children>
                   </AnchorPane>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="383.0" prefWidth="0.0">

@@ -12,7 +12,7 @@ import model.Types;
 
 public class FuncionarioDAO {
     Connection connection;
-
+  
     public FuncionarioDAO(Connection connection) {
         this.connection = connection;
     }
@@ -23,11 +23,14 @@ public class FuncionarioDAO {
         
         ps.setString(1, funcionario.getCpf());
         ps.setString(2, funcionario.getPassword());
-
+        
         ResultSet rs = ps.executeQuery();
 
-        if (rs.next())
+        if (rs.next()){
+            Funcionario.idLogin = rs.getInt("id");
             return rs.getInt("type");
+        }
+            
 
         return 4;
     }
