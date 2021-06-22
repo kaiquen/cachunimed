@@ -1,5 +1,6 @@
 package model;
 
+
 import javafx.scene.control.ComboBox;
 
 public class Funcionario {
@@ -14,7 +15,8 @@ public class Funcionario {
     public Funcionario(){};
    
     public Funcionario(Integer id){
-        setId(id);
+        this.id= id;
+        
     }
     public Funcionario(String cpf, String password){
         this.cpf = cpf; 

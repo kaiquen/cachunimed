@@ -2,6 +2,7 @@ package controller.recepcionista;
 
 import java.net.URL;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
@@ -24,9 +25,10 @@ import javafx.scene.control.TextInputControl;
 import javafx.scene.control.skin.DatePickerSkin;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-
+import model.Agenda;
 import model.Funcionario;
 import model.Paciente;
+import model.dao.AgendaDAO;
 import model.dao.FuncionarioDAO;
 import model.dao.PacienteDAO;
 import model.database.Factory;
@@ -58,7 +60,10 @@ public class MainRecepcionistaController implements Initializable{
     @FXML Label labelCpf;
     @FXML Label labelFone;
     @FXML Label labelAddress;
-
+    DatePicker datePicker = new DatePicker(LocalDate.now());
+    DatePickerSkin datePickerSkin = new DatePickerSkin(datePicker);
+    LocalDate date;
+    Funcionario funcionario;
     @FXML private void searchPaciente() throws SQLException{
         
         if(textField.getText().isEmpty()){
@@ -139,7 +144,7 @@ public class MainRecepcionistaController implements Initializable{
         }
     }
     @FXML private void createConsulta(){
-        System.out.println("ok");
+      
         if(listView.getSelectionModel().isEmpty()){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Update Fail");
@@ -149,17 +154,35 @@ public class MainRecepcionistaController implements Initializable{
         } else {
             group.setVisible(false);
             anchorPaneConsulta.setVisible(true);
-            DatePicker datePicker = new DatePicker(LocalDate.now());
-            DatePickerSkin datePickerSkin = new DatePickerSkin(datePicker);
+           
             Node calendar = datePickerSkin.getPopupContent();
+         
             borderPane.setCenter(calendar);
-            
             datePicker.valueProperty().addListener((observable, oldValue, newValue) -> {
-                System.out.println("New Value: " + newValue);
+               date =  newValue;
             });
-
         }
     }
+    @FXML private void agendar() throws SQLException{
+       
+        if(comboBoxMedicos.getSelectionModel().isEmpty() || date == null){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Update Fail");
+            alert.setHeaderText("Selecione o Médico");
+            alert.setContentText("Tente novamente!");
+            alert.show();
+        } else {
+            Idatabase database = Factory.getDatabase("postgres");
+            Connection connection = database.connect();
+            AgendaDAO agendaDAO = new AgendaDAO(connection);
+            Date dateSQL = Date.valueOf(date);
+            System.out.println(dateSQL);
+            Agenda agenda = new Agenda(comboBoxMedicos.getValue().toString(), Integer.parseInt(labelId.getText()), dateSQL);
+            agenda.setIdMedico(agendaDAO.selectIdMedico(agenda));
+            agendaDAO.createAgenda(agenda);
+        }
+    }
+    
 
     
     @Override
@@ -196,7 +219,7 @@ public class MainRecepcionistaController implements Initializable{
         );
     }
 
-    private void printMedicos() throws SQLException{       
+    private void printMedicos() throws SQLException{ 
         comboBoxMedicos.setItems(medicos());
     }
 
