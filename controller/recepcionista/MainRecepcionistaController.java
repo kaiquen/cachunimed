@@ -63,7 +63,7 @@ public class MainRecepcionistaController implements Initializable{
     @FXML Label labelFone;
     @FXML Label labelAddress;
     @FXML TextField textFieldDate;
-    @FXML ComboBox<Agenda> comboBoxhour;
+    @FXML ComboBox<String> comboBoxhour;
     
     String textDate;
     DatePicker datePicker = new DatePicker(LocalDate.now());
@@ -206,7 +206,7 @@ public class MainRecepcionistaController implements Initializable{
     public void initialize(URL arg0, ResourceBundle arg1) {   
         try {
             printMedicos();
-            printHours();
+            hours();
         } catch (SQLException e) {
             
             e.printStackTrace();
@@ -237,23 +237,18 @@ public class MainRecepcionistaController implements Initializable{
             funcionarioDAO.selectMedicos()
         );
     }
-    private ObservableList<Agenda> hours() throws SQLException {
-        Idatabase database = Factory.getDatabase("postgres");
-        Connection connection = database.connect();
-        AgendaDAO agendaDAO = new AgendaDAO(connection);
-        
-        return FXCollections.observableArrayList(
-            agendaDAO.selectHours()
-        );
+    private void hours() throws SQLException {
+  
+        ObservableList<String> items = FXCollections.observableArrayList(
+            "08:00:00", "09:00:00", "10:00:00","11:00:00","13:00:00", "14:00:00", "15:00:00" ,"16:00:00","17:00:00");
+
+        comboBoxhour.setItems(items);
     }
 
     private void printMedicos() throws SQLException{ 
         comboBoxMedicos.setItems(medicos());
     }
-    private void printHours() throws SQLException {
-        comboBoxhour.setItems(hours());
-    }
-
+  
     private void selectItem(Paciente paciente) {
         if (paciente != null) {
             labelId.setText(String.valueOf(paciente.getId()));
