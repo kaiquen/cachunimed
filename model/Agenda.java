@@ -1,7 +1,6 @@
 package model;
 
-import java.sql.Date;
-import java.sql.Time;
+import java.sql.Timestamp;
 
 public class Agenda {
     private Integer id;
@@ -11,11 +10,15 @@ public class Agenda {
     private Integer idPaciente;
     private String nameMedico;
     private String namePaciente;
-    private Date date;
-    private Time time;
-    
+    private Timestamp dateTime;
    
     public Agenda(){}
+    public Timestamp getDateTime() {
+        return dateTime;
+    }
+    public void setDateTime(Timestamp dateTime) {
+        this.dateTime = dateTime;
+    }
     public Agenda(Integer id){
         setIdMedico(id);
     }
@@ -25,11 +28,10 @@ public class Agenda {
     public void setIdHours(Integer idHours) {
         this.idHours = idHours;
     }
-    public Agenda(String nameMedico, Integer idPaciente, Time time, Date dateOk){
+    public Agenda(String nameMedico, Integer idPaciente, Timestamp dateTime){
         setNameMedico(nameMedico);;
         setIdPaciente(idPaciente);
-        setTime(time);
-        setDate(dateOk);
+        setDateTime(dateTime);
     }
     
     public Integer getIdMedico() {
@@ -51,12 +53,6 @@ public class Agenda {
     public String getNamePaciente() {
         return namePaciente;
     }
-    public Date getDate() {
-        return date;
-    }
-    public void setDate(Date date) {
-        this.date = date;
-    }
     public String getNameMedico() {
         return nameMedico;
     }
@@ -66,13 +62,7 @@ public class Agenda {
     public void setNamePaciente(String namePaciente) {
         this.namePaciente = namePaciente;
     }
-    public Time getTime() {
-        return time;
-    }
-
-    public void setTime(Time time) {
-        this.time = time;
-    }
+   
     public Integer getId() {
         return id;
     }
@@ -81,7 +71,7 @@ public class Agenda {
     }
     @Override
     public String toString() {
-        return  time + " " + namePaciente;
+        return  dateTime.toString().substring(10,16) + " " + namePaciente;
     }
     // tem que formatar hora
     

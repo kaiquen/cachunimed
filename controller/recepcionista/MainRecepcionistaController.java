@@ -2,14 +2,11 @@ package controller.recepcionista;
 
 import java.net.URL;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.SQLException;
-import java.sql.Time;
+import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
-
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -18,7 +15,6 @@ import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
-
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -44,19 +40,16 @@ public class MainRecepcionistaController implements Initializable{
     @FXML TextField textFieldFoneCreate;
     @FXML TextField textFieldAddressCreate;
     @FXML TextInputControl labelIdList;
-
     @FXML TextInputControl textFieldFoneUpdate;
     @FXML TextInputControl textFieldNameUpdate;
     @FXML TextInputControl textFieldAddressUpdate;
     @FXML ComboBox<Funcionario> comboBoxMedicos;
-    
     @FXML AnchorPane anchorPaneCreate;
     @FXML AnchorPane anchorPaneUpdate;
     @FXML AnchorPane anchorPaneConsulta;
     @FXML BorderPane borderPane;
     @FXML Group group;
     @FXML DatePickerSkin calendar;
-
     @FXML Label labelId;
     @FXML Label labelName;
     @FXML Label labelCpf;
@@ -187,12 +180,14 @@ public class MainRecepcionistaController implements Initializable{
             Idatabase database = Factory.getDatabase("postgres");
             Connection connection = database.connect();
             AgendaDAO agendaDAO = new AgendaDAO(connection);
-            Date dateSQL = Date.valueOf(date);
-            Time timeSQL = Time.valueOf(comboBoxhour.getValue().toString());
-            Agenda agenda = new Agenda(comboBoxMedicos.getValue().toString(), Integer.parseInt(labelId.getText()), timeSQL, dateSQL);
+            
+            String datetime = date + " "+ comboBoxhour.getValue().toString();
+            Timestamp datetimeSQL = Timestamp.valueOf(datetime);
+
+            Agenda agenda = new Agenda(comboBoxMedicos.getValue().toString(), Integer.parseInt(labelId.getText()), datetimeSQL);
+            
             agenda.setIdMedico(agendaDAO.selectIdMedico(agenda));
-            System.out.println(agendaDAO.selectIdHours(agenda));
-            agenda.setIdHours(agendaDAO.selectIdHours(agenda));
+          
             agendaDAO.createAgenda(agenda);
             cancelar();
         }
@@ -216,8 +211,6 @@ public class MainRecepcionistaController implements Initializable{
                 .addListener((obeservable, oldValue, newValue) -> selectItem(newValue));
     }
 
- 
-  
     private void atualizaListView() throws SQLException{
         Idatabase database = Factory.getDatabase("postgres");
             Connection connection = database.connect();
@@ -241,7 +234,6 @@ public class MainRecepcionistaController implements Initializable{
   
         ObservableList<String> items = FXCollections.observableArrayList(
             "08:00:00", "09:00:00", "10:00:00","11:00:00","13:00:00", "14:00:00", "15:00:00" ,"16:00:00","17:00:00");
-
         comboBoxhour.setItems(items);
     }
 
