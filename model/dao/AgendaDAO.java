@@ -7,7 +7,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import model.Agenda;
 import model.Funcionario;
@@ -30,6 +32,7 @@ public class AgendaDAO {
     }
 
     public List<Agenda> selectAgendas(LocalDate newValue) throws SQLException{
+
         String sql = "select p.name, a.datetime from agenda as a inner join paciente as p on p.id=a.idpaciente where a.idmedico=? and (cast(a.datetime as date)=?)"; 
         PreparedStatement ps = connection.prepareStatement(sql);
         ps.setInt(1, Funcionario.idLogin);
@@ -57,5 +60,37 @@ public class AgendaDAO {
         rs.next();
 
         return rs.getInt("id");
+    }
+    public ArrayList selectYear() throws SQLException{
+        String sql = "select distinct extract(year from datetime) as ano from agenda";
+        PreparedStatement ps = connection.prepareStatement(sql);
+        ResultSet rs = ps.executeQuery();
+        ArrayList agendas = new ArrayList<>();
+
+        while(rs.next()){
+            agendas.add(rs.getInt("ano"));
+        }
+        return agendas;
+    }
+    public Map<Integer, ArrayList> graphic(Integer date) throws SQLException{
+        String sql = "select count(id), extract(year from datetime)as ano, extract(month from datetime) as mes from agenda where extract(year from datetime)=? group by ano,mes order by ano,mes";
+        PreparedStatement ps = connection.prepareStatement(sql);
+        ps.setInt(1,date);
+        
+        Map<Integer, ArrayList> graphic = new HashMap<>();
+        ResultSet rs = ps.executeQuery();
+        while(rs.next()){
+            ArrayList rows = new ArrayList<>();
+            if(!graphic.containsKey(rs.getInt("mes"))){
+                rows.add(rs.getInt("mes"));
+                rows.add(rs.getInt("count"));
+                graphic.put(rs.getInt("mes"), rows);
+            }else {
+                ArrayList newRows = graphic.get(rs.getInt("ano"));
+                newRows.add(rs.getInt("mes"));
+                newRows.add(rs.getInt("count"));
+            }
+        }
+        return graphic;
     }
 }

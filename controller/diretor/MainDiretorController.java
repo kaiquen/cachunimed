@@ -28,6 +28,12 @@ public class MainDiretorController implements Initializable {
         anchorPane.getChildren().setAll(panePaciente);
     }
 
+    @FXML private void listGraphic() throws IOException {
+        AnchorPane panePaciente = (AnchorPane) FXMLLoader
+            .load(getClass().getResource("/view/diretor/Graphic.fxml"));
+        anchorPane.getChildren().setAll(panePaciente);
+    }
+    
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
     }

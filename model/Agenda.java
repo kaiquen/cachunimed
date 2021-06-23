@@ -11,8 +11,18 @@ public class Agenda {
     private String nameMedico;
     private String namePaciente;
     private Timestamp dateTime;
-   
+    private String year;
+    
     public Agenda(){}
+    public Agenda(Timestamp dateTime){
+        this.dateTime = dateTime;
+    }
+    public String getYear() {
+        return year;
+    }
+    public void setYear(String year) {
+        this.year = year;
+    }
     public Timestamp getDateTime() {
         return dateTime;
     }
@@ -74,5 +84,4 @@ public class Agenda {
         return  dateTime.toString().substring(10,16) + " " + namePaciente;
     }
     // tem que formatar hora
-    
 }
