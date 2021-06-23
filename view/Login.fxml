@@ -16,14 +16,14 @@
             <Image url="@images/logo.png" />
          </image>
       </ImageView>
-      <TextField fx:id="textField" layoutX="197.0" layoutY="147.0" prefHeight="31.0" prefWidth="174.0" text="11111111111" />
-      <PasswordField fx:id="passwordField" layoutX="197.0" layoutY="192.0" prefHeight="31.0" prefWidth="174.0" text="123" />
-      <Button layoutX="193.0" layoutY="241.0" mnemonicParsing="false" onAction="#Enter" prefHeight="31.0" prefWidth="91.0" styleClass="ButtonLogin" text="Entrar" />
-      <Label layoutX="155.0" layoutY="152.0" text="CPF">
+      <TextField fx:id="textField" layoutX="196.0" layoutY="157.0" prefHeight="31.0" prefWidth="174.0" text="11111111111" AnchorPane.rightAnchor="130.0" />
+      <PasswordField fx:id="passwordField" layoutX="197.0" layoutY="192.0" prefHeight="31.0" prefWidth="174.0" text="123" AnchorPane.rightAnchor="130.0" />
+      <Button layoutX="205.0" layoutY="241.0" mnemonicParsing="false" onAction="#Enter" onKeyPressed="#Enter" prefHeight="31.0" prefWidth="91.0" styleClass="ButtonLogin" text="Entrar" AnchorPane.bottomAnchor="25.0" />
+      <Label layoutX="148.0" layoutY="163.0" text="CPF" AnchorPane.leftAnchor="148.0">
          <font>
             <Font size="14.0" />
          </font></Label>
-      <Label layoutX="148.0" layoutY="197.0" text="Senha">
+      <Label layoutX="148.0" layoutY="197.0" text="Senha" AnchorPane.leftAnchor="148.0">
          <font>
             <Font size="14.0" />
          </font></Label>

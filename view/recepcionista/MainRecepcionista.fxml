@@ -1,28 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
-<?import java.lang.String?>
 <?import javafx.scene.Group?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.SplitPane?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="AnchorPane" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.recepcionista.MainRecepcionistaController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="AnchorPane" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.recepcionista.MainRecepcionistaController">
    <children>
       <Group fx:id="group" layoutX="-106.0" layoutY="-95.0">
          <children>
@@ -31,40 +24,28 @@
                   <Pane layoutY="-14.0" />
                </children>
             </Pane>
-            <ListView fx:id="listView" layoutX="131.0" layoutY="157.0" prefHeight="284.0" prefWidth="560.0" />
-            <Label layoutX="131.0" layoutY="124.0" styleClass="LabelSearch" text="Nome do Paciente" />
-            <TextField fx:id="textField" layoutX="248.0" layoutY="120.0" prefHeight="23.0" prefWidth="400.0" />
-            <Button layoutX="657.0" layoutY="120.0" mnemonicParsing="false" onAction="#searchPaciente" prefHeight="23.0" prefWidth="30.0" styleClass="ButtonSearch" />
-            <Pane layoutX="191.0" layoutY="449.0" prefHeight="32.0" prefWidth="441.0">
-               <children>
-                  <Button layoutX="314.0" mnemonicParsing="false" onAction="#createConsulta" prefHeight="25.0" prefWidth="151.0" styleClass="ButtonAppointment" text="Marcar Consulta" />
-                  <Button layoutX="135.0" layoutY="1.0" mnemonicParsing="false" onAction="#createPaciente" prefHeight="15.0" prefWidth="151.0" text="Cadastrar Paciente">
-                     <styleClass>
-                        <String fx:value="ButtonRegister2" />
-                        <String fx:value="ButtonRegister" />
-                     </styleClass>
-                  </Button>
-                  <Button layoutX="-45.0" mnemonicParsing="false" onAction="#updatePaciente" prefHeight="25.0" prefWidth="151.0" styleClass="ButtonAlter" text="Alterar Paciente" />
-               </children>
-            </Pane>
+            <ListView fx:id="listView" layoutX="123.0" layoutY="155.0" prefHeight="285.0" prefWidth="568.0" />
+            <Label layoutX="130.0" layoutY="122.0" styleClass="LabelSearch" text="Nome do Paciente" />
+            <TextField fx:id="textField" layoutX="241.0" layoutY="117.0" prefHeight="25.0" prefWidth="413.0" />
+            <Button layoutX="662.0" layoutY="114.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#searchPaciente" prefHeight="10.0" prefWidth="10.0" styleClass="ButtonSearch" />
          </children>
       </Group>
-      <AnchorPane fx:id="anchorPaneCreate" layoutX="-1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="606.0" visible="false">
+      <AnchorPane fx:id="anchorPaneCreate" layoutX="-1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="606.0" styleClass="AnchorPane" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <GridPane layoutX="132.0" layoutY="157.0" prefHeight="177.0" prefWidth="344.0">
+            <GridPane layoutX="113.0" layoutY="132.0" prefHeight="137.0" prefWidth="385.0" AnchorPane.leftAnchor="113.0" AnchorPane.topAnchor="132.0">
                <children>
-                  <Label text="CPF" GridPane.rowIndex="1" />
-                  <Label text="Nome" />
-                  <Label text="Endereço" GridPane.rowIndex="3" />
-                  <TextField fx:id="textFieldNameCreate" prefHeight="31.0" prefWidth="142.0" GridPane.columnIndex="1" />
-                  <TextField fx:id="textFieldCpfCreate" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <Label text="Telefone" GridPane.rowIndex="2" />
-                  <TextField fx:id="textFieldFoneCreate" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <TextField fx:id="textFieldAddressCreate" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Label styleClass="LabelDetails" text="Nome" />
+                  <Label styleClass="LabelDetails" text="CPF" GridPane.rowIndex="1" />
+                  <Label styleClass="LabelDetails" text="Telefone" GridPane.rowIndex="2" />
+                  <Label styleClass="LabelDetails" text="Endereço" GridPane.rowIndex="3" />
+                  <TextField fx:id="textFieldNameCreate" prefHeight="25.0" GridPane.columnIndex="1" />
+                  <TextField fx:id="textFieldCpfCreate" prefHeight="25.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField fx:id="textFieldFoneCreate" prefHeight="25.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <TextField fx:id="textFieldAddressCreate" prefHeight="25.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                </children>
                <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="150.0" minWidth="10.0" prefWidth="48.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="284.0" minWidth="10.0" prefWidth="203.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="150.0" minWidth="10.0" prefWidth="90.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="295.0" minWidth="10.0" prefWidth="294.0" />
                </columnConstraints>
                <rowConstraints>
                   <RowConstraints maxHeight="105.0" minHeight="0.0" prefHeight="46.0" vgrow="SOMETIMES" />
@@ -73,29 +54,28 @@
                   <RowConstraints maxHeight="88.0" minHeight="7.0" prefHeight="44.0" vgrow="SOMETIMES" />
                </rowConstraints>
             </GridPane>
-            <Button layoutX="230.0" layoutY="355.0" mnemonicParsing="false" onAction="#create" prefHeight="31.0" prefWidth="93.0" text="Cadastrar" />
-            <Label layoutX="276.0" layoutY="82.0" prefHeight="35.0" prefWidth="312.0" text="Cadastrar Paciente">
+            <Label layoutX="170.0" layoutY="74.0" prefHeight="42.0" prefWidth="271.0" styleClass="LabelTitle" text="Cadastrar Paciente" AnchorPane.leftAnchor="170.0" AnchorPane.rightAnchor="165.0" AnchorPane.topAnchor="30.0">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
             </Label>
-            <Button layoutX="386.0" layoutY="355.0" mnemonicParsing="false" onAction="#clearCreate" prefHeight="31.0" prefWidth="93.0" text="Cancelar" />
+            <Button layoutX="386.0" layoutY="355.0" mnemonicParsing="false" onAction="#clearCreate" prefHeight="25.0" prefWidth="151.0" styleClass="ButtonRemove" text="Cancelar" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="40.0" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="anchorPaneUpdate" layoutX="-10.0" layoutY="-6.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="408.0" prefWidth="616.0" visible="false">
+      <AnchorPane fx:id="anchorPaneUpdate" layoutX="-10.0" layoutY="-6.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="408.0" prefWidth="616.0" styleClass="AnchorPane" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <GridPane layoutX="136.0" layoutY="128.0" prefHeight="177.0" prefWidth="344.0">
+            <GridPane layoutX="113.0" layoutY="133.0" prefHeight="105.0" prefWidth="385.0" AnchorPane.leftAnchor="113.0" AnchorPane.topAnchor="132.0">
                <children>
-                  <Label text="Nome" />
-                  <Label text="Telefone" GridPane.rowIndex="1" />
-                  <TextField fx:id="textFieldNameUpdate" GridPane.columnIndex="1" />
-                  <Label text="Endereço" GridPane.rowIndex="2" />
-                  <TextField fx:id="textFieldFoneUpdate" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <TextField fx:id="textFieldAddressUpdate" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Label styleClass="LabelDetails" text="Nome" />
+                  <Label styleClass="LabelDetails" text="Telefone" GridPane.rowIndex="1" />
+                  <TextField fx:id="textFieldNameUpdate" minHeight="-Infinity" prefHeight="25.0" GridPane.columnIndex="1" />
+                  <Label styleClass="LabelDetails" text="Endereço" GridPane.rowIndex="2" />
+                  <TextField fx:id="textFieldFoneUpdate" minHeight="-Infinity" prefHeight="25.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField fx:id="textFieldAddressUpdate" minHeight="-Infinity" prefHeight="25.0" prefWidth="295.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                </children>
                <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="150.0" minWidth="10.0" prefWidth="66.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="284.0" minWidth="10.0" prefWidth="185.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="150.0" minWidth="10.0" prefWidth="90.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="295.0" minWidth="10.0" prefWidth="295.0" />
                </columnConstraints>
                <rowConstraints>
                   <RowConstraints maxHeight="103.0" minHeight="0.0" prefHeight="41.0" vgrow="SOMETIMES" />
@@ -103,48 +83,52 @@
                   <RowConstraints maxHeight="88.0" minHeight="10.0" prefHeight="44.0" vgrow="SOMETIMES" />
                </rowConstraints>
             </GridPane>
-            <Button layoutX="215.0" layoutY="347.0" mnemonicParsing="false" onAction="#update" prefHeight="31.0" prefWidth="93.0" text="Alterar" />
-            <Label layoutX="238.0" layoutY="85.0" text="Alterar Paciente">
+            <Label layoutX="238.0" layoutY="85.0" prefHeight="42.0" prefWidth="271.0" styleClass="LabelTitle" text="Alterar Paciente" AnchorPane.leftAnchor="170.0" AnchorPane.rightAnchor="165.0" AnchorPane.topAnchor="30.0">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
             </Label>
-            <Button layoutX="387.0" layoutY="347.0" mnemonicParsing="false" onAction="#clearUpdate" prefHeight="31.0" prefWidth="93.0" text="Cancelar" />
+            <Button layoutX="387.0" layoutY="347.0" mnemonicParsing="false" onAction="#clearUpdate" prefHeight="25.0" prefWidth="151.0" styleClass="ButtonRemove" text="Cancelar" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="40.0" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="anchorPaneConsulta" layoutX="2.0" layoutY="-2.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../style.css" visible="false">
+      <AnchorPane fx:id="anchorPaneConsulta" layoutX="2.0" layoutY="-2.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="AnchorPane" stylesheets="@../style.css" visible="false">
          <children>
-            <SplitPane dividerPositions="0.52046783625731" prefHeight="400.0" prefWidth="600.0">
+            <SplitPane dividerPositions="0.5" prefHeight="400.0" prefWidth="600.0">
                <items>
-                  <AnchorPane fx:id="textFieldHora" minHeight="0.0" minWidth="0.0" prefHeight="384.0" prefWidth="143.0">
+                  <AnchorPane fx:id="textFieldHora" minHeight="0.0" minWidth="0.0" prefHeight="384.0" prefWidth="288.0">
                      <children>
-                        <TextField fx:id="textFieldDate" layoutX="69.0" layoutY="299.0" prefHeight="7.0" prefWidth="76.0" />
-                        <Button layoutX="73.0" layoutY="342.0" mnemonicParsing="false" onAction="#agendar" text="Marcar" />
-                        <Button layoutX="202.0" layoutY="344.0" mnemonicParsing="false" onAction="#cancelar" styleClass="ButtonRemove" text="Cancelar" />
-                        <Label layoutX="161.0" layoutY="303.0" prefHeight="20.0" prefWidth="41.0" styleClass="LabelDetails" text="Hora" />
+                        <TextField fx:id="textFieldDate" layoutX="62.0" layoutY="303.0" prefHeight="7.0" prefWidth="76.0" />
+                        <Button layoutX="73.0" layoutY="342.0" mnemonicParsing="false" onAction="#agendar" prefHeight="25.0" prefWidth="85.0" styleClass="ButtonAppointment" text="Marcar" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="40.0" />
+                        <Button layoutX="202.0" layoutY="344.0" mnemonicParsing="false" onAction="#cancelar" prefHeight="25.0" prefWidth="85.0" styleClass="ButtonRemove" text="Cancelar" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="40.0" />
+                        <Label layoutX="152.0" layoutY="303.0" prefHeight="23.0" prefWidth="50.0" styleClass="LabelDetails" text="Hora" />
                         <ComboBox fx:id="comboBoxMedicos" layoutX="62.0" layoutY="22.0" prefHeight="31.0" prefWidth="181.0" promptText="Selecionar Médico" />
-                        <Label layoutX="22.0" layoutY="302.0" prefHeight="17.0" prefWidth="38.0" styleClass="LabelDetails" text="Data" />
+                        <Label layoutX="16.0" layoutY="302.0" prefHeight="23.0" prefWidth="44.0" styleClass="LabelDetails" text="Data" />
                         <BorderPane fx:id="borderPane" layoutX="52.0" layoutY="75.0" prefHeight="200.0" prefWidth="200.0" />
-                        <ComboBox fx:id="comboBoxhour" layoutX="209.0" layoutY="298.0" prefHeight="27.0" prefWidth="59.0" />
+                        <ComboBox fx:id="comboBoxhour" layoutX="202.0" layoutY="300.0" prefHeight="27.0" prefWidth="59.0" />
                      </children>
                   </AnchorPane>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="383.0" prefWidth="0.0">
                      <children>
-                        <GridPane layoutX="23.0" layoutY="89.0" prefHeight="266.0" prefWidth="200.0">
+                        <Label layoutX="13.0" layoutY="34.0" prefHeight="42.0" prefWidth="271.0" styleClass="LabelTitle" text="Dados do Paciente" AnchorPane.leftAnchor="13.0" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="30.0">
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                        </Label>
+                        <GridPane layoutX="28.0" layoutY="87.0" prefHeight="178.0" prefWidth="265.0" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="90.0">
                            <children>
                               <Label styleClass="LabelDetails" text="ID" />
                               <Label styleClass="LabelDetails" text="Nome" GridPane.rowIndex="1" />
                               <Label styleClass="LabelDetails" text="CPF" GridPane.rowIndex="2" />
                               <Label styleClass="LabelDetails" text="Telefone" GridPane.rowIndex="3" />
                               <Label styleClass="LabelDetails" text="Endereço" GridPane.rowIndex="4" />
-                              <Label fx:id="labelId" GridPane.columnIndex="1" />
-                              <Label fx:id="labelName" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <Label fx:id="labelCpf" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                              <Label fx:id="labelFone" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                              <Label fx:id="labelAddress" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                              <Label fx:id="labelId" prefHeight="25.0" GridPane.columnIndex="1" />
+                              <Label fx:id="labelName" prefHeight="25.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <Label fx:id="labelCpf" prefHeight="25.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <Label fx:id="labelFone" prefHeight="25.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <Label fx:id="labelAddress" prefHeight="25.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                            </children>
                            <columnConstraints>
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
                               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                            </columnConstraints>
                            <rowConstraints>
@@ -155,16 +139,16 @@
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                            </rowConstraints>
                         </GridPane>
-                        <Label layoutX="42.0" layoutY="35.0" styleClass="LabelTitle" text="Dados do Paciente">
-                           <font>
-                              <Font size="22.0" />
-                           </font>
-                        </Label>
                      </children>
                   </AnchorPane>
                </items>
             </SplitPane>
          </children>
       </AnchorPane>
+      <Button layoutX="26.0" layoutY="352.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#createPaciente" prefHeight="25.0" prefWidth="151.0" styleClass="ButtonRegister" text="Cadastrar Paciente" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="40.0" />
+      <Button layoutX="227.0" layoutY="355.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#updatePaciente" prefHeight="25.0" prefWidth="151.0" styleClass="ButtonAlter" text="Alterar Paciente" AnchorPane.bottomAnchor="15.0" />
+      <Button layoutX="365.0" layoutY="364.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#createConsulta" prefHeight="25.0" prefWidth="151.0" styleClass="ButtonAppointment" text="Marcar Consulta" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="40.0" />
+      <Button layoutX="227.0" layoutY="360.0" mnemonicParsing="false" onAction="#update" prefHeight="25.0" prefWidth="151.0" styleClass="ButtonAlter" text="Alterar" AnchorPane.bottomAnchor="15.0" />
+      <Button layoutX="227.0" layoutY="360.0" mnemonicParsing="false" onAction="#create" prefHeight="25.0" prefWidth="151.0" styleClass="ButtonAlter" text="Cadastrar" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="222.0" />
    </children>
 </AnchorPane>
