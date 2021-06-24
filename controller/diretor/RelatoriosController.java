@@ -17,6 +17,12 @@ import model.Agenda;
 import model.dao.AgendaDAO;
 import model.database.Factory;
 import model.database.Idatabase;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 public class RelatoriosController implements Initializable{
      @FXML TableView<Agenda> tableView;
@@ -26,9 +32,18 @@ public class RelatoriosController implements Initializable{
      @FXML TableColumn<Agenda, Timestamp> tablecolumnDateTime;
 
     
-     @FXML void imprimir(){
-         
-     }
+     @FXML void imprimir() throws JRException {
+        Idatabase database = Factory.getDatabase("postgres");
+        Connection connection = database.connect();
+    
+        URL url = getClass().getResource("/controller/diretor/relatorio/relatorioAgenda.jasper");
+        JasperReport jasperReport = (JasperReport) JRLoader.loadObject(url);
+
+        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, connection);
+
+        JasperViewer jasperViewer = new JasperViewer(jasperPrint,false);
+        jasperViewer.setVisible(true);
+    }
     
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {

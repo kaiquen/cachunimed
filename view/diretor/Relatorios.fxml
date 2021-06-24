@@ -6,7 +6,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.diretor.RelatoriosController">
    <children>
-      <TableView fx:id="tableView" layoutX="72.0" layoutY="38.0" prefHeight="355.0" prefWidth="600.0" AnchorPane.bottomAnchor="45.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <TableView fx:id="tableView" layoutX="72.0" layoutY="38.0" prefHeight="315.0" prefWidth="600.0" AnchorPane.bottomAnchor="85.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <columns>
           <TableColumn fx:id="tableColumnId" prefWidth="51.0" text="ID" />
           <TableColumn fx:id="tableColoumnMedico" prefWidth="171.0" text="Médico" />
@@ -14,6 +14,6 @@
             <TableColumn fx:id="tablecolumnDateTime" prefWidth="168.0" text="Data e Hora" />
         </columns>
       </TableView>
-      <Button layoutX="505.0" layoutY="361.0" mnemonicParsing="false" onAction="#imprimir" text="Imprimir" />
+      <Button layoutX="262.0" layoutY="328.0" mnemonicParsing="false" onAction="#imprimir" text="Imprimir" />
    </children>
 </AnchorPane>
