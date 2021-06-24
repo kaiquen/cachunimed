@@ -8,8 +8,10 @@ public class Agenda {
     private Integer idHours;
     private Integer idMedico;
     private Integer idPaciente;
+
     private String nameMedico;
     private String namePaciente;
+    
     private Timestamp dateTime;
     private String year;
     

@@ -93,4 +93,20 @@ public class AgendaDAO {
         }
         return graphic;
     }
+    public List<Agenda> selectRelatorios() throws SQLException{
+        String sql = "select a.id,  m.name as medico, p.name as paciente, a.datetime from agenda as a inner join funcionario as m on m.id=a.idMedico inner join paciente as p on p.id=a.idPaciente order by datetime"; 
+        PreparedStatement ps = connection.prepareStatement(sql);
+        ResultSet  rs = ps.executeQuery();
+        
+        List<Agenda> agendas = new ArrayList<>();
+        while(rs.next()){
+            Agenda agenda = new Agenda();
+            agenda.setId(rs.getInt("id"));
+            agenda.setNameMedico(rs.getString("medico"));
+            agenda.setNamePaciente(rs.getString("paciente"));
+            agenda.setDateTime(rs.getTimestamp("datetime"));
+            agendas.add(agenda);
+        }
+        return agendas;
+    }
 }

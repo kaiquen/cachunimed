@@ -7,7 +7,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.diretor.GraphicController">
    <children>
-      <BarChart fx:id="barChart" barGap="1.0" layoutX="51.0" layoutY="108.0" prefHeight="221.0" prefWidth="498.0" title="Agendamento por mês">
+      <BarChart fx:id="barChart" barGap="1.0" layoutX="51.0" layoutY="108.0" prefHeight="221.0" prefWidth="498.0" title="Agendamento por ano">
         <xAxis>
           <CategoryAxis fx:id="categoryAxis" side="BOTTOM" />
         </xAxis>
