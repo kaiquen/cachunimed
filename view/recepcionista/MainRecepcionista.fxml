@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<<<<<<< HEAD
 <?import java.lang.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.Group?>
+=======
+>>>>>>> 99e7d88cf420909dd8775c853df7e24daab307cf
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
@@ -22,17 +25,17 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="AnchorPane" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.recepcionista.MainRecepcionistaController">
    <children>
-      <Group fx:id="group" layoutX="-106.0" layoutY="-95.0">
+      <AnchorPane layoutX="17.0" layoutY="19.0" prefHeight="372.0" prefWidth="566.0">
          <children>
-            <ListView fx:id="listView" layoutX="123.0" layoutY="155.0" prefHeight="268.0" prefWidth="570.0" />
-            <Label layoutX="130.0" layoutY="122.0" styleClass="LabelSearch" text="Nome do Paciente" />
-            <TextField fx:id="textField" layoutX="241.0" layoutY="117.0" prefHeight="25.0" prefWidth="413.0" />
-            <Button layoutX="662.0" layoutY="114.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#searchPaciente" prefHeight="10.0" prefWidth="10.0" styleClass="ButtonSearch" />
-            <Button layoutX="157.0" layoutY="442.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#createPaciente" prefHeight="25.0" prefWidth="151.0" styleClass="ButtonRegister" text="Cadastrar Paciente" />
-            <Button layoutX="511.0" layoutY="442.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#createConsulta" prefHeight="25.0" prefWidth="151.0" styleClass="ButtonAppointment" text="Marcar Consulta" />
-            <Button layoutX="332.0" layoutY="442.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#updatePaciente" prefHeight="25.0" prefWidth="151.0" styleClass="ButtonAlter" text="Alterar Paciente" />
+            <ListView fx:id="listView" layoutX="-2.0" layoutY="33.0" prefHeight="282.0" prefWidth="572.0" />
+            <Label layoutY="7.0" styleClass="LabelSearch" text="Nome do Paciente" />
+            <TextField fx:id="textField" layoutX="109.0" layoutY="2.0" prefHeight="25.0" prefWidth="422.0" />
+            <Button layoutX="540.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#searchPaciente" prefHeight="10.0" prefWidth="10.0" styleClass="ButtonSearch" />
+            <Button layoutX="24.0" layoutY="333.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#createPaciente" prefHeight="25.0" prefWidth="151.0" styleClass="ButtonRegister" text="Cadastrar Paciente" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="15.0" />
+            <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#createConsulta" prefHeight="25.0" prefWidth="151.0" styleClass="ButtonAppointment" text="Marcar Consulta" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="15.0" />
+            <Button layoutX="210.0" layoutY="337.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#updatePaciente" prefHeight="25.0" prefWidth="151.0" styleClass="ButtonAlter" text="Alterar Paciente" AnchorPane.bottomAnchor="10.0" />
          </children>
-      </Group>
+      </AnchorPane>
       <AnchorPane fx:id="anchorPaneCreate" layoutX="-1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="606.0" styleClass="AnchorPane" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <GridPane layoutX="113.0" layoutY="132.0" prefHeight="137.0" prefWidth="385.0" AnchorPane.leftAnchor="113.0" AnchorPane.topAnchor="132.0">
@@ -62,8 +65,8 @@
                   <Font name="System Bold" size="24.0" />
                </font>
             </Label>
-            <Button layoutX="347.0" layoutY="345.0" mnemonicParsing="false" onAction="#clearCreate" prefHeight="25.0" prefWidth="151.0" styleClass="ButtonRemove" text="Cancelar" AnchorPane.bottomAnchor="30.0" AnchorPane.rightAnchor="102.0" />
-            <Button layoutX="149.0" layoutY="345.0" mnemonicParsing="false" onAction="#create" prefHeight="25.0" prefWidth="151.0" styleClass="ButtonAlter" text="Cadastrar" />
+            <Button layoutX="386.0" layoutY="355.0" mnemonicParsing="false" onAction="#clearCreate" prefHeight="25.0" prefWidth="151.0" styleClass="ButtonRemove" text="Cancelar" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="120.0" />
+            <Button mnemonicParsing="false" onAction="#create" prefHeight="25.0" prefWidth="151.0" styleClass="ButtonAlter" text="Cadastrar" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="120.0" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="anchorPaneUpdate" layoutX="-10.0" layoutY="-6.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="408.0" prefWidth="616.0" styleClass="AnchorPane" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -92,8 +95,13 @@
                   <Font name="System Bold" size="24.0" />
                </font>
             </Label>
+<<<<<<< HEAD
             <Button layoutX="347.0" layoutY="326.0" mnemonicParsing="false" onAction="#clearUpdate" prefHeight="25.0" prefWidth="151.0" styleClass="ButtonRemove" text="Cancelar" AnchorPane.bottomAnchor="49.0" AnchorPane.rightAnchor="102.0" />
             <Button layoutX="149.0" layoutY="326.0" mnemonicParsing="false" onAction="#update" prefHeight="25.0" prefWidth="151.0" styleClass="ButtonAlter" text="Alterar" />
+=======
+            <Button layoutX="387.0" layoutY="347.0" mnemonicParsing="false" onAction="#clearUpdate" prefHeight="25.0" prefWidth="151.0" styleClass="ButtonRemove" text="Cancelar" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="120.0" />
+            <Button mnemonicParsing="false" onAction="#update" prefHeight="25.0" prefWidth="151.0" styleClass="ButtonAlter" text="Alterar" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="120.0" />
+>>>>>>> 99e7d88cf420909dd8775c853df7e24daab307cf
          </children>
       </AnchorPane>
       <AnchorPane fx:id="anchorPaneConsulta" layoutX="2.0" layoutY="-2.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="AnchorPane" stylesheets="@../style.css" visible="false">
@@ -102,14 +110,18 @@
                <items>
                   <AnchorPane fx:id="textFieldHora" minHeight="0.0" minWidth="0.0" prefHeight="384.0" prefWidth="288.0">
                      <children>
-                        <TextField fx:id="textFieldDate" layoutX="62.0" layoutY="303.0" prefHeight="7.0" prefWidth="76.0" />
+                        <Pane layoutX="5.0" layoutY="300.0" prefHeight="27.0" prefWidth="286.0">
+                           <children>
+                              <TextField fx:id="textFieldDate" layoutX="54.0" layoutY="2.0" prefHeight="25.0" prefWidth="87.0" />
+                              <Label layoutX="143.0" layoutY="2.0" prefHeight="23.0" prefWidth="50.0" styleClass="LabelDetails" text="Hora" />
+                              <Label layoutX="10.0" layoutY="2.0" prefHeight="23.0" prefWidth="44.0" styleClass="LabelDetails" text="Data" />
+                              <ComboBox fx:id="comboBoxhour" layoutX="193.0" layoutY="1.0" prefHeight="25.0" prefWidth="85.0" />
+                           </children>
+                        </Pane>
                         <Button layoutX="73.0" layoutY="342.0" mnemonicParsing="false" onAction="#agendar" prefHeight="25.0" prefWidth="85.0" styleClass="ButtonAppointment" text="Marcar" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="40.0" />
                         <Button layoutX="202.0" layoutY="344.0" mnemonicParsing="false" onAction="#cancelar" prefHeight="25.0" prefWidth="85.0" styleClass="ButtonRemove" text="Cancelar" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="40.0" />
-                        <Label layoutX="152.0" layoutY="303.0" prefHeight="23.0" prefWidth="50.0" styleClass="LabelDetails" text="Hora" />
-                        <ComboBox fx:id="comboBoxMedicos" layoutX="62.0" layoutY="22.0" prefHeight="31.0" prefWidth="181.0" promptText="Selecionar Médico" />
-                        <Label layoutX="16.0" layoutY="302.0" prefHeight="23.0" prefWidth="44.0" styleClass="LabelDetails" text="Data" />
+                        <ComboBox fx:id="comboBoxMedicos" layoutX="62.0" layoutY="22.0" prefHeight="25.0" prefWidth="180.0" promptText="Selecionar Médico" AnchorPane.leftAnchor="62.0" AnchorPane.topAnchor="30.0" />
                         <BorderPane fx:id="borderPane" layoutX="52.0" layoutY="75.0" prefHeight="200.0" prefWidth="200.0" />
-                        <ComboBox fx:id="comboBoxhour" layoutX="202.0" layoutY="300.0" prefHeight="27.0" prefWidth="59.0" />
                      </children>
                   </AnchorPane>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="383.0" prefWidth="0.0">

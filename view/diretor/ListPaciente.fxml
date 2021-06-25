@@ -51,11 +51,11 @@
                               <Label styleClass="LabelDetails" text="CPF" GridPane.rowIndex="2" />
                               <Label styleClass="LabelDetails" text="Telefone" GridPane.rowIndex="3" />
                               <Label styleClass="LabelDetails" text="Endereço" GridPane.rowIndex="4" />
-                              <Label fx:id="labelIdList" prefHeight="25.0" prefWidth="157.0" GridPane.columnIndex="1" />
-                              <Label fx:id="labelNameList" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <Label fx:id="labelCpfList" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                              <Label fx:id="labelFoneList" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                              <Label fx:id="labelAddressList" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                              <Label fx:id="labelIdList" prefHeight="25.0" styleClass="LabelInformation" GridPane.columnIndex="1" />
+                              <Label fx:id="labelNameList" prefHeight="25.0" styleClass="LabelInformation" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <Label fx:id="labelCpfList" prefHeight="25.0" styleClass="LabelInformation" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <Label fx:id="labelFoneList" prefHeight="25.0" styleClass="LabelInformation" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <Label fx:id="labelAddressList" prefHeight="25.0" styleClass="LabelInformation" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                            </children>
                         </GridPane>
                         <Label layoutX="80.0" layoutY="25.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="42.0" prefWidth="271.0" styleClass="LabelTitle" text="Detalhes do Paciente" AnchorPane.bottomAnchor="326.0" AnchorPane.leftAnchor="49.0" AnchorPane.rightAnchor="49.0" AnchorPane.topAnchor="30.0">
@@ -63,9 +63,9 @@
                               <Font size="22.0" />
                            </font>
                         </Label>
-                        <Button layoutX="142.0" layoutY="323.0" mnemonicParsing="false" onAction="#updateList" prefHeight="25.0" prefWidth="85.0" styleClass="ButtonAlter" text="Alterar" AnchorPane.bottomAnchor="50.0" />
-                        <Button layoutX="35.0" layoutY="327.0" mnemonicParsing="false" onAction="#createList" prefHeight="25.0" prefWidth="85.0" styleClass="ButtonRegister" text="Cadastrar" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="40.0" />
-                        <Button layoutX="243.0" layoutY="327.0" mnemonicParsing="false" onAction="#delete" prefHeight="25.0" prefWidth="85.0" styleClass="ButtonRemove" text="Remover " AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="40.0" />
+                        <Button layoutX="142.0" layoutY="323.0" mnemonicParsing="false" onAction="#updateList" prefHeight="25.0" prefWidth="85.0" styleClass="ButtonAlter" text="Alterar" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="142.0" AnchorPane.rightAnchor="142.0" />
+                        <Button layoutX="35.0" layoutY="327.0" mnemonicParsing="false" onAction="#createList" prefHeight="25.0" prefWidth="85.0" styleClass="ButtonRegister" text="Cadastrar" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="244.0" />
+                        <Button layoutX="243.0" layoutY="327.0" mnemonicParsing="false" onAction="#delete" prefHeight="25.0" prefWidth="85.0" styleClass="ButtonRemove" text="Remover " AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="244.0" AnchorPane.rightAnchor="40.0" />
                      </children>
                   </AnchorPane>
                   <AnchorPane fx:id="anchorPaneCreate" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="398.0" prefWidth="369.0" styleClass="AnchorPane" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
