@@ -86,7 +86,7 @@
                      <children>
                         <GridPane layoutX="52.0" layoutY="137.0" prefHeight="140.0" prefWidth="271.0" AnchorPane.bottomAnchor="168.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="90.0">
                            <children>
-                              <Label styleClass="LabelDetails" text="Tipo" GridPane.rowIndex="3" />
+                              <Label styleClass="LabelDetails" text="Cargo" GridPane.rowIndex="3" />
                               <Label styleClass="LabelDetails" text="CPF" />
                               <Label styleClass="LabelDetails" text="Nome" GridPane.rowIndex="1" />
                               <Label styleClass="LabelDetails" text="Senha" GridPane.rowIndex="2" />

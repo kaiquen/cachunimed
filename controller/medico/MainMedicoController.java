@@ -19,10 +19,10 @@ import model.dao.AgendaDAO;
 import model.database.Factory;
 import model.database.Idatabase;
 
-
 public class MainMedicoController implements Initializable {
     @FXML ListView<Agenda> listView;
     @FXML BorderPane borderPane;
+    
     DatePicker datePicker = new DatePicker(LocalDate.now());
     DatePickerSkin datePickerSkin = new DatePickerSkin(datePicker);
     Node calendar = datePickerSkin.getPopupContent();
@@ -30,8 +30,6 @@ public class MainMedicoController implements Initializable {
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) { 
         borderPane.setLeft(calendar);
-       
-       
         try {
             atualizaListView(LocalDate.now());
         } catch (SQLException e1) {
@@ -46,18 +44,13 @@ public class MainMedicoController implements Initializable {
         });
     }
 
-    
     private void atualizaListView(LocalDate newValue) throws SQLException {
         Idatabase database = Factory.getDatabase("postgres");
         Connection connection = database.connect();
         AgendaDAO agendaDAO = new AgendaDAO(connection);
-       
+        
         ObservableList<Agenda> items = FXCollections.observableArrayList (
             agendaDAO.selectAgendas(newValue));
-
         listView.setItems(items);
     }
-
-
-  
 }

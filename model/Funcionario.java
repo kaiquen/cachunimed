@@ -1,126 +1,106 @@
 package model;
 
-
 import javafx.scene.control.ComboBox;
-
 public class Funcionario {
-    private  Integer id;
+    private  Integer cod;
     private  String cpf;
-    private  String name;
-    private  String password;
-    private  Integer type; 
-    private  String cargo; // Tem que alterar ... cargo == combobox
-    private ComboBox<Types> comboBox;
-    static public Integer idLogin;
-    public Funcionario(){};
+    private  String nome;
+    private  String senha;
+    private  String cargo; 
+    private  Integer id_cargo; 
    
-    public Funcionario(Integer id){
-        this.id= id;
-        
+
+    private ComboBox<Types> comboBoxCargo;
+    static public Integer cod_medico;
+
+    public Funcionario(){}
+    public Funcionario(Integer cod){
+        this.cod= cod;
     }
-    public Funcionario(String cpf, String password){
+    public Funcionario(String cpf, String senha){
         this.cpf = cpf; 
-        this.password = password;
-    };
-    
-
-    public Funcionario(Integer id, String name, String password){
-        setId(id);
+        this.senha = senha;
+    }
+    public Funcionario(Integer id, String name, String senha){
+        setCod(id);
         boolean verifyName= !name.isEmpty();
-        boolean verifyPasword =  !password.isEmpty();
-
+        boolean verifyPasword =  !senha.isEmpty();
         String err= "";
-        if(verifyName) setName(name);
+        if(verifyName) setNome(name);
             else err += "Preencha o campo nome!\n";
-        if(verifyPasword) setPassword(password);
+        if(verifyPasword) setSenha(senha);
             else err += "Preencha o campo senha";
-
         if (!verifyName || !verifyPasword)throw new RuntimeException(err);
-    };
-    
-    public Funcionario(ComboBox<Types> comboBox, String cpf, String name, String password){
+    }
+    public Funcionario(ComboBox<Types> comboBoxCargo, String cpf, String name, String senha){
         boolean verifyCPF = (!cpf.isEmpty() && cpf.length() == 11 && cpf.matches("[0-9]+"));
-        boolean verifyComboBox = !(comboBox.getSelectionModel().isEmpty());
+        boolean verifyComboBox = !(comboBoxCargo.getSelectionModel().isEmpty());
         boolean verifyName= !name.isEmpty();
-        boolean verifyPasword =  !password.isEmpty();
-
+        boolean verifyPasword =  !senha.isEmpty();
         String err= "";
-
-        if(verifyComboBox) setCargo(comboBox.getValue().toString());
+        if(verifyComboBox) setCargo(comboBoxCargo.getValue().toString());
             else err += "Selecione o tipo!\n";
         if(verifyCPF) setCpf(cpf);
             else err="CPF invalido!\n";
-        if(verifyName) setName(name);
+        if(verifyName) setNome(name);
             else err += "Preencha o campo nome!\n";
-        if(verifyPasword) setPassword(password);
+        if(verifyPasword) setSenha(senha);
             else err += "Preencha o campo senha";
-
         if(!verifyCPF || !verifyComboBox || !verifyName || !verifyPasword)throw new RuntimeException(err);
-    }
-  
-    public void setId(Integer id) {
-        this.id = id;
-    }
+    } 
 
-    public void setId(int id) {
-        this.id = id;
+    public String getNome() {
+        return nome;
     }
-
-    public void setName(String name) {
-        this.name = name;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public Integer getId_cargo() {
+        return id_cargo;
+    }
+    public void setId_cargo(Integer id_cargo) {
+        this.id_cargo = id_cargo;
     }
 
-    public void setType(Integer type) {
-        this.type = type;
+    public String getCargo() {
+        return cargo;
     }
-
-    public void setCpf(String cpf) {
-
-        this.cpf = cpf;    
-       
-    }
-
-    public void setCargo(String cargo){
+    public void setCargo(String cargo) {
         this.cargo = cargo;
     }
-    public void setComboBox(ComboBox<Types> comboBox) {
-        this.comboBox = comboBox;
+
+    public Integer getCod() {
+        return cod;
     }
-    public ComboBox<Types> getComboBox() {
-        return comboBox;
+    public void setCod(Integer cod) {
+        this.cod = cod;
     }
-    
-    public Integer getId() {
-        return id;
+  
+    public String getSenha() {
+        return senha;
+    }
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public Integer getType(){
-        return type;
-    }
-    
     public String getCpf() {
         return cpf;
     }
-
-    public String getCargo(){
-        return cargo;
+    public void setCpf(String cpf) {
+        this.cpf = cpf;    
     }
 
+    public void setComboBox(ComboBox<Types> comboBoxCargo) {
+        this.comboBoxCargo = comboBoxCargo;
+    }
+    public ComboBox<Types> getComboBox() {
+        return comboBoxCargo;
+    }
+ 
     @Override
     public String toString() {
-        return name;
+        return nome;
     }
 }
 

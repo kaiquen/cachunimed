@@ -8,17 +8,13 @@ import java.util.logging.Logger;
 
 public class Postgres implements Idatabase {
     private Connection connection;
-
+    
     @Override
     public Connection connect() {
         try {
             Class.forName("org.postgresql.Driver");
-            this.connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/clinica", "postgres",
-                    "root");
-
-            System.out.println("connected");
+            this.connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/clinica", "postgres","root");
             return this.connection;
-
         } catch (ClassNotFoundException | SQLException e) {
             Logger.getLogger(Postgres.class.getName()).log(Level.SEVERE, null, e);
             return null;

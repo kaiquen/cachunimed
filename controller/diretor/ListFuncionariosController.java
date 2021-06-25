@@ -5,7 +5,6 @@ import java.net.URL;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.css.Stylesheet;
@@ -25,34 +24,27 @@ import model.Types;
 import model.dao.FuncionarioDAO;
 import model.database.Factory;
 import model.database.Idatabase;
-
 public class ListFuncionariosController implements Initializable {
-    @FXML   private TableView<Funcionario> tableView;
-    @FXML   private TableColumn<Funcionario, Integer> tableColumnId;
-    @FXML   private TableColumn<Funcionario, String> tableColumnName;
-
-    @FXML   private AnchorPane anchorPaneList;
-    @FXML   private Label labelIdList;
-    @FXML   private Label labelNameList;
-    @FXML   private Label labelCpfList;
-    @FXML   private Label labelPasswordList;
-    @FXML   private Label labelTypeList;
-
-    @FXML   private AnchorPane anchorPaneCreate;
-    @FXML   private TextField textFieldCpfCreate;
-    @FXML   private TextField textFieldNameCreate;
-    @FXML   private PasswordField passwordFieldCreate;
-    @FXML   private ComboBox<Types> comboBox;
-
-    @FXML   private AnchorPane anchorPaneUpdate;
-    @FXML   private TextField textFieldNameUpdate;
-    @FXML   private PasswordField passwordFieldUpdate;
+    @FXML private TableView<Funcionario> tableView;
+    @FXML private TableColumn<Funcionario, Integer> tableColumnId;
+    @FXML private TableColumn<Funcionario, String> tableColumnName;
+    @FXML private AnchorPane anchorPaneList;
+    @FXML private Label labelIdList;
+    @FXML private Label labelNameList;
+    @FXML private Label labelCpfList;
+    @FXML private Label labelPasswordList;
+    @FXML private Label labelTypeList;
+    @FXML private AnchorPane anchorPaneCreate;
+    @FXML private TextField textFieldCpfCreate;
+    @FXML private TextField textFieldNameCreate;
+    @FXML private PasswordField passwordFieldCreate;
+    @FXML private ComboBox<Types> comboBox;
+    @FXML private AnchorPane anchorPaneUpdate;
+    @FXML private TextField textFieldNameUpdate;
+    @FXML private PasswordField passwordFieldUpdate;
+    @FXML private Stylesheet stylesheet;
     
-    @FXML   private Stylesheet stylesheet;
-    
-
-    // *******************************************************
-    @FXML   private void updateList() {
+    @FXML private void updateList() {
         if (tableView.getSelectionModel().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Update Failed");
@@ -67,23 +59,21 @@ public class ListFuncionariosController implements Initializable {
         }
     }
 
-    @FXML   private void createList() throws IOException, SQLException {
+    @FXML private void createList() throws IOException, SQLException {
         textFieldNameCreate.setText("");
         textFieldCpfCreate.setText("");
         passwordFieldCreate.setText("");
         anchorPaneList.setVisible(false);
         anchorPaneCreate.setVisible(true);  
     }
-    //*********************************************************
 
-    @FXML   private void create() throws SQLException{
+    @FXML private void create() throws SQLException{
         Idatabase database = Factory.getDatabase("postgres");
         Connection connection = database.connect();
         FuncionarioDAO funcionarioDAO = new FuncionarioDAO(connection);
         try {
             Funcionario funcionario = new Funcionario(comboBox, textFieldCpfCreate.getText(), textFieldNameCreate.getText(), passwordFieldCreate.getText());
-            
-            funcionarioDAO.create(funcionario);
+            funcionarioDAO.createFuncionario(funcionario);
             anchorPaneCreate.setVisible(false);
             atulizarTableViews();
             anchorPaneList.setVisible(true);   
@@ -96,12 +86,12 @@ public class ListFuncionariosController implements Initializable {
         }  
     } 
     
-    @FXML   private void clearCreate(){
+    @FXML private void clearCreate(){
         anchorPaneCreate.setVisible(false);
         anchorPaneList.setVisible(true);
     }
 
-    @FXML   private void delete() throws NumberFormatException, SQLException {
+    @FXML private void delete() throws NumberFormatException, SQLException {
         if (tableView.getSelectionModel().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Delete Failed");
@@ -118,29 +108,26 @@ public class ListFuncionariosController implements Initializable {
         }
     }
 
-    @FXML   private void update() throws SQLException {
-      
-            Idatabase database = Factory.getDatabase("postgres");
-            Connection connection = database.connect();
-            FuncionarioDAO funcionarioDAO = new FuncionarioDAO(connection);
-
-            try {
-                Funcionario funcionario = new Funcionario(Integer.valueOf(labelIdList.getText()), textFieldNameUpdate.getText(), passwordFieldUpdate.getText());
-                funcionarioDAO.update(funcionario);
-                anchorPaneUpdate.setVisible(false);
-                atulizarTableViews();
-                anchorPaneList.setVisible(true);  
-            } catch (Exception e) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Insert Fail");
-                alert.setHeaderText("Preencha todos os campos");
-                alert.setContentText(e.getMessage());
-                alert.show();
-            }
-        
+    @FXML private void update() throws SQLException {
+        Idatabase database = Factory.getDatabase("postgres");
+        Connection connection = database.connect();
+        FuncionarioDAO funcionarioDAO = new FuncionarioDAO(connection);
+        try {
+            Funcionario funcionario = new Funcionario(Integer.valueOf(labelIdList.getText()), textFieldNameUpdate.getText(), passwordFieldUpdate.getText());
+            funcionarioDAO.updateFuncionario(funcionario);
+            anchorPaneUpdate.setVisible(false);
+            atulizarTableViews();
+            anchorPaneList.setVisible(true);  
+        } catch (Exception e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Insert Fail");
+            alert.setHeaderText("Preencha todos os campos");
+            alert.setContentText(e.getMessage());
+            alert.show();
+        }
     }
 
-    @FXML   private void clearUpdate() {
+    @FXML private void clearUpdate() {
         anchorPaneUpdate.setVisible(false);
         anchorPaneList.setVisible(true);
     }
@@ -153,16 +140,18 @@ public class ListFuncionariosController implements Initializable {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         tableView.getSelectionModel().selectedItemProperty()
                 .addListener((obeservable, oldValue, newValue) -> selectItem(newValue));
     }
 
     private void atulizarTableViews() throws SQLException {
-        tableColumnId.setCellValueFactory(new PropertyValueFactory<>("id"));
-        tableColumnName.setCellValueFactory(new PropertyValueFactory<>("name"));
-
+        tableColumnId.setCellValueFactory(new PropertyValueFactory<>("cod"));
+        tableColumnName.setCellValueFactory(new PropertyValueFactory<>("nome"));
         tableView.setItems(lista());
+    }
+
+    private void printTypes() throws SQLException{       
+        comboBox.setItems(type());
     }
 
     private ObservableList<Funcionario> lista() throws SQLException {
@@ -179,7 +168,6 @@ public class ListFuncionariosController implements Initializable {
         Idatabase database = Factory.getDatabase("postgres");
         Connection connection = database.connect();
         FuncionarioDAO funcionarioDAO = new FuncionarioDAO(connection);
-        
         return FXCollections.observableArrayList(
             funcionarioDAO.selectCargos()
         );
@@ -187,10 +175,12 @@ public class ListFuncionariosController implements Initializable {
 
     private void selectItem(Funcionario funcionario) {
         if (funcionario != null) {
-            labelIdList.setText(String.valueOf(funcionario.getId()));
-            labelNameList.setText(funcionario.getName());
-            labelCpfList.setText(funcionario.getCpf());
-            labelPasswordList.setText(funcionario.getPassword());
+            String cpf = funcionario.getCpf().substring(0,3) + "." + funcionario.getCpf().substring(3,6) + "." + funcionario.getCpf().substring(6,9) + "-" + funcionario.getCpf().substring(9,11);
+
+            labelIdList.setText(String.valueOf(funcionario.getCod()));
+            labelNameList.setText(funcionario.getNome());
+            labelCpfList.setText(cpf);
+            labelPasswordList.setText(funcionario.getSenha());
             labelTypeList.setText(funcionario.getCargo());
         } else {
             labelIdList.setText("");
@@ -200,8 +190,5 @@ public class ListFuncionariosController implements Initializable {
             labelTypeList.setText("");
         }
     }
-
-    private void printTypes() throws SQLException{       
-        comboBox.setItems(type());
-    }
 }
+    

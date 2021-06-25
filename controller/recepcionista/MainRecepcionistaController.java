@@ -31,7 +31,6 @@ import model.dao.FuncionarioDAO;
 import model.dao.PacienteDAO;
 import model.database.Factory;
 import model.database.Idatabase;
-
 public class MainRecepcionistaController implements Initializable{
     @FXML TextField textField;
     @FXML ListView<Paciente> listView;
@@ -39,7 +38,6 @@ public class MainRecepcionistaController implements Initializable{
     @FXML TextField textFieldNameCreate;
     @FXML TextField textFieldFoneCreate;
     @FXML TextField textFieldAddressCreate;
-    @FXML TextInputControl labelIdList;
     @FXML TextInputControl textFieldFoneUpdate;
     @FXML TextInputControl textFieldNameUpdate;
     @FXML TextInputControl textFieldAddressUpdate;
@@ -63,8 +61,8 @@ public class MainRecepcionistaController implements Initializable{
     DatePickerSkin datePickerSkin = new DatePickerSkin(datePicker);
     LocalDate date;
     Funcionario funcionario;
-    @FXML private void searchPaciente() throws SQLException{
-        
+
+    @FXML private void searchPaciente() throws SQLException{  
         if(textField.getText().isEmpty()){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Search Fail");
@@ -75,16 +73,14 @@ public class MainRecepcionistaController implements Initializable{
             atualizaListView();
         }
     }
+
     @FXML private void create(){
         Idatabase database = Factory.getDatabase("postgres");
         Connection connection = database.connect();
         PacienteDAO pacienteDAO = new PacienteDAO(connection);
         try {
-         
             Paciente paciente = new Paciente(textFieldCpfCreate.getText(), textFieldNameCreate.getText(), textFieldFoneCreate.getText(), textFieldAddressCreate.getText());
-            
-            pacienteDAO.create(paciente);
-
+            pacienteDAO.createPaciente(paciente);
             anchorPaneCreate.setVisible(false);
             group.setVisible(true);   
         } catch (Exception e) {
@@ -95,15 +91,15 @@ public class MainRecepcionistaController implements Initializable{
             alert.show();
         }  
     }
+
     @FXML private void update(){
-        System.out.println(listView.getSelectionModel().getSelectedItem().getId());
-     
+            System.out.println(listView.getSelectionModel().getSelectedItem().getCod());
             Idatabase database = Factory.getDatabase("postgres");
             Connection connection = database.connect();
             PacienteDAO pacienteDAO = new PacienteDAO(connection);
             try {
-                System.out.println(listView.getSelectionModel().getSelectedItem().getId());
-                Paciente paciente = new Paciente(Integer.valueOf(listView.getSelectionModel().getSelectedItem().getId()), textFieldNameUpdate.getText(), textFieldFoneUpdate.getText(), textFieldAddressUpdate.getText());
+                System.out.println(listView.getSelectionModel().getSelectedItem().getCod());
+                Paciente paciente = new Paciente(Integer.valueOf(listView.getSelectionModel().getSelectedItem().getCod()), textFieldNameUpdate.getText(), textFieldFoneUpdate.getText(), textFieldAddressUpdate.getText());
                 pacienteDAO.update(paciente);
                 
                 anchorPaneUpdate.setVisible(false);
@@ -116,15 +112,17 @@ public class MainRecepcionistaController implements Initializable{
                 alert.show();
             }
     }
+
     @FXML private void clearUpdate(){
         anchorPaneUpdate.setVisible(false);
         group.setVisible(true);
-        
     }
+
     @FXML private void clearCreate(){
         anchorPaneCreate.setVisible(false);
         group.setVisible(true);
     }
+
     @FXML private void createPaciente(){
         group.setVisible(false);
         anchorPaneCreate.setVisible(true);
@@ -140,11 +138,14 @@ public class MainRecepcionistaController implements Initializable{
         } else {
         group.setVisible(false);
         anchorPaneUpdate.setVisible(true);
+
+        textFieldNameUpdate.setText(labelName.getText());
+        textFieldFoneUpdate.setText(labelFone.getText());
+        textFieldAddressUpdate.setText(labelAddress.getText());
         }
     }
 
     @FXML private void createConsulta(){
-      
         if(listView.getSelectionModel().isEmpty()){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Update Fail");
@@ -154,22 +155,20 @@ public class MainRecepcionistaController implements Initializable{
         } else {
             group.setVisible(false);
             anchorPaneConsulta.setVisible(true);
-           
             Node calendar = datePickerSkin.getPopupContent();
             date = LocalDate.now();
             textDate = date.format(DateTimeFormatter.ofPattern("dd/MM/yy"));
             textFieldDate.setText( textDate);
             borderPane.setCenter(calendar);
             datePicker.valueProperty().addListener((observable, oldValue, newValue) -> {
-               date =  newValue;
-               textDate = date.format(DateTimeFormatter.ofPattern("dd/MM/yy"));
-               textFieldDate.setText( textDate);
-               
+                date =  newValue;
+                textDate = date.format(DateTimeFormatter.ofPattern("dd/MM/yy"));
+                textFieldDate.setText(textDate);
             });
         }
     }
+
     @FXML private void agendar() throws SQLException{
-       
         if(comboBoxMedicos.getSelectionModel().isEmpty()){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Update Fail");
@@ -180,21 +179,18 @@ public class MainRecepcionistaController implements Initializable{
             Idatabase database = Factory.getDatabase("postgres");
             Connection connection = database.connect();
             AgendaDAO agendaDAO = new AgendaDAO(connection);
-            
             String datetime = date + " "+ comboBoxhour.getValue().toString();
             Timestamp datetimeSQL = Timestamp.valueOf(datetime);
-
             Agenda agenda = new Agenda(comboBoxMedicos.getValue().toString(), Integer.parseInt(labelId.getText()), datetimeSQL);
-            
-            agenda.setIdMedico(agendaDAO.selectIdMedico(agenda));
-          
+            agenda.setCod_funcionario_medico(agendaDAO.selectIdMedico(agenda));
             agendaDAO.createAgenda(agenda);
             cancelar();
         }
     }
+
     @FXML private void cancelar(){
-            group.setVisible(true);
-            anchorPaneConsulta.setVisible(false);
+         group.setVisible(true);
+        anchorPaneConsulta.setVisible(false);
     }
     
     @Override
@@ -203,35 +199,34 @@ public class MainRecepcionistaController implements Initializable{
             printMedicos();
             hours();
         } catch (SQLException e) {
-            
             e.printStackTrace();
         }
-        
         listView.getSelectionModel().selectedItemProperty()
                 .addListener((obeservable, oldValue, newValue) -> selectItem(newValue));
     }
 
     private void atualizaListView() throws SQLException{
         Idatabase database = Factory.getDatabase("postgres");
-            Connection connection = database.connect();
-            PacienteDAO pacienteDAO = new PacienteDAO(connection);
-            Paciente paciente = new Paciente(textField.getText());
-            
-            ObservableList<Paciente> items =FXCollections.observableArrayList (
-                pacienteDAO.searchPaciente(paciente));
-            listView.setItems(items);
+        Connection connection = database.connect();
+        PacienteDAO pacienteDAO = new PacienteDAO(connection);
+        Paciente paciente = new Paciente(textField.getText());
+        System.out.println(paciente.getNome());
+
+        ObservableList<Paciente> items = FXCollections.observableArrayList (
+            pacienteDAO.selectPaciente(paciente));
+        listView.setItems(items);
     }
+
     private ObservableList<Funcionario> medicos() throws SQLException {
         Idatabase database = Factory.getDatabase("postgres");
         Connection connection = database.connect();
         FuncionarioDAO funcionarioDAO = new FuncionarioDAO(connection);
-        
         return FXCollections.observableArrayList(
             funcionarioDAO.selectMedicos()
         );
     }
+
     private void hours() throws SQLException {
-  
         ObservableList<String> items = FXCollections.observableArrayList(
             "08:00:00", "09:00:00", "10:00:00","11:00:00","13:00:00", "14:00:00", "15:00:00" ,"16:00:00","17:00:00");
         comboBoxhour.setItems(items);
@@ -243,19 +238,18 @@ public class MainRecepcionistaController implements Initializable{
   
     private void selectItem(Paciente paciente) {
         if (paciente != null) {
-            labelId.setText(String.valueOf(paciente.getId()));
-            labelName.setText(paciente.getName());
+            labelId.setText(String.valueOf(paciente.getCod()));
+            labelName.setText(paciente.getNome());
             labelCpf.setText(paciente.getCpf());
-            labelFone.setText(paciente.getFone());
-            labelAddress.setText(paciente.getAddress());
+            labelFone.setText(paciente.getTelefone());
+            labelAddress.setText(paciente.getEndereco());
         } else {
-            labelIdList.setText("");
+            labelId.setText("");
             labelName.setText("");
             labelCpf.setText("");
             labelFone.setText("");
             labelAddress.setText("");
         }
     }
-    
 }
 

@@ -1,94 +1,92 @@
 package model;
-
 public class Paciente {
-    private Integer id;
-    private String name;
+    private Integer cod;
+    private String nome;
     private String cpf;
-    private String fone;
-    private String address; // talvez tenha que criar uma tabela endereço
+    private String telefone;
+    private String endereco; // talvez tenha que criar uma tabela endereço
     
     public Paciente(){}
-    public Paciente(Integer id){
-        this.id = id;
+    public Paciente(Integer cod){
+        this.cod = cod;
     }
-    public Paciente(String name){
-        this.name = name;
+    public Paciente(String nome){
+        this.nome = nome;
     }
-    public Paciente(Integer id,String name, String fone, String address){
-        this.id = id;
-        this.name = name;
-        this.fone = fone;
-        this.address = address;
+    public Paciente(String nome, String telefone, String endereco) {
+        boolean verifynome= !nome.isEmpty();
+        boolean verifytelefone =  !telefone.isEmpty() && telefone.matches("[0-9]+");
+        boolean verifyendereco = !endereco.isEmpty();
+        String err = "";
+        if(verifynome)setNome(nome);
+            else err += "nome obidatório!\n";
+        if(verifytelefone)setTelefone(telefone);
+            else err += "Telefone obrigatorio!\n";
+        if(verifyendereco)setEndereco(endereco);
+            else err += "endereco obrigatorio!\n";
+        if(!verifytelefone || !verifynome || !verifyendereco) throw new RuntimeException(err);
     }
-  
-    public Paciente(String cpf, String name, String fone, String address){
+    public Paciente(Integer cod,String nome, String telefone, String endereco){
+        this.cod = cod;
+        this.nome = nome;
+        this.telefone = telefone;
+        this.endereco = endereco;
+    }
+    public Paciente(String cpf, String nome, String telefone, String endereco){
         boolean verifyCPF = (!cpf.isEmpty() && cpf.length() == 11 && cpf.matches("[0-9]+"));
-        boolean verifyName= !name.isEmpty();
-        boolean verifyFone =  !fone.isEmpty() && fone.matches("[0-9]+");
-        //boolean verifyaddress = !address.isEmpty();
-
+        boolean verifynome= !nome.isEmpty();
+        boolean verifytelefone =  !telefone.isEmpty() && telefone.matches("[0-9]+");
+        boolean verifyendereco = !endereco.isEmpty();
         String err = "";
         if(verifyCPF)
         setCpf(cpf);
             else err += "CPF inválido!\n";
-        if(verifyName)setName(name);
+        if(verifynome)setNome(nome);
             else err += "Name obidatório!\n";
-        if(verifyFone)setFone(fone);
+        if(verifytelefone)setTelefone(telefone);
             else err += "Telefone obrigatorio!\n";
+        if(verifyendereco)setEndereco(endereco);
+            else err += "endereco obrigatorio!\n";
+        if(!verifyCPF || !verifytelefone || !verifynome || !verifyendereco) throw new RuntimeException(err);
+    }
 
-        setAddress(address);
-        if(!verifyCPF || !verifyFone || !verifyName)throw new RuntimeException(err);
-
-    }
-    public Paciente(String name, String fone, String address) {
-        boolean verifyName= !name.isEmpty();
-        boolean verifyFone =  !fone.isEmpty() && fone.matches("[0-9]+");
-        //boolean verifyaddress = !address.isEmpty();
-        String err = "";
-
-        if(verifyName)setName(name);
-            else err += "Name obidatório!\n";
-        if(verifyFone)setFone(fone);
-            else err += "Telefone obrigatorio!\n";
-
-        setAddress(address);
-
-        if(!verifyFone || !verifyName)throw new RuntimeException(err);
-    }
-    public Integer getId() {
-        return id;
-    }
-    public void setId(Integer id) {
-        this.id = id;
-    }
-    public String getName() {
-        return name;
-    }
-    public void setName(String name) {
-        this.name = name;
-    }
     public String getCpf() {
         return cpf;
     }
     public void setCpf(String cpf) {
         this.cpf = cpf;
     }
-    public String getFone() {
-        return fone;
+
+    public Integer getCod() {
+        return cod;
     }
-    public void setFone(String fone) {
-        this.fone = fone;
+    public void setCod(Integer cod) {
+        this.cod = cod;
     }
-    public String getAddress() {
-        return address;
+
+    public String getNome() {
+        return nome;
     }
-    public void setAddress(String address) {
-        this.address = address;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
+
+    public String getTelefone() {
+        return telefone;
+    }
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
+    public String getEndereco() {
+        return endereco;
+    }
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
+    }
+
     @Override
-
     public String toString() {
-        return  name;
+        return  nome;
     }
-
 }
