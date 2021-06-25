@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.diretor.RelatoriosController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.diretor.RelatoriosController">
    <children>
       <TableView fx:id="tableView" layoutX="72.0" layoutY="38.0" prefHeight="315.0" prefWidth="600.0" AnchorPane.bottomAnchor="85.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <columns>
-          <TableColumn fx:id="tableColumnId" prefWidth="51.0" text="ID" />
-          <TableColumn fx:id="tableColoumnMedico" prefWidth="171.0" text="Médico" />
-            <TableColumn fx:id="tableColumnPaciente" prefWidth="209.0" text="Paciente" />
-            <TableColumn fx:id="tablecolumnDateTime" prefWidth="168.0" text="Data e Hora" />
+          <TableColumn fx:id="tableColumnId" prefWidth="50.0" text="ID" />
+          <TableColumn fx:id="tableColoumnMedico" prefWidth="205.0" text="MÉDICO" />
+            <TableColumn fx:id="tableColumnPaciente" prefWidth="204.0" text="PACIENTE" />
+            <TableColumn fx:id="tablecolumnDateTime" prefWidth="140.0" text="DATA E HORA" />
         </columns>
       </TableView>
-      <Button layoutX="262.0" layoutY="328.0" mnemonicParsing="false" onAction="#imprimir" text="Imprimir" />
+      <Button layoutX="225.0" layoutY="340.0" mnemonicParsing="false" onAction="#imprimir" prefHeight="25.0" prefWidth="151.0" styleClass="ButtonAppointment" text="Imprimir" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="225.0" AnchorPane.rightAnchor="224.0" />
    </children>
 </AnchorPane>

@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.chart.*?>
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.diretor.GraphicController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="AnchorPane" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.diretor.GraphicController">
    <children>
       <BarChart fx:id="barChart" barGap="1.0" layoutX="51.0" layoutY="108.0" prefHeight="221.0" prefWidth="498.0" title="Agendamento por ano">
         <xAxis>
@@ -15,6 +16,6 @@
           <NumberAxis fx:id="numberAxis" lowerBound="1.0" minorTickCount="1" prefHeight="249.0" prefWidth="32.0" side="LEFT" tickLabelGap="1.0" upperBound="1.0" />
         </yAxis>
       </BarChart>
-      <ComboBox fx:id="comboBox" layoutX="225.0" layoutY="54.0" onAction="#alterGraphic" prefWidth="150.0" />
+      <ComboBox fx:id="comboBox" layoutX="225.0" layoutY="54.0" onAction="#alterGraphic" prefHeight="25.0" prefWidth="150.0" AnchorPane.leftAnchor="225.0" AnchorPane.rightAnchor="225.0" AnchorPane.topAnchor="30.0" />
    </children>
 </AnchorPane>

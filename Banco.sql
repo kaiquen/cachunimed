@@ -6,11 +6,11 @@ CREATE TABLE cargo(
 );
 
 
-create table agenda(
-id serial primary key,        
-idmedico integer references funcionario(id),
-idpaciente integer references paciente(id),
-datetime timestamp unique not null
+CREATE TABLE agenda(
+id SERIAL PRIMARY KEY,        
+idmedico INTEGER REFERENCES funcionario(id),
+idpaciente INTEGER REFERENCES paciente(id),
+DATETIME TIMESTAMP UNIQUE NOT NULL
 );
 
 CREATE TABLE funcionario (
@@ -38,5 +38,3 @@ INSERT INTO cargo (id, cargo) VALUES (3, 'Recepcionista');
 
 
 INSERT INTO funcionario (cpf, name, password, type) VALUES ('1234','diretor', 'root', 1);
-
-
