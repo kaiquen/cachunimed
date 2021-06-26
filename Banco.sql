@@ -39,7 +39,9 @@ create table agenda_medico (
                 references funcionario(cod_funcionario),   
         constraint fk_paciente
             foreign key (cod_paciente)
-                references paciente(cod_paciente)
+                references paciente(cod_paciente),
+        constraint uk_medico_horario 
+            unique(cod_funcionario_medico,horario_consulta)
 );
 
 INSERT INTO cargo_funcionario (cargo) VALUES ('Diretor');

@@ -175,15 +175,23 @@ public class MainRecepcionistaController implements Initializable{
             alert.setContentText("Tente novamente!");
             alert.show();
         } else {
-            Idatabase database = Factory.getDatabase("postgres");
-            Connection connection = database.connect();
-            AgendaDAO agendaDAO = new AgendaDAO(connection);
-            String datetime = date + " "+ comboBoxhour.getValue().toString();
-            Timestamp datetimeSQL = Timestamp.valueOf(datetime);
-            Agenda agenda = new Agenda(comboBoxMedicos.getValue().toString(), Integer.parseInt(labelId.getText()), datetimeSQL);
-            agenda.setCod_funcionario_medico(agendaDAO.selectIdMedico(agenda));
-            agendaDAO.createAgenda(agenda);
-            cancelar();
+            try {
+                Idatabase database = Factory.getDatabase("postgres");
+                Connection connection = database.connect();
+                AgendaDAO agendaDAO = new AgendaDAO(connection);
+                String datetime = date + " "+ comboBoxhour.getValue().toString();
+                Timestamp datetimeSQL = Timestamp.valueOf(datetime);
+                Agenda agenda = new Agenda(comboBoxMedicos.getValue().toString(), Integer.parseInt(labelId.getText()), datetimeSQL);
+                agenda.setCod_funcionario_medico(agendaDAO.selectIdMedico(agenda));
+                agendaDAO.createAgenda(agenda);
+                cancelar();
+            } catch (Exception e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Create Fail");
+                alert.setHeaderText("Horário Indisponével");
+                alert.setContentText("Tente novamente!");
+                alert.show();
+            }
         }
     }
 
