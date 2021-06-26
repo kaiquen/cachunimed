@@ -24,7 +24,6 @@ public class AgendaDAO {
     public void createAgenda(Agenda agenda) throws SQLException{
         String sql = "insert into agenda_medico (cod_funcionario_medico, cod_paciente, horario_consulta) values (?, ?, ?)"; 
         PreparedStatement ps = connection.prepareStatement(sql);
-      
         ps.setInt(1, agenda.getCod_funcionario_medico());
         ps.setInt(2, agenda.getCod_paciente());
         ps.setTimestamp(3, agenda.getHorario_consulta());
@@ -32,49 +31,57 @@ public class AgendaDAO {
     }
 
     public List<Agenda> selectAgendas(LocalDate newValue) throws SQLException{
-        String sql = "select p.nome_paciente, a.horario_consulta from agenda_medico as a inner join paciente as p on p.cod_paciente=a.cod_paciente where a.cod_funcionario_medico=? and (cast(a.horario_consulta as date)=?)"; 
+        String sql = "select p.nome_paciente, a.* from agenda_medico as a inner join paciente as p on p.cod_paciente=a.cod_paciente where a.cod_funcionario_medico=? and (cast(a.horario_consulta as date)=?)"; 
         PreparedStatement ps = connection.prepareStatement(sql);
-
         Date dateSQL = Date.valueOf(newValue);
         ps.setInt(1, Funcionario.cod_medico);
         ps.setDate(2, dateSQL);
-
         System.out.println(Funcionario.cod_medico + "\n" + dateSQL);
         ResultSet  rs = ps.executeQuery();
-
         List<Agenda> agendas = new ArrayList<>();
         while(rs.next()){
             Agenda agenda = new Agenda();
+            agenda.setCod_paciente(rs.getInt("cod_paciente"));
             agenda.setNome_paciente(rs.getString("nome_paciente"));
+            agenda.setCod_funcionario_medico(rs.getInt("cod_funcionario_medico"));
             agenda.setHorario_consulta(rs.getTimestamp("horario_consulta"));
+          
             agendas.add(agenda);
         }
         return agendas;
+    }
+
+    public void deleteConsulta(Agenda agenda) throws SQLException{
+        String sql = "delete from agenda_medico where cod_funcionario_medico=? and cod_paciente=? and horario_consulta=?";
+       
+        PreparedStatement ps = connection.prepareStatement(sql);
+        ps.setInt(1,  Funcionario.cod_medico);
+        ps.setInt(2, agenda.getCod_paciente());
+        ps.setTimestamp(3, agenda.getHorario_consulta());
+        ps.execute();
     }
 
     public Integer selectIdMedico(Agenda agenda) throws SQLException{
         String sql = "select cod_funcionario from funcionario where nome_funcionario=?";
         PreparedStatement ps = connection.prepareStatement(sql);
         ps.setString(1, agenda.getNome_funcionario_medico());
-     
         ResultSet rs = ps.executeQuery();
         rs.next();
-
         return rs.getInt("cod_funcionario");
     }
+    
     public ArrayList selectYear() throws SQLException{
-        String sql = "select distinct extract(year from datetime) as ano from agenda";
+        String sql = "select distinct extract(year from horario_consulta) as ano from agenda_medico";
         PreparedStatement ps = connection.prepareStatement(sql);
         ResultSet rs = ps.executeQuery();
         ArrayList agendas = new ArrayList<>();
-
         while(rs.next()){
             agendas.add(rs.getInt("ano"));
         }
         return agendas;
     }
     public Map<Integer, ArrayList> graphic(Integer date) throws SQLException{
-        String sql = "select count(id), extract(year from datetime)as ano, extract(month from datetime) as mes from agenda where extract(year from datetime)=? group by ano,mes order by ano,mes";
+        String sql = "select count(cod_agenda_medico), extract(year from horario_consulta)as ano, extract(month from horario_consulta) as mes from agenda_medico where extract(year from horario_consulta)=? group by ano,mes order by ano,mes";
         PreparedStatement ps = connection.prepareStatement(sql);
         ps.setInt(1,date);
         
@@ -94,6 +101,7 @@ public class AgendaDAO {
         }
         return graphic;
     }
+    
     public List<Agenda> selectRelatorios() throws SQLException{
         String sql = "select a.id,  m.name as medico, p.name as paciente, a.datetime from agenda as a inner join funcionario as m on m.id=a.idMedico inner join paciente as p on p.id=a.idPaciente order by datetime"; 
         PreparedStatement ps = connection.prepareStatement(sql);

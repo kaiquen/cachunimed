@@ -11,7 +11,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
@@ -46,7 +45,7 @@ public class MainRecepcionistaController implements Initializable{
     @FXML AnchorPane anchorPaneUpdate;
     @FXML AnchorPane anchorPaneConsulta;
     @FXML BorderPane borderPane;
-    @FXML Group group;
+    @FXML AnchorPane anchorPane;
     @FXML DatePickerSkin calendar;
     @FXML Label labelId;
     @FXML Label labelName;
@@ -82,7 +81,7 @@ public class MainRecepcionistaController implements Initializable{
             Paciente paciente = new Paciente(textFieldCpfCreate.getText(), textFieldNameCreate.getText(), textFieldFoneCreate.getText(), textFieldAddressCreate.getText());
             pacienteDAO.createPaciente(paciente);
             anchorPaneCreate.setVisible(false);
-            group.setVisible(true);   
+            anchorPane.setVisible(true);   
         } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Insert Fail");
@@ -103,7 +102,7 @@ public class MainRecepcionistaController implements Initializable{
                 pacienteDAO.update(paciente);
                 
                 anchorPaneUpdate.setVisible(false);
-                group.setVisible(true);  
+                anchorPane.setVisible(true);  
             } catch (Exception e) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Insert Fail");
@@ -115,16 +114,16 @@ public class MainRecepcionistaController implements Initializable{
 
     @FXML private void clearUpdate(){
         anchorPaneUpdate.setVisible(false);
-        group.setVisible(true);
+        anchorPane.setVisible(true);
     }
 
     @FXML private void clearCreate(){
         anchorPaneCreate.setVisible(false);
-        group.setVisible(true);
+        anchorPane.setVisible(true);
     }
 
     @FXML private void createPaciente(){
-        group.setVisible(false);
+        anchorPane.setVisible(false);
         anchorPaneCreate.setVisible(true);
     }
 
@@ -136,7 +135,7 @@ public class MainRecepcionistaController implements Initializable{
             alert.setContentText("Tente novamente!");
             alert.show();
         } else {
-        group.setVisible(false);
+        anchorPane.setVisible(false);
         anchorPaneUpdate.setVisible(true);
 
         textFieldNameUpdate.setText(labelName.getText());
@@ -153,7 +152,7 @@ public class MainRecepcionistaController implements Initializable{
             alert.setContentText("Tente novamente!");
             alert.show();
         } else {
-            group.setVisible(false);
+            anchorPane.setVisible(false);
             anchorPaneConsulta.setVisible(true);
             Node calendar = datePickerSkin.getPopupContent();
             date = LocalDate.now();
@@ -189,7 +188,7 @@ public class MainRecepcionistaController implements Initializable{
     }
 
     @FXML private void cancelar(){
-         group.setVisible(true);
+        anchorPane.setVisible(true);
         anchorPaneConsulta.setVisible(false);
     }
     
@@ -202,7 +201,7 @@ public class MainRecepcionistaController implements Initializable{
             e.printStackTrace();
         }
         listView.getSelectionModel().selectedItemProperty()
-                .addListener((obeservable, oldValue, newValue) -> selectItem(newValue));
+            .addListener((obeservable, oldValue, newValue) -> selectItem(newValue));
     }
 
     private void atualizaListView() throws SQLException{
@@ -210,10 +209,10 @@ public class MainRecepcionistaController implements Initializable{
         Connection connection = database.connect();
         PacienteDAO pacienteDAO = new PacienteDAO(connection);
         Paciente paciente = new Paciente(textField.getText());
-        System.out.println(paciente.getNome());
 
         ObservableList<Paciente> items = FXCollections.observableArrayList (
-            pacienteDAO.selectPaciente(paciente));
+            pacienteDAO.selectPaciente(paciente)
+        );
         listView.setItems(items);
     }
 
@@ -228,7 +227,8 @@ public class MainRecepcionistaController implements Initializable{
 
     private void hours() throws SQLException {
         ObservableList<String> items = FXCollections.observableArrayList(
-            "08:00:00", "09:00:00", "10:00:00","11:00:00","13:00:00", "14:00:00", "15:00:00" ,"16:00:00","17:00:00");
+            "08:00:00", "09:00:00", "10:00:00","11:00:00","13:00:00", "14:00:00", "15:00:00" ,"16:00:00","17:00:00"
+        );
         comboBoxhour.setItems(items);
     }
 

@@ -9,9 +9,15 @@ public class Agenda {
     private String nome_funcionario_medico;
     private String nome_paciente;
     private Timestamp horario_consulta;
-    private String year;
-    
+    private String ano;
+
     public Agenda(){}
+    public String getAno() {
+        return ano;
+    }
+    public void setAno(String ano) {
+        this.ano = ano;
+    }
     public Agenda(Integer id){
         setCod(id);
     }
@@ -65,14 +71,6 @@ public class Agenda {
     public void setHorario_consulta(Timestamp horario_consulta) {
         this.horario_consulta = horario_consulta;
     }
-
-    public String getYear() {
-        return year;
-    }
-    public void setYear(String year) {
-        this.year = year;
-    }
-  
     public Integer getIdHours() {
         return idHours;
     }

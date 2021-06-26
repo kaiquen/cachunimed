@@ -26,7 +26,15 @@ public class MainMedicoController implements Initializable {
     DatePicker datePicker = new DatePicker(LocalDate.now());
     DatePickerSkin datePickerSkin = new DatePickerSkin(datePicker);
     Node calendar = datePickerSkin.getPopupContent();
-    
+    @FXML void desmarcar() throws SQLException{
+        Idatabase database = Factory.getDatabase("postgres");
+        Connection connection = database.connect();
+        AgendaDAO agendaDAO = new AgendaDAO(connection);
+        Agenda agenda = new Agenda();
+        agenda = listView.getSelectionModel().getSelectedItem();
+        agendaDAO.deleteConsulta(agenda);
+        atualizaListView(LocalDate.now());
+    }
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) { 
         borderPane.setLeft(calendar);
