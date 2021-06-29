@@ -10,6 +10,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListView;
 import javafx.scene.control.skin.DatePickerSkin;
@@ -27,6 +28,13 @@ public class MainMedicoController implements Initializable {
     DatePickerSkin datePickerSkin = new DatePickerSkin(datePicker);
     Node calendar = datePickerSkin.getPopupContent();
     @FXML void desmarcar() throws SQLException{
+        if(listView.getSelectionModel().isEmpty()){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Delete Fail");
+            alert.setHeaderText("Selecione a consulta");
+            alert.setContentText("Tente novamente!");
+            alert.show();
+        }else{
         Idatabase database = Factory.getDatabase("postgres");
         Connection connection = database.connect();
         AgendaDAO agendaDAO = new AgendaDAO(connection);
@@ -34,6 +42,7 @@ public class MainMedicoController implements Initializable {
         agenda = listView.getSelectionModel().getSelectedItem();
         agendaDAO.deleteConsulta(agenda);
         atualizaListView(LocalDate.now());
+        }
     }
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) { 

@@ -4,7 +4,6 @@ import java.net.URL;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -20,12 +19,17 @@ import javafx.scene.control.ComboBox;
 import model.dao.AgendaDAO;
 import model.database.Factory;
 import model.database.Idatabase;
+
 public class GraphicController implements Initializable {
-    @FXML private BarChart<String, Integer> barChart;
-    @FXML private CategoryAxis categoryAxis;
-    @FXML private Axis<Integer> numberAxis;
-    @FXML private ComboBox comboBox;
-   
+    @FXML
+    private BarChart<String, Integer> barChart;
+    @FXML
+    private CategoryAxis categoryAxis;
+    @FXML
+    private Axis<Integer> numberAxis;
+    @FXML
+    private ComboBox comboBox;
+
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
         months();
@@ -37,35 +41,36 @@ public class GraphicController implements Initializable {
         }
     }
 
-    @FXML private void alterGraphic() throws SQLException{
+    @FXML
+    private void alterGraphic() throws SQLException {
         graphic();
     }
 
-    private void graphic() throws SQLException{
+    private void graphic() throws SQLException {
         Idatabase database = Factory.getDatabase("postgres");
         Connection connection = database.connect();
         AgendaDAO agendaDAO = new AgendaDAO(connection);
-        
+
         Integer date = Integer.valueOf(comboBox.getSelectionModel().getSelectedItem().toString());
         System.out.println(date);
         Map<Integer, ArrayList> dados = agendaDAO.graphic(date);
 
-        for(Map.Entry<Integer, ArrayList> dadosItem : dados.entrySet()) {
+        for (Map.Entry<Integer, ArrayList> dadosItem : dados.entrySet()) {
             Series<String, Integer> series = new XYChart.Series<>();
             series.setName(dadosItem.getKey().toString());
-            for(int i = 0; i < dadosItem.getValue().size(); i = i + 2) {
+            for (int i = 0; i < dadosItem.getValue().size(); i = i + 2) {
                 String mes;
                 Integer quantidade;
                 mes = retornaNomeMes((Integer) dadosItem.getValue().get(i));
                 quantidade = (Integer) dadosItem.getValue().get(i + 1);
-                series.getData().add(new XYChart.Data<>(mes,quantidade));
+                series.getData().add(new XYChart.Data<>(mes, quantidade));
             }
             barChart.getData().add(series);
         }
     }
-   
+
     private String retornaNomeMes(int i) {
-        switch(i){
+        switch (i) {
             case 1:
                 return "Jan";
             case 2:
@@ -94,21 +99,19 @@ public class GraphicController implements Initializable {
         return null;
     }
 
-    private void months()  {
-        ObservableList<String> items = FXCollections.observableArrayList(
-            "Jan", "Fev", "Mar","Abr","Mai", "Jun", "Jul" ,"Ago","Set","Out","Dez");
+    private void months() {
+        ObservableList<String> items = FXCollections.observableArrayList("Jan", "Fev", "Mar", "Abr", "Mai", "Jun",
+                "Jul", "Ago", "Set", "Out", "Dez");
         categoryAxis.setCategories(items);
     }
 
-    private void ano() throws SQLException  {
+    private void ano() throws SQLException {
         Idatabase database = Factory.getDatabase("postgres");
         Connection connection = database.connect();
         AgendaDAO agendaDAO = new AgendaDAO(connection);
-        
-        ObservableList<String> items = FXCollections.observableArrayList(
-            agendaDAO.selectYear()
-        );
+
+        ObservableList<String> items = FXCollections.observableArrayList(agendaDAO.selectYear());
         comboBox.setItems(items);
         comboBox.getSelectionModel().select(0);
-    }  
+    }
 }

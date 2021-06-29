@@ -21,27 +21,46 @@ import model.database.Factory;
 import model.database.Idatabase;
 
 public class ListPacienteController implements Initializable {
-    @FXML TableView<Paciente> tableView;
-    @FXML TableColumn<Paciente, Integer> tableColumnId;
-    @FXML TableColumn<Paciente, String> tableColumnName;
-    @FXML TextField textFieldNameCreate;
-    @FXML TextField textFieldCpfCreate;
-    @FXML TextField textFieldFoneCreate;
-    @FXML TextField textFieldAddressCreate;
-    @FXML TextField textFieldNameUpdate;
-    @FXML TextField textFieldFoneUpdate;
-    @FXML TextField textFieldAddressUpdate;
-    @FXML Label labelIdList;
-    @FXML Label labelNameList;
-    @FXML Label labelCpfList;
-    @FXML Label labelFoneList;
-    @FXML Label labelAddressList;
-    @FXML AnchorPane anchorPaneUpdate;
-    @FXML AnchorPane anchorPaneCreate;
-    @FXML AnchorPane anchorPaneList;
+    @FXML
+    TableView<Paciente> tableView;
+    @FXML
+    TableColumn<Paciente, Integer> tableColumnId;
+    @FXML
+    TableColumn<Paciente, String> tableColumnName;
+    @FXML
+    TextField textFieldNameCreate;
+    @FXML
+    TextField textFieldCpfCreate;
+    @FXML
+    TextField textFieldFoneCreate;
+    @FXML
+    TextField textFieldAddressCreate;
+    @FXML
+    TextField textFieldNameUpdate;
+    @FXML
+    TextField textFieldFoneUpdate;
+    @FXML
+    TextField textFieldAddressUpdate;
+    @FXML
+    Label labelIdList;
+    @FXML
+    Label labelNameList;
+    @FXML
+    Label labelCpfList;
+    @FXML
+    Label labelFoneList;
+    @FXML
+    Label labelAddressList;
+    @FXML
+    AnchorPane anchorPaneUpdate;
+    @FXML
+    AnchorPane anchorPaneCreate;
+    @FXML
+    AnchorPane anchorPaneList;
 
-    @FXML private void updateList(){ 
-        if(tableView.getSelectionModel().isEmpty()){
+    @FXML
+    private void updateList() {
+        if (tableView.getSelectionModel().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Update Fail");
             alert.setHeaderText("Selecione o Paciente");
@@ -52,66 +71,87 @@ public class ListPacienteController implements Initializable {
             textFieldFoneUpdate.setText(labelFoneList.getText());
             textFieldAddressUpdate.setText(labelAddressList.getText());
             anchorPaneList.setVisible(false);
-            anchorPaneUpdate.setVisible(true); 
+            anchorPaneUpdate.setVisible(true);
         }
     }
 
-    @FXML private void createList() {
+    @FXML
+    private void createList() {
         anchorPaneList.setVisible(false);
-        anchorPaneCreate.setVisible(true);  
+        anchorPaneCreate.setVisible(true);
     }
 
-    @FXML private void create() throws SQLException{
+    @FXML
+    private void create() throws SQLException {
         Idatabase database = Factory.getDatabase("postgres");
         Connection connection = database.connect();
         PacienteDAO pacienteDAO = new PacienteDAO(connection);
         try {
-            Paciente paciente = new Paciente(textFieldCpfCreate.getText(), textFieldNameCreate.getText(), textFieldFoneCreate.getText(), textFieldAddressCreate.getText());
-            pacienteDAO.createPaciente(paciente);
-            anchorPaneCreate.setVisible(false);
-            atulizarTableViews();
-            anchorPaneList.setVisible(true);   
+            try {
+
+                Paciente paciente = new Paciente(textFieldCpfCreate.getText(), textFieldNameCreate.getText(),
+                        textFieldFoneCreate.getText(), textFieldAddressCreate.getText());
+                pacienteDAO.createPaciente(paciente);
+                anchorPaneCreate.setVisible(false);
+                atulizarTableViews();
+                anchorPaneList.setVisible(true);
+            } catch (Exception e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Insert Fail");
+                alert.setHeaderText("Preencha todos os campo");
+                System.out.println(e.getMessage().length());
+                if (e.getMessage().length() > 100) {
+                    alert.setContentText("CPF Inválido");
+                } else {
+                    alert.setContentText(e.getMessage());
+                }
+                alert.show();
+            }
         } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Insert Fail");
             alert.setHeaderText("Preencha todos os campos");
             alert.setContentText(e.getMessage());
             alert.show();
-        }  
-    } 
-    
-    @FXML private void clearCreate(){
+        }
+    }
+
+    @FXML
+    private void clearCreate() {
         anchorPaneCreate.setVisible(false);
         anchorPaneList.setVisible(true);
     }
 
-    @FXML private void delete() throws NumberFormatException, SQLException {
-        if(tableView.getSelectionModel().isEmpty()){
+    @FXML
+    private void delete() throws NumberFormatException, SQLException {
+        if (tableView.getSelectionModel().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Delete Fail");
             alert.setHeaderText("Selecione o campo");
             alert.setContentText("Tente novamente!");
             alert.show();
-        }else {
+        } else {
             Idatabase database = Factory.getDatabase("postgres");
             Connection connection = database.connect();
             PacienteDAO pacienteDAO = new PacienteDAO(connection);
             Paciente funcionario = new Paciente(Integer.valueOf(labelIdList.getText()));
             pacienteDAO.delete(funcionario);
-            atulizarTableViews();   
+            atulizarTableViews();
         }
     }
 
-    @FXML private void update() throws SQLException{
+    @FXML
+    private void update() throws SQLException {
         Idatabase database = Factory.getDatabase("postgres");
         Connection connection = database.connect();
         PacienteDAO pacienteDAO = new PacienteDAO(connection);
         try {
-            Paciente paciente = new Paciente(Integer.valueOf(labelIdList.getText()), textFieldNameUpdate.getText(), textFieldFoneUpdate.getText(), textFieldAddressUpdate.getText());
+            Paciente paciente = new Paciente(Integer.valueOf(labelIdList.getText()), textFieldNameUpdate.getText(),
+                    textFieldFoneUpdate.getText(), textFieldAddressUpdate.getText());
             pacienteDAO.update(paciente);
             anchorPaneUpdate.setVisible(false);
             atulizarTableViews();
-            anchorPaneList.setVisible(true);  
+            anchorPaneList.setVisible(true);
         } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Insert Fail");
@@ -121,7 +161,8 @@ public class ListPacienteController implements Initializable {
         }
     }
 
-    @FXML private void clearUpdate(){
+    @FXML
+    private void clearUpdate() {
         anchorPaneUpdate.setVisible(false);
         anchorPaneList.setVisible(true);
     }
@@ -133,12 +174,11 @@ public class ListPacienteController implements Initializable {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        tableView.getSelectionModel().selectedItemProperty().addListener(
-            (obeservable, oldValue, newValue) -> selectItem(newValue)
-        );
+        tableView.getSelectionModel().selectedItemProperty()
+                .addListener((obeservable, oldValue, newValue) -> selectItem(newValue));
     }
 
-    private void atulizarTableViews() throws SQLException{
+    private void atulizarTableViews() throws SQLException {
         tableColumnId.setCellValueFactory(new PropertyValueFactory<>("cod"));
         tableColumnName.setCellValueFactory(new PropertyValueFactory<>("nome"));
         tableView.setItems(lista());
@@ -148,25 +188,26 @@ public class ListPacienteController implements Initializable {
         Idatabase database = Factory.getDatabase("postgres");
         Connection connection = database.connect();
         PacienteDAO pacienteDAO = new PacienteDAO(connection);
-        return FXCollections.observableArrayList(
-            pacienteDAO.selectPacientes()
-        );
+        return FXCollections.observableArrayList(pacienteDAO.selectPacientes());
     }
-    private void selectItem(Paciente paciente){
-        if(paciente != null){
-            String cpf = paciente.getCpf().substring(0,3) + "." + paciente.getCpf().substring(3,6) + "." + paciente.getCpf().substring(6,9) + "-" + paciente.getCpf().substring(9,11);
-            String telefone = "("+ paciente.getTelefone().substring(0,2) + ") "  + paciente.getTelefone().substring(2,7) + "-" + paciente.getTelefone().substring(7,11);
+
+    private void selectItem(Paciente paciente) {
+        if (paciente != null) {
+            String cpf = paciente.getCpf().substring(0, 3) + "." + paciente.getCpf().substring(3, 6) + "."
+                    + paciente.getCpf().substring(6, 9) + "-" + paciente.getCpf().substring(9, 11);
+            String telefone = "(" + paciente.getTelefone().substring(0, 2) + ") "
+                    + paciente.getTelefone().substring(2, 7) + "-" + paciente.getTelefone().substring(7, 11);
             labelIdList.setText(String.valueOf(paciente.getCod()));
             labelNameList.setText(paciente.getNome());
             labelCpfList.setText(cpf);
             labelFoneList.setText(telefone);
             labelAddressList.setText(paciente.getEndereco());
-        }else{
+        } else {
             labelIdList.setText("");
             labelNameList.setText("");
             labelCpfList.setText("");
             labelFoneList.setText("");
-            labelAddressList.setText("");   
+            labelAddressList.setText("");
         }
     }
 }

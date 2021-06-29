@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import model.Funcionario;
 import model.Types;
+
 public class FuncionarioDAO {
     Connection connection;
 
@@ -21,14 +22,14 @@ public class FuncionarioDAO {
         ps.setString(1, funcionario.getCpf());
         ps.setString(2, funcionario.getSenha());
         ResultSet rs = ps.executeQuery();
-        if (rs.next()){
+        if (rs.next()) {
             Funcionario.cod_medico = rs.getInt("cod_funcionario");
             funcionario.setId_cargo(rs.getInt("id_cargo_funcionario"));
-        }   
+        }
         return funcionario;
     }
 
-    public List<Funcionario> selectFuncionarios() throws SQLException{
+    public List<Funcionario> selectFuncionarios() throws SQLException {
         String sql = "select f.*, c.nome_cargo from funcionario as f inner join cargo_funcionario as c on f.id_cargo_funcionario=c.id_cargo_funcionario;";
         PreparedStatement ps = connection.prepareStatement(sql);
         ResultSet rs = ps.executeQuery();
@@ -44,9 +45,9 @@ public class FuncionarioDAO {
             funcionarios.add(funcionario);
         }
         return funcionarios;
-    } 
-    
-    public List<Types> selectCargos() throws SQLException{
+    }
+
+    public List<Types> selectCargos() throws SQLException {
         String sql = "select nome_cargo from cargo_funcionario where nome_cargo!='Diretor'";
         PreparedStatement ps = connection.prepareStatement(sql);
         ResultSet rs = ps.executeQuery();
@@ -60,8 +61,8 @@ public class FuncionarioDAO {
         return types;
     }
 
-    public void createFuncionario(Funcionario funcionario) throws SQLException{
-        String sql = "insert into funcionario (id_cargo_funcionario,cpf_funcionario, nome_funcionario, senha_funcionario) values ((select id_cargo_funcionario from cargo_funcionario where nome_cargo=?),?, ?, ?);"; 
+    public void createFuncionario(Funcionario funcionario) throws SQLException {
+        String sql = "insert into funcionario (id_cargo_funcionario,cpf_funcionario, nome_funcionario, senha_funcionario) values ((select id_cargo_funcionario from cargo_funcionario where nome_cargo=?),?, ?, ?);";
         PreparedStatement ps = connection.prepareStatement(sql);
         ps.setString(1, funcionario.getCargo());
         ps.setString(2, funcionario.getCpf());
@@ -69,15 +70,15 @@ public class FuncionarioDAO {
         ps.setString(4, funcionario.getSenha());
         ps.execute();
     }
-   
-    public void delete(Funcionario funcionario) throws SQLException{
-        String sql = "delete from funcionario where id=?";
+
+    public void delete(Funcionario funcionario) throws SQLException {
+        String sql = "delete from funcionario where cod_funcionario=?";
         PreparedStatement ps = connection.prepareStatement(sql);
         ps.setInt(1, funcionario.getCod());
         ps.execute();
     }
 
-    public void updateFuncionario(Funcionario funcionario) throws SQLException{
+    public void updateFuncionario(Funcionario funcionario) throws SQLException {
         String sql = "update funcionario set nome_funcionario=?, senha_funcionario=? where cod_funcionario=?";
         PreparedStatement ps = connection.prepareStatement(sql);
         ps.setString(1, funcionario.getNome());
@@ -87,15 +88,15 @@ public class FuncionarioDAO {
 
     }
 
-    public List<Funcionario> selectMedicos() throws SQLException{
+    public List<Funcionario> selectMedicos() throws SQLException {
         String sql = "select nome_funcionario, cod_funcionario from funcionario where id_cargo_funcionario=2";
         PreparedStatement ps = connection.prepareStatement(sql);
         ResultSet rs = ps.executeQuery();
 
-        List<Funcionario> funcionarios =  new ArrayList<>() ;
-        while(rs.next()){
+        List<Funcionario> funcionarios = new ArrayList<>();
+        while (rs.next()) {
             Funcionario funcionario = new Funcionario();
-            funcionario.setNome(rs.getString("nome_funcionario")); 
+            funcionario.setNome(rs.getString("nome_funcionario"));
             funcionario.setCod(rs.getInt("cod_funcionario"));
             funcionarios.add(funcionario);
         }

@@ -103,17 +103,17 @@ public class AgendaDAO {
     }
     
     public List<Agenda> selectRelatorios() throws SQLException{
-        String sql = "select a.id,  m.name as medico, p.name as paciente, a.datetime from agenda as a inner join funcionario as m on m.id=a.idMedico inner join paciente as p on p.id=a.idPaciente order by datetime"; 
+        String sql = "select a.cod_agenda_medico,  m.nome_funcionario as medico, p.nome_paciente as paciente, a.horario_consulta as horario_consulta from agenda_medico as a inner join funcionario as m on m.cod_funcionario=a.cod_funcionario_medico inner join paciente as p on p.cod_paciente=a.cod_paciente order by horario_consulta"; 
         PreparedStatement ps = connection.prepareStatement(sql);
         ResultSet  rs = ps.executeQuery();
         
         List<Agenda> agendas = new ArrayList<>();
         while(rs.next()){
             Agenda agenda = new Agenda();
-            agenda.setId(rs.getInt("id"));
-            agenda.setNameMedico(rs.getString("medico"));
-            agenda.setNamePaciente(rs.getString("paciente"));
-            agenda.setDateTime(rs.getTimestamp("datetime"));
+            agenda.setCod(rs.getInt("cod_agenda_medico"));
+            agenda.setNome_funcionario_medico(rs.getString("medico"));
+            agenda.setNome_paciente(rs.getString("paciente"));
+            agenda.setHorario_consulta(rs.getTimestamp("horario_consulta"));
             agendas.add(agenda);
         }
         return agendas;

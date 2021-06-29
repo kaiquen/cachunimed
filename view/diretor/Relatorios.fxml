@@ -15,6 +15,6 @@
             <TableColumn fx:id="tablecolumnDateTime" prefWidth="140.0" text="DATA E HORA" />
         </columns>
       </TableView>
-      <Button layoutX="225.0" layoutY="340.0" mnemonicParsing="false" onAction="#imprimir" prefHeight="25.0" prefWidth="151.0" styleClass="ButtonAppointment" text="Imprimir" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="225.0" AnchorPane.rightAnchor="224.0" />
+      <Button layoutX="225.0" layoutY="322.0" mnemonicParsing="false" onAction="#imprimir" prefHeight="25.0" prefWidth="151.0" styleClass="ButtonAppointment" text="Imprimir" AnchorPane.bottomAnchor="50.80000000000001" AnchorPane.leftAnchor="225.0" AnchorPane.rightAnchor="224.0" />
    </children>
 </AnchorPane>
