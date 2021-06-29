@@ -22,12 +22,16 @@ import model.database.Factory;
 import model.database.Idatabase;
 
 public class LoginController implements Initializable {
-        Image image = new Image("view/images/64x64.png");
-    @FXML private TextField textField;
-    @FXML private PasswordField passwordField;
-    @FXML private AnchorPane login;
+    Image image = new Image("view/images/64x64.png");
+    @FXML
+    private TextField textField;
+    @FXML
+    private PasswordField passwordField;
+    @FXML
+    private AnchorPane login;
 
-    @FXML private void Enter() throws SQLException, IOException {
+    @FXML
+    private void Enter() throws SQLException, IOException {
         Idatabase database = Factory.getDatabase("postgres");
         Connection connection = database.connect();
         FuncionarioDAO funcionarioDAO = new FuncionarioDAO(connection);
@@ -46,8 +50,8 @@ public class LoginController implements Initializable {
                     stageDiretor.setScene(sceneDiretor);
                     stageDiretor.getIcons().add(image);
                     stageDiretor.show();
-                break;
-    
+                    break;
+
                 case 2:
                     login.getScene().getWindow().hide();
                     Parent mainMedico = FXMLLoader.load(getClass().getResource("/view/medico/MainMedico.fxml"));
@@ -58,19 +62,20 @@ public class LoginController implements Initializable {
                     stageMedico.setScene(sceneMedico);
                     stageMedico.getIcons().add(image);
                     stageMedico.show();
-                break;
-    
+                    break;
+
                 case 3:
                     login.getScene().getWindow().hide();
-                    Parent mainRecepcionista = FXMLLoader.load(getClass().getResource("/view/Recepcionista/MainRecepcionista.fxml"));
-                    Scene sceneRecepcionista = new Scene(mainRecepcionista); 
+                    Parent mainRecepcionista = FXMLLoader
+                            .load(getClass().getResource("/view/Recepcionista/MainRecepcionista.fxml"));
+                    Scene sceneRecepcionista = new Scene(mainRecepcionista);
                     sceneRecepcionista.getStylesheets().add("/view/style.css");
                     Stage stageRecepcionista = new Stage();
                     stageRecepcionista.setTitle("Recepcionista");
                     stageRecepcionista.setScene(sceneRecepcionista);
                     stageRecepcionista.getIcons().add(image);
                     stageRecepcionista.show();
-                break;    
+                    break;
             }
         } catch (Exception e) {
             System.out.println(e);

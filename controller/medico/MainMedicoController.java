@@ -21,31 +21,36 @@ import model.database.Factory;
 import model.database.Idatabase;
 
 public class MainMedicoController implements Initializable {
-    @FXML ListView<Agenda> listView;
-    @FXML BorderPane borderPane;
-    
+    @FXML
+    ListView<Agenda> listView;
+    @FXML
+    BorderPane borderPane;
+
     DatePicker datePicker = new DatePicker(LocalDate.now());
     DatePickerSkin datePickerSkin = new DatePickerSkin(datePicker);
     Node calendar = datePickerSkin.getPopupContent();
-    @FXML void desmarcar() throws SQLException{
-        if(listView.getSelectionModel().isEmpty()){
+
+    @FXML
+    void desmarcar() throws SQLException {
+        if (listView.getSelectionModel().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Delete Fail");
             alert.setHeaderText("Selecione a consulta");
             alert.setContentText("Tente novamente!");
             alert.show();
-        }else{
-        Idatabase database = Factory.getDatabase("postgres");
-        Connection connection = database.connect();
-        AgendaDAO agendaDAO = new AgendaDAO(connection);
-        Agenda agenda = new Agenda();
-        agenda = listView.getSelectionModel().getSelectedItem();
-        agendaDAO.deleteConsulta(agenda);
-        atualizaListView(LocalDate.now());
+        } else {
+            Idatabase database = Factory.getDatabase("postgres");
+            Connection connection = database.connect();
+            AgendaDAO agendaDAO = new AgendaDAO(connection);
+            Agenda agenda = new Agenda();
+            agenda = listView.getSelectionModel().getSelectedItem();
+            agendaDAO.deleteConsulta(agenda);
+            atualizaListView(LocalDate.now());
         }
     }
+
     @Override
-    public void initialize(URL arg0, ResourceBundle arg1) { 
+    public void initialize(URL arg0, ResourceBundle arg1) {
         borderPane.setLeft(calendar);
         try {
             atualizaListView(LocalDate.now());
@@ -65,9 +70,8 @@ public class MainMedicoController implements Initializable {
         Idatabase database = Factory.getDatabase("postgres");
         Connection connection = database.connect();
         AgendaDAO agendaDAO = new AgendaDAO(connection);
-        
-        ObservableList<Agenda> items = FXCollections.observableArrayList (
-            agendaDAO.selectAgendas(newValue));
+
+        ObservableList<Agenda> items = FXCollections.observableArrayList(agendaDAO.selectAgendas(newValue));
         listView.setItems(items);
     }
 }
