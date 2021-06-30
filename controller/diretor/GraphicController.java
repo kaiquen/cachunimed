@@ -55,7 +55,9 @@ public class GraphicController implements Initializable {
         System.out.println(date);
         Map<Integer, ArrayList> dados = agendaDAO.graphic(date);
 
-        for (Map.Entry<Integer, ArrayList> dadosItem : dados.entrySet()) {
+       
+        barChart.getData().clear();
+        for (Map.Entry<Integer, ArrayList> dadosItem : dados.entrySet()) { 
             Series<String, Integer> series = new XYChart.Series<>();
             series.setName(dadosItem.getKey().toString());
             for (int i = 0; i < dadosItem.getValue().size(); i = i + 2) {
