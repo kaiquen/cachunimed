@@ -27,15 +27,15 @@ public class Paciente {
         if (verifynome)
             setNome(nome);
         else
-            err += "nome obidatório!\n";
+            err += "Nome obrigatório!\n";
         if (verifytelefone)
             setTelefone(telefone);
         else
-            err += "Telefone obrigatorio!\n";
+            err += "Telefone obrigatório!\n";
         if (verifyendereco)
             setEndereco(endereco);
         else
-            err += "endereco obrigatorio!\n";
+            err += "Endereço obrigatório!\n";
         if (!verifytelefone || !verifynome || !verifyendereco)
             throw new RuntimeException(err);
     }
@@ -61,15 +61,15 @@ public class Paciente {
         if (verifynome)
             setNome(nome);
         else
-            err += "Name obidatório!\n";
+            err += "Nome obrigatório!\n";
         if (verifytelefone)
             setTelefone(telefone);
         else
-            err += "Telefone obrigatorio!\n";
+            err += "Telefone obrigatório!\n";
         if (verifyendereco)
             setEndereco(endereco);
         else
-            err += "endereco obrigatorio!\n";
+            err += "Endereco obrigatório!\n";
         if (!verifyCPF || !verifytelefone || !verifynome || !verifyendereco)
             throw new RuntimeException(err);
     }

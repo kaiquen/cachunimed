@@ -38,7 +38,7 @@ public class Funcionario {
         if (verifyPasword)
             setSenha(senha);
         else
-            err += "Preencha o campo senha";
+            err += "Preencha o campo senha!";
         if (!verifyName || !verifyPasword)
             throw new RuntimeException(err);
     }
@@ -54,11 +54,11 @@ public class Funcionario {
         if (verifyComboBox)
             setCargo(comboBoxCargo.getValue().toString());
         else
-            err += "Selecione o tipo!\n";
+            err += "Selecione uma opção!\n";
         if (verifyCPF)
             setCpf(cpf);
         else
-            err = "CPF invalido!\n";
+            err = "CPF inválido!\n";
         if (verifyName)
             setNome(name);
         else
@@ -66,7 +66,7 @@ public class Funcionario {
         if (verifyPasword)
             setSenha(senha);
         else
-            err += "Preencha o campo senha";
+            err += "Preencha o campo senha!";
         if (!verifyCPF || !verifyComboBox || !verifyName || !verifyPasword)
             throw new RuntimeException(err);
     }

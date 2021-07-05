@@ -34,7 +34,7 @@ public class MainMedicoController implements Initializable {
     void desmarcar() throws SQLException {
         if (listView.getSelectionModel().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Delete Fail");
+            alert.setTitle("Delete Failed");
             alert.setHeaderText("Selecione a consulta");
             alert.setContentText("Tente novamente!");
             alert.show();

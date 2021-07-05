@@ -98,5 +98,4 @@ public class Agenda {
     public String toString() {
         return horario_consulta.toString().substring(10, 16) + " " + nome_paciente;
     }
-    // tem que formatar hora
 }

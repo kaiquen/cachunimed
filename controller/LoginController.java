@@ -80,8 +80,8 @@ public class LoginController implements Initializable {
         } catch (Exception e) {
             System.out.println(e);
             Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Connection Failed");
-            alert.setHeaderText("Credenciais inválidas");
+            alert.setTitle("Connection Failed!");
+            alert.setHeaderText("Credenciais inválidas!");
             alert.setContentText("Tente novamente!");
             alert.show();
         }

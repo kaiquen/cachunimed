@@ -62,7 +62,7 @@ public class ListPacienteController implements Initializable {
     private void updateList() {
         if (tableView.getSelectionModel().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Update Fail");
+            alert.setTitle("Update Failed");
             alert.setHeaderText("Selecione o Paciente");
             alert.setContentText("Tente novamente!");
             alert.show();
@@ -97,8 +97,8 @@ public class ListPacienteController implements Initializable {
                 anchorPaneList.setVisible(true);
             } catch (Exception e) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Insert Fail");
-                alert.setHeaderText("Preencha todos os campo");
+                alert.setTitle("Insert Failed");
+                alert.setHeaderText("Preencha todos os campos!");
                 System.out.println(e.getMessage().length());
                 if (e.getMessage().length() > 100) {
                     alert.setContentText("CPF Inválido");
@@ -109,8 +109,8 @@ public class ListPacienteController implements Initializable {
             }
         } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Insert Fail");
-            alert.setHeaderText("Preencha todos os campos");
+            alert.setTitle("Insert Failed");
+            alert.setHeaderText("Preencha todos os campos!");
             alert.setContentText(e.getMessage());
             alert.show();
         }
@@ -126,7 +126,7 @@ public class ListPacienteController implements Initializable {
     private void delete() throws NumberFormatException, SQLException {
         if (tableView.getSelectionModel().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Delete Fail");
+            alert.setTitle("Delete Failed");
             alert.setHeaderText("Selecione o campo");
             alert.setContentText("Tente novamente!");
             alert.show();
@@ -154,8 +154,8 @@ public class ListPacienteController implements Initializable {
             anchorPaneList.setVisible(true);
         } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Insert Fail");
-            alert.setHeaderText("Preencha todos os campos");
+            alert.setTitle("Insert Failed");
+            alert.setHeaderText("Preencha todos os campos!");
             alert.setContentText(e.getMessage());
             alert.show();
         }
