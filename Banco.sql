@@ -44,8 +44,8 @@ create table agenda_medico (
             unique(cod_funcionario_medico,horario_consulta)
 );
 
-INSERT INTO cargo_funcionario (cargo) VALUES ('Diretor');
-INSERT INTO cargo_funcionario (cargo) VALUES ('Médico');
-INSERT INTO cargo_funcionario (cargo) VALUES ('Recepcionista');
+INSERT INTO cargo_funcionario (nome_cargo) VALUES ('Diretor');
+INSERT INTO cargo_funcionario (nome_cargo) VALUES ('Médico');
+INSERT INTO cargo_funcionario (nome_cargo) VALUES ('Recepcionista');
 
 insert into funcionario (nome_funcionario, cpf_funcionario, senha_funcionario, id_cargo_funcionario) values ('Diretor','123','123',1);
