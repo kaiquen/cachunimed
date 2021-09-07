@@ -41,6 +41,8 @@ public class LoginController implements Initializable {
             System.out.println(funcionario.getId_cargo());
             switch (funcionario.getId_cargo()) {
                 case 1:
+                    System.out.println("Diretor");
+
                     login.getScene().getWindow().hide();
                     Parent mainDiretor = FXMLLoader.load(getClass().getResource("/view/diretor/MainDiretor.fxml"));
                     Scene sceneDiretor = new Scene(mainDiretor);
@@ -53,6 +55,8 @@ public class LoginController implements Initializable {
                     break;
 
                 case 2:
+                    System.out.println("Medico");
+
                     login.getScene().getWindow().hide();
                     Parent mainMedico = FXMLLoader.load(getClass().getResource("/view/medico/MainMedico.fxml"));
                     Scene sceneMedico = new Scene(mainMedico);
@@ -65,9 +69,10 @@ public class LoginController implements Initializable {
                     break;
 
                 case 3:
+                    System.out.println("Recepcionista");
+
                     login.getScene().getWindow().hide();
-                    Parent mainRecepcionista = FXMLLoader
-                            .load(getClass().getResource("/view/Recepcionista/MainRecepcionista.fxml"));
+                    Parent mainRecepcionista = FXMLLoader.load(getClass().getResource("/view/recepcionista/MainRecepcionista.fxml"));
                     Scene sceneRecepcionista = new Scene(mainRecepcionista);
                     sceneRecepcionista.getStylesheets().add("/view/style.css");
                     Stage stageRecepcionista = new Stage();
@@ -87,7 +92,11 @@ public class LoginController implements Initializable {
         }
     }
 
+  
+
+
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
+    
     }
 }

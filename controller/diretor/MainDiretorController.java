@@ -29,8 +29,18 @@ public class MainDiretorController implements Initializable {
         AnchorPane panePaciente = (AnchorPane) FXMLLoader.load(getClass().getResource("/view/diretor/Relatorios.fxml"));
         anchorPane.getChildren().setAll(panePaciente);
     }
+    @FXML private void listEquipe() throws IOException {
+        AnchorPane panePaciente = (AnchorPane) FXMLLoader.load(getClass().getResource("/view/diretor/Equipe.fxml"));
+        anchorPane.getChildren().setAll(panePaciente);
+    }
+ 
     
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
+       stop();
+    }
+    public void stop(){
+        System.out.println("Stage is closing");
+        // Save file
     }
 }

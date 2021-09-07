@@ -28,6 +28,11 @@
                   <MenuItem mnemonicParsing="false" onAction="#listRelatorios" text="Agenda" />
                </items>
             </Menu>
+            <Menu mnemonicParsing="false" text="Sobre">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#listEquipe" text="Equipe" />
+               </items>
+            </Menu>
         </menus>
       </MenuBar>
       <AnchorPane fx:id="anchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="AnchorPaneLogin">
